@@ -14,7 +14,7 @@ namespace JumboCaramelPayroll
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = "Server=(localdb)\\mssqllocaldb;Database=JumboCarmelPayroll;Trusted_Connection=True;";
+            var connectionString = "Server=(localdb)\\mssqllocaldb;Database=JumboCaramelPayroll;Trusted_Connection=True;";
 
             optionsBuilder.UseSqlServer(connectionString)
                           .UseLazyLoadingProxies();
@@ -64,7 +64,7 @@ namespace JumboCaramelPayroll
                     SSN = "100-600-4000",
                     Birthdate = DateTime.Today,
                     Email = "Fred.Johnson@yaho.com",
-                    RoleId = 3
+                    RoleId = 2
 
 
                 },
