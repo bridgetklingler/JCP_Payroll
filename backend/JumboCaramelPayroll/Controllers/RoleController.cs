@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using JumboCaramelPayroll.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -34,27 +35,27 @@ namespace JumboCaramelPayroll.Controllers
 
         // POST api/Role
         [HttpPost]
-        public ActionResult<IEnumerable<Role>> Post([FromBody] Role artist)
+        public ActionResult<IEnumerable<Role>> Post([FromBody] Role role)
         {
-            db.Roles.Add(artist);
+            db.Roles.Add(role);
             db.SaveChanges();
             return db.Roles.ToList();
         }
 
         // PUT api/values/5
         [HttpPut]
-        public ActionResult<IEnumerable<Role>> Put([FromBody] Role artist)
+        public ActionResult<IEnumerable<Role>> Put([FromBody] Role role)
         {
-            db.Roles.Update(artist);
+            db.Roles.Update(role);
             db.SaveChanges();
             return db.Roles.ToList();
         }
 
 
         [HttpDelete]
-        public ActionResult<IEnumerable<Role>> Delete(Role artist)
+        public ActionResult<IEnumerable<Role>> Delete(Role role)
         {
-            db.Roles.Remove(artist);
+            db.Roles.Remove(role);
             db.SaveChanges();
             return db.Roles.ToList();
         }
