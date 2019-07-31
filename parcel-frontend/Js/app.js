@@ -11,9 +11,9 @@ function pageBuild(){
   employeeindex();
   getaddemployee();
   addemployee();
- geteditemployee();
- editemployee();
-
+  geteditemployee();
+  editemployee();
+  deleteEmployee()
 }
 const app = document.getElementById('main');
 
@@ -25,9 +25,6 @@ function employeeindex(){
           app.innerHTML = EmployeeIndex(employeelist);
       })
   })
-  // 
-     
-  //   })
 };
 
 //Gets the Add Employee Page
@@ -36,11 +33,6 @@ function getaddemployee() {
     app.innerHTML = GetAddEmployee();
   })
 }
-// function geteditemployee() {
-//   document.getElementById('edit_employee').addEventListener('click', function(){
-//     app.innerHTML = GetEditEmployee();
-//   })
-// }
 
 function geteditemployee() {
   document.getElementById('main').addEventListener('click', function(){
@@ -84,9 +76,9 @@ function addemployee(){
       app.innerHTML = EmployeeIndex(employeelist);
     })
   }
+})
 }
-  )
-}
+
 function editemployee(){
   document.getElementById('main').addEventListener('click', function() {
     if (event.target.classList.contains('edit_employee_submit')){
@@ -119,8 +111,21 @@ function editemployee(){
         app.innerHTML = EmployeeIndex(employeelist);
       })
     }
+  })
   }
-    )
-  }
+
+  function deleteEmployee(){
+    document.getElementById('main').addEventListener('click', function() {
+      if (event.target.classList.contains('delete_employee_submit')){
+      const employeeId = document.querySelector('.delete_employee_id').value;
+        const data = {
+            employeeId: employeeId
+        }
+      ApiAction.deleteRequest('https://localhost:44390/api/employee', 
+      data,
+      employeelist=> {
+        app.innerHTML = EmployeeIndex(employeelist);
+      })
+  }})}
 
 
