@@ -2,6 +2,7 @@ import EmployeeIndex from "./components/employeeindex"
 import GetAddEmployee from "./components/addemployee"
 import ApiAction from "./api/api-actions"
 import GetEditEmployee from "./components/editemployee"
+import SingleEmployee from "./components/singleemployee"
 
 
 
@@ -14,6 +15,7 @@ function pageBuild(){
   geteditemployee();
   editemployee();
   deleteEmployee()
+  singleEmployee()
 }
 const app = document.getElementById('main');
 
@@ -126,6 +128,22 @@ function editemployee(){
       employeelist=> {
         app.innerHTML = EmployeeIndex(employeelist);
       })
-  }})}
+  }})
+}
+
+  function singleEmployee(){
+    document.getElementById('main').addEventListener('click', function() {
+      if (event.target.classList.contains('single_employee_submit')){
+      const employeeId = document.querySelector('.single_employee_id').value;
+        const data = {
+            employeeId: employeeId
+        }
+      ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
+      data,
+      employee=> {
+        app.innerHTML = SingleEmployee(employee);
+      })
+  }})
+  }
 
 
