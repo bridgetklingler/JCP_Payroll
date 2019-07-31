@@ -1,8 +1,11 @@
 export default function EmployeeIndex(employeelist){
+    console.log("employee Index")
     return `
     <employees>  
         ${employeelist.map(employee => {
-        return `          
+        return `  
+                <button class="edit_employee" value="${employee.employeeId}">edit</button> 
+                 <input class="employee_id" type="hidden" value="${employee.employeeId}">      
                 ${employee.firstName}
                 ${employee.lastName}
                 ${employee.address}

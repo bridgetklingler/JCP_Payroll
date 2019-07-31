@@ -1,12 +1,15 @@
-<div id='button-box'>
-       <button class='edit-artist'>Edit Artist</button>
-       <button class='delete-artist'>Delete Artist</button>
-       <section class='edit-box'>
-           <input class='artist_id' type='hidden' value='${artist.artistId}'>
-           <input class='edit-artist_imageUrl' type='hidden' value='${artist.imageURL}'>
-           <input class='edit-artist_name' type='text' value='${artist.name}'>
-           <input class='edit-artist_homeTown' type='text' value='${artist.homeTown}'>
-           <textarea class='edit-artist_description'>${artist.description}</textarea>
-           <button class='edit-artist_submit'>Submit</button>
-       </section>
-   </div>
+export default function GetEditEmployee(employee){
+    return `    
+            <h1> Edit Employee</h1>
+            <input type="hidden" class="edit_employee_id" value="${employee.employeeId}">
+            <input type="text" class="edit_employee_first_name" value="${employee.employeeFirstName}">
+            <input type="text" class="edit_employee_last_name" value="${employee.employeeLastName}">
+            <input type="text" class="edit_employee_address" value="${employee.employeeAddress}">
+            <input type="text" class="edit_employee_phone_number" value="${employee.employeePhoneNumber}">
+            <input type="text" class="edit_employee_ssn" value="${employee.employeeSSN}">
+            <input type="date" class="edit_employee_birthdate" value="${employee.employeeBirthDate}">
+            <input type="text" class="edit_employee_email" value="${employee.employeeEmail}">
+            <input type="text" class="edit_employee_role" value="${employee.employeeRole}">
+            <button class="edit_employee_submit multibutton">Submit</button>
+    `
+}

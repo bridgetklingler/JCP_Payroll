@@ -6,7 +6,7 @@ export default function GetAddEmployee(){
             <input type="text" class="add_employee_address">
             <input type="text" class="add_employee_phone_number">
             <input type="text" class="add_employee_ssn">
-            <input type="text" class="add_employee_birthdate">
+            <input type="date" class="add_employee_birthdate">
             <input type="text" class="add_employee_email">
             <button class="add_employee_submit multibutton">Submit</button>
     `
