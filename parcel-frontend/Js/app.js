@@ -12,6 +12,7 @@ function pageBuild(){
   getaddemployee();
   addemployee();
  geteditemployee();
+ editemployee();
 
 }
 const app = document.getElementById('main');
@@ -90,8 +91,8 @@ function editemployee(){
   document.getElementById('main').addEventListener('click', function() {
     if (event.target.classList.contains('edit_employee_submit')){
     console.log("i");
-    const employeeId = 0;
-    const roleId = 1;
+    const employeeId = document.querySelector('.edit_employee_id').value;
+    const roleId = document.querySelector('.edit_employee_role').value;
     const firstName = document.querySelector('.edit_employee_first_name').value;
     const lastName = document.querySelector('.edit_employee_last_name').value;
     const address = document.querySelector('.edit_employee_address').value;
@@ -99,6 +100,7 @@ function editemployee(){
     const ssn = document.querySelector('.edit_employee_ssn').value;
     const birthdate = document.querySelector('.edit_employee_birthdate').value;
     const email = document.querySelector('.edit_employee_email').value;
+    console.log(birthdate)
     const data = {
       employeeId: employeeId,
       phoneNumber: phoneNumber,
