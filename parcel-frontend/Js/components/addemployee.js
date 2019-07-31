@@ -1,11 +1,13 @@
-export default function AddArtistModal(){
-    return `
-    <section class='add-artist'>
-        <input class='add-artist_name' type='text' placeholder='Add artist name...'>
-        <input class='add-artist-hometown' type='text' placeholder='Add hometown...'>
-        <input class='add-artist-imageurl' type='text' placeholder='Add artist image URL...'>
-        <input class='add-artist-description' type='text' placeholder='Add artist description...'>
-        <button class='add-artist_submit'>Submit</button>
-    </section>
+export default function GetAddEmployee(){
+    return `    
+            <h1> Add Employee</h1>
+            <input type="text" class="add_employee_first_name">
+            <input type="text" class="add_employee_last_name">
+            <input type="text" class="add_employee_address">
+            <input type="text" class="add_employee_phone_number">
+            <input type="text" class="add_employee_ssn">
+            <input type="text" class="add_employee_birthdate">
+            <input type="text" class="add_employee_email">
+            <button class="add_employee_submit multibutton">Submit</button>
     `
- }
+}

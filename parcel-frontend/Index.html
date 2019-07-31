@@ -5,44 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
     </head>
-      <body id="main">
+      <body>
     
     <div id="mySidenav" class="sidenav">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="#">Employees</a>
+      <a id="Nav_employee_index" href="#">Employees</a>
       <a href="#">Edit Hours</a>
       <a href="#">Edit Roles</a>
-      <a href="#">Add Employee</a>
+      <a id="Nav_add_employee" href="#">Add Employee</a>
       <a href="#">Current Pay Period</a>
       <a href="#">Previous Pay Period</a>
     </div>
     <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-    
-    <script>
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-    }
-    
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-    }
-    </script>
-     
-        <div id="sidebar">
-        </div>
-        <div id="main-info">
-            <h1>Welcome to Drip Coffee's Music Selector</h1>
-            <p>Please use this interface to select music for the café. Keep it appropriate to our atmosphere, please.</p>
-        </div>
-        <div id="boxbg">
-            <div id='secret-box'>
-                <div id="box"></div>
-                <span id='closebutton'>&times;</span>
-            </div>
         </div> 
+        <div id="main"></div>
     </body>
-    
-
 <!-- <nav>
     <ul>
         <img src="" alt="">
@@ -54,5 +31,14 @@
         <li id="nav_previous pay period">Previous Pay Period</li>
     </ul>
 </nav> -->
+<script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+  </script>
 <script src="./Js/app.js"></script>
 </html>
