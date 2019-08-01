@@ -25,7 +25,7 @@ export default function EmployeeIndex(employeelist){
             <address>${employee.address}</address>
             <pn>${employee.phoneNumber}</pn>
             <ssn>${employee.ssn}</ssn>
-            <bd>${employee.birthdate}</bd>
+            <bd>${employee.birthdate.substring(0,10)}</bd>
             <email>${employee.email}</email>
             <employeebuttons>
             <button class="edit_employee multibutton">Edit 
