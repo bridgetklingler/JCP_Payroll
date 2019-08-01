@@ -71,7 +71,7 @@ function addemployee(){
     birthdate: birthdate,
     email: email
   };
-  console.log(data);
+  
     ApiAction.postRequest('https://localhost:44390/api/employee', data,
     employeelist=> {
       console.log("i2")
@@ -81,6 +81,7 @@ function addemployee(){
 })
 }
 
+//Edit Employee Data
 function editemployee(){
   document.getElementById('main').addEventListener('click', function() {
     if (event.target.classList.contains('edit_employee_submit')){
@@ -94,7 +95,7 @@ function editemployee(){
     const ssn = document.querySelector('.edit_employee_ssn').value;
     const birthdate = document.querySelector('.edit_employee_birthdate').value;
     const email = document.querySelector('.edit_employee_email').value;
-    console.log(birthdate)
+    
     const data = {
       employeeId: employeeId,
       phoneNumber: phoneNumber,
@@ -106,7 +107,7 @@ function editemployee(){
       birthdate: birthdate,
       email: email
     };
-    console.log(data);
+   
       ApiAction.putRequest('https://localhost:44390/api/employee', data,
       employeelist=> {
         console.log("i2")
@@ -116,6 +117,7 @@ function editemployee(){
   })
   }
 
+  //Delete an Employee
   function deleteEmployee(){
     document.getElementById('main').addEventListener('click', function() {
       if (event.target.classList.contains('delete_employee_submit')){
@@ -131,16 +133,14 @@ function editemployee(){
   }})
 }
 
+   //View a Single Employee
   function singleEmployee(){
     document.getElementById('main').addEventListener('click', function() {
       if (event.target.classList.contains('single_employee_submit')){
-      const employeeId = document.querySelector('.single_employee_id').value;
-        const data = {
-            employeeId: employeeId
-        }
+      const employeeId = event.target.parentElement.querySelector('.single_employee_id').value;
+       
       ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
-      data,
-      employee=> {
+        employee=> {
         app.innerHTML = SingleEmployee(employee);
       })
   }})
