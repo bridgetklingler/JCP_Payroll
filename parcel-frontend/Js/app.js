@@ -46,6 +46,22 @@ function geteditemployee() {
       }
  } )}
 
+ //Delete an Employee
+ function deleteEmployee(){
+  document.getElementById('main').addEventListener('click', function() {
+    if (event.target.classList.contains('delete_employee_submit')){
+    const employeeId = event.target.querySelector('.delete_employee_id').value;
+      const data = {
+          employeeId: employeeId
+      }
+    ApiAction.deleteRequest('https://localhost:44390/api/employee', 
+    data,
+    employeelist=> {
+      app.innerHTML = EmployeeIndex(employeelist);
+    })
+}})
+}
+
 //Creates an Employee
 function addemployee(){
   document.getElementById('main').addEventListener('click', function() {
@@ -117,27 +133,27 @@ function editemployee(){
   })
   }
 
-  //Delete an Employee
-  function deleteEmployee(){
-    document.getElementById('main').addEventListener('click', function() {
-      if (event.target.classList.contains('delete_employee_submit')){
-      const employeeId = document.querySelector('.delete_employee_id').value;
-        const data = {
-            employeeId: employeeId
-        }
-      ApiAction.deleteRequest('https://localhost:44390/api/employee', 
-      data,
-      employeelist=> {
-        app.innerHTML = EmployeeIndex(employeelist);
-      })
-  }})
-}
+//   //Delete an Employee
+//   function deleteEmployee(){
+//     document.getElementById('main').addEventListener('click', function() {
+//       if (event.target.classList.contains('delete_employee_submit')){
+//       const employeeId = document.querySelector('.delete_employee_id').value;
+//         const data = {
+//             employeeId: employeeId
+//         }
+//       ApiAction.deleteRequest('https://localhost:44390/api/employee', 
+//       data,
+//       employeelist=> {
+//         app.innerHTML = EmployeeIndex(employeelist);
+//       })
+//   }})
+// }
 
    //View a Single Employee
   function singleEmployee(){
     document.getElementById('main').addEventListener('click', function() {
       if (event.target.classList.contains('single_employee_submit')){
-      const employeeId = event.target.parentElement.querySelector('.single_employee_id').value;
+      const employeeId = event.target.querySelector('.single_employee_id').value;
        
       ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
         employee=> {
