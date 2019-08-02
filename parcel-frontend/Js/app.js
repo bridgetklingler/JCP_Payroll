@@ -68,7 +68,6 @@ function addemployee(){
   if (event.target.classList.contains('add_employee_submit')){
   console.log("i");
   const employeeId = 0;
-  const roleId = 1;
   const firstName = document.querySelector('.add_employee_first_name').value;
   const lastName = document.querySelector('.add_employee_last_name').value;
   const address = document.querySelector('.add_employee_address').value;
@@ -76,6 +75,7 @@ function addemployee(){
   const ssn = document.querySelector('.add_employee_ssn').value;
   const birthdate = document.querySelector('.add_employee_birthdate').value;
   const email = document.querySelector('.add_employee_email').value;
+  const roleId = document.querySelector('.add_employee_roleId').value;
   const data = {
     employeeId: employeeId,
     phoneNumber: phoneNumber,
@@ -85,7 +85,8 @@ function addemployee(){
     address: address,
     ssn: ssn,
     birthdate: birthdate,
-    email: email
+    email: email,
+    roleId: roleId
   };
   
     ApiAction.postRequest('https://localhost:44390/api/employee', data,

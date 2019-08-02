@@ -13,10 +13,12 @@ export default function EmployeeIndex(employeelist){
             <ssn>SSN</ssn>
             <bd>BirthDate</bd>
             <email>Email</email>
+            <rollId>rollId</rollId>
             <employeebuttons></employeebuttons>
         </employee>
         ${employeelist.map(employee => {
         return `  
+        ${JSON.stringify(employee)}
             <employee>
             <names>
             <fname>${employee.firstName}</fname>
@@ -27,6 +29,7 @@ export default function EmployeeIndex(employeelist){
             <ssn>${employee.ssn}</ssn>
             <bd>${employee.birthdate.substring(0,10)}</bd>
             <email>${employee.email}</email>
+            <roleId>${employee.roleId}</roleId>
             <employeebuttons>
             <button class="edit_employee multibutton">Edit 
             <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
