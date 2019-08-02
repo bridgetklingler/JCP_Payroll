@@ -18,7 +18,7 @@ export default function EmployeeIndex(employeelist){
         </employee>
         ${employeelist.map(employee => {
         return `  
-        ${JSON.stringify(employee)}
+        
             <employee>
             <names>
             <fname>${employee.firstName}</fname>
