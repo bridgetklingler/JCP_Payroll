@@ -1,24 +1,24 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>JCP Payroll</title>
-</head>
-<body>
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+      <body>
+    
     <div id="mySidenav" class="sidenav">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">Edit Hours</a>
-        <a href="#">Edit Roles</a>
-        <a href="#">Add Employee</a>
-        <a href="#">Currrent Pay Period</a>
-        <a href="#">Previous Pay Period</a>
-      </div>
-      <span onclick="openNav()">open</span>
-
-
-</body>
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a id="Nav_employee_index" href="#">Employees</a>
+      <a href="#">Edit Hours</a>
+      <a href="#">Edit Roles</a>
+      <a id="Nav_add_employee" href="#">Add Employee</a>
+      <a href="#">Current Pay Period</a>
+      <a href="#">Previous Pay Period</a>
+    </div>
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+        </div> 
+        <div id="main"></div>
+    </body>
 <!-- <nav>
     <ul>
         <img src="" alt="">
@@ -30,5 +30,14 @@
         <li id="nav_previous pay period">Previous Pay Period</li>
     </ul>
 </nav> -->
-<script src="./js/app.js"></script>
+<script>
+  function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+  }
+  
+  function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+  }
+  </script>
+<script src="./Js/app.js"></script>
 </html>
