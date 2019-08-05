@@ -1,5 +1,8 @@
-export default function Home(){
+export default function Home(employeelist){
     return `
-    <h1>Welcome to Drip Coffee's Music Selector</h1>
-        <p>Plea.</p>`
+   
+
+
+    
+    `
  }

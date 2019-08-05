@@ -14,6 +14,8 @@ export default function GetEditEmployee(employee){
             <addinput> <label>Email:</label><input type="text" class="edit_employee_email" value="${employee.email}"></addinput>
             <addinput> <label>Role:</label><input type="text" class="edit_employee_role" value="${employee.roleId}"></addinput>
             <button class="edit_employee_submit multibutton submit">Submit</button>
+            <button class='cancel_edit_submit multibutton'>Cancel
+            <input class='cancel_employee_id' type='hidden' value ='${employee.employeeId}'>
             </addemployee>
     `
 }
