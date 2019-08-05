@@ -15,7 +15,7 @@
        <a href="#">Current Pay Period</a>
        <a href="#">Previous Pay Period</a>
     </div>
-    <span id='hidenav' style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    <span id='hidenav' style="font-size:30px;cursor:pointer;color:rgb(154, 195, 212);margin-left:1vw;" onclick="openNav()">&#9776;</span>
       <mainnav id='mainnav'>
         <n>Profile</n>
         <n>Current Pay-Period</n>
@@ -24,12 +24,15 @@
     </nav>
         <div id="main">
           <loginbox id='loginbox'>
-            Username:
-            <input id='username' type="text">
-            Password:
-            <input id='password' type="password">
+            <strong>Username:</strong>
+            <input class='logininput' id='username' type="text">
+          </br>
+            <strong>Password:</strong>
+            <input class='logininput' id='password' type="password">
           <button class="adminlogin multibutton loginbutton">Login</button>
-          <p id='invalid' style='color: red; display:none;'>Invalid username or password</p>
+          </br>
+        </br>
+          <p id='invalid' style='color: red; display:none;'></p>
         </loginbox>
         </div>
     </body>
@@ -49,7 +52,7 @@
       document.getElementById('hidenav').style.display = 'block'
       document.getElementById('nav').style.display = 'flex'
       document.getElementById('mainnav').style.display = 'flex'
-      document.getElementById('loginbox').style.display = 'none'
+      document.getElementById('main').innerHTML = "<h1>Welcome,</br> Admin</h1>"
       }}}})
 
       document.getElementById('main').addEventListener('click', function(){
@@ -81,7 +84,7 @@
           if(document.getElementById('password').value == '123') {
       document.getElementById('nav').style.display = 'flex'
       document.getElementById('mainnav').style.display = 'flex'
-      document.getElementById('loginbox').style.display = 'none'
+      document.getElementById('main').innerHTML = '<h1>Welcome, </br> Employee</h1>'
       }}}})
 
   </script>
