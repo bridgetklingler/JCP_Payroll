@@ -123,6 +123,7 @@ loginbox {
 
 #main {
   padding: 0 5vw 5vh 5vw;
+  transition: 0.5s;
 }
 
 h1 {

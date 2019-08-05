@@ -39,14 +39,17 @@
 <script>
   function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById('main').style.paddingLeft = "275px";
   }
   
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
+    document.getElementById('main').style.paddingLeft = "5vw";
   }
 
   document.getElementById('mySidenav').addEventListener('mouseleave', function() {
     document.getElementById('mySidenav').style.width = "0";
+    document.getElementById('main').style.paddingLeft = "5vw";
   })
   // Login function -----------------------------------------------------
     document.getElementById('main').addEventListener('click', function(){
