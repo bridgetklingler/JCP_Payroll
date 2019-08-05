@@ -2,6 +2,13 @@ body {
   background-color: rgb(230, 237, 240);
 }
 
+#mySidenav {
+
+}
+
+#hidenav {
+  display: none;
+}
 /* The side navigation menu */
 .sidenav {
   height: 100%; /* 100% Full-height */

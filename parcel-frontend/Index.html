@@ -15,9 +15,12 @@
       <a href="#">Current Pay Period</a>
       <a href="#">Previous Pay Period</a>
     </div>
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+    <span id='hidenav' style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
         </div> 
-        <div id="main"></div>
+        <div id="main">
+          <button class="adminlogin multibutton">admin</button>
+          <button class="employeelogin multibutton">employee</button>
+        </div>
     </body>
 <!-- <nav>
     <ul>
@@ -38,6 +41,12 @@
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
   }
+
+    document.getElementById('main').addEventListener('click', function(){
+      if(event.target.classList.contains("adminlogin")){
+      document.getElementById('hidenav').style.display = 'block'
+      }})
+
   </script>
 <script src="./Js/app.js"></script>
 </html>
