@@ -1,5 +1,5 @@
 import apiActions from '../api/api-actions'
-export default function GetEditEmployee(){
+export default function GetEditEmployee(employee){
     
     setPage();
     loadRoles();

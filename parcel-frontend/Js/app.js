@@ -41,18 +41,18 @@ function getaddemployee() {
 }
 
 function geteditemployee() {
-  document.querySelector('.edit_employee').addEventListener('click', function(){
-    GetEditEmployee();
-  })
-}
-  //document.getElementById('main').addEventListener('click', function(){
-//       if(event.target.classList.contains("edit_employee")){
-//         const employeeId = event.target.querySelector(".employee_id").value
-//     console.log(employeeId)
-//         ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId,
-//         employee => {app.innerHTML= GetEditEmployee(employee)})
-//       }
-//  } )}
+//   document.querySelector('.edit_employee').addEventListener('click', function(){
+//     GetEditEmployee();
+//   })
+// }
+  document.getElementById('main').addEventListener('click', function(){
+      if(event.target.classList.contains("edit_employee")){
+        const employeeId = event.target.querySelector(".employee_id").value
+    console.log(employeeId)
+        ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId,
+        GetEditEmployee())
+      }
+ } )}
 
  //Delete an Employee
  function deleteEmployee(){
