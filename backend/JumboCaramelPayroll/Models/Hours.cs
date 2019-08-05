@@ -15,6 +15,6 @@ namespace JumboCaramelPayroll.Models
         public bool approved { get; set; }
 
         public virtual int EmployeeId { get; set; }
-        public virtual int RoleId { get; set; }
+        //public virtual int RoleId { get; set; }
     }
 }

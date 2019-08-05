@@ -7,6 +7,10 @@
   <ItemGroup>
     <Compile Remove="Migrations\20190730183549_firstmigration.cs" />
     <Compile Remove="Migrations\20190730183549_firstmigration.Designer.cs" />
+    <Compile Remove="Migrations\20190805021222_HoursAddedAndLinked.cs" />
+    <Compile Remove="Migrations\20190805021222_HoursAddedAndLinked.Designer.cs" />
+    <Compile Remove="Migrations\20190805021823_HoursAddedAndLinked.cs" />
+    <Compile Remove="Migrations\20190805021823_HoursAddedAndLinked.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>
