@@ -54,11 +54,15 @@ function geteditemployee() {
       const data = {
           employeeId: employeeId
       }
+
+      var result = confirm("Are you sure you want to delete this employee?");
+      if (result) {
     ApiAction.deleteRequest('https://localhost:44390/api/employee', 
     data,
     employeelist=> {
       app.innerHTML = EmployeeIndex(employeelist);
     })
+  }
 }})
 }
 
