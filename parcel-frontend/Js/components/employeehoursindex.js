@@ -15,33 +15,31 @@ export default function EmployeeHoursIndex(hourslist){
     </hours>
         ${hourslist.map(hours => {
         return `  
-            <employee>
-            <names>
-            <fname>${employee.firstName}</fname>
-            <lname>${employee.lastName}</lname>
-            </names>
-            <address>${employee.address}</address>
-            <pn>${employee.phoneNumber}</pn>
-            <ssn>${employee.ssn}</ssn>
-            <bd>${employee.birthdate.substring(0,10)}</bd>
-            <email>${employee.email}</email>
-            <employeebuttons>
-            <button class="edit_employee multibutton">Edit 
-            <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
-            </button> 
-            <button class="delete_employee_submit multibutton">Delete 
-            <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
-            </button> 
-            <button class="single_employee_submit multibutton">Select
-            <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
-            </button>
-            </employeebuttons>
-            </employee>
-
-                 `      
+        <hours>
+            <dates>
+                <dateworked> ${hours.timeIn.substring(0, 10)}</dateworked>
+                <timein> ${hours.timeIn.substring(11, 19)}</timein>
+                <timeout> ${hours.timeOut.substring(11, 19)} </timeout>
+            </dates>
+                <totalhours> ${hours.totalHours} </totalhours>
+                <approved> ${hours.approved} </approved>
+                <hoursbuttons>
+                <button class="edit_hours multibutton">Edit 
+                        <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
+                    </button> 
+                    <button class="delete_hours_submit multibutton">Delete 
+                        <input class="delete_hours_id" type="hidden" value="${hours.hoursId}"> 
+                    </button> 
+                    <button class="single_hours_submit multibutton">Select
+                        <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
+                    </button>
+            
+                </hoursbuttons>
+        </hours>    
+        `      
         })     
         .join("")}
         
-    </employees>
+    </hours>
     `
 }

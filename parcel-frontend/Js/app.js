@@ -4,15 +4,17 @@ import ApiAction from "./api/api-actions"
 import GetEditEmployee from "./components/editemployee"
 import SingleEmployee from "./components/singleemployee"
 import GetAddHours from "./components/employeeaddhours"
-import HoursIndex from "./components/employeehoursindex"
+import EmployeeHoursIndex from "./components/employeehoursindex"
 
 
 pageBuild();
 
 function pageBuild(){
   employeeindex();
+  hoursindex();
   getaddemployee();
   addemployee();
+  addhours();
   geteditemployee();
   editemployee();
   deleteEmployee()
@@ -30,6 +32,16 @@ function employeeindex(){
       })
   })
 };
+
+function hoursindex(){
+  const hoursindex = document.getElementById('Nav_hours_index');
+  hoursindex.addEventListener('click', function(){
+    ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
+      console.log("i2")
+      app.innerHTML = EmployeeHoursIndex(hourslist);
+    })
+  })
+}
 
 //Gets the Add Employee Page
 function getaddemployee() {
@@ -115,7 +127,8 @@ function addhours(){
   const timeIn = document.querySelector('.add_hours_time_in').value
   const timeOut = document.querySelector('.add_hours_time_out').value
   const totalHours = document.querySelector('.add_hours_total_hours').value
-  const approved = document.querySelector('.approved').value
+  const approved = false;
+  //document.querySelector('.approved').value
   const data = {
     HoursId: hoursId,
     EmployeeId: employeeId,
