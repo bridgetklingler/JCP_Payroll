@@ -32,7 +32,7 @@ export default function EmployeeIndex(employeelist){
             <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
             </button> 
             <button class="delete_employee_submit multibutton">Delete 
-            <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
+            <input class="delete_employee_id" type="hidden" value="${employee.employeeId}">
             </button> 
             <button class="single_employee_submit multibutton">Select
             <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
