@@ -18,6 +18,6 @@ namespace JumboCaramelPayroll.Models
 
         public virtual int RoleId { get; set; }
 
-
+        public virtual List<Hours> Hours { get; set; }
     }
 }

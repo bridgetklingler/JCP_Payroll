@@ -13,8 +13,7 @@ namespace JumboCaramelPayroll.Models
         public int HourRate { get; set; }
 
         public virtual List<Employee> Employees { get; set; }
-
-
+        public virtual List<Hours> Hours { get; set; }
 
     }
 }
