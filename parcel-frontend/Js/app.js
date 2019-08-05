@@ -6,9 +6,12 @@ import SingleEmployee from "./components/singleemployee"
 
 
 
+
+
 pageBuild();
 
 function pageBuild(){
+
   employeeindex();
   getaddemployee();
   addemployee();
@@ -28,6 +31,7 @@ function employeeindex(){
       })
   })
 };
+
 
 //Gets the Add Employee Page
 function getaddemployee() {
@@ -133,21 +137,6 @@ function editemployee(){
   })
   }
 
-//   //Delete an Employee
-//   function deleteEmployee(){
-//     document.getElementById('main').addEventListener('click', function() {
-//       if (event.target.classList.contains('delete_employee_submit')){
-//       const employeeId = document.querySelector('.delete_employee_id').value;
-//         const data = {
-//             employeeId: employeeId
-//         }
-//       ApiAction.deleteRequest('https://localhost:44390/api/employee', 
-//       data,
-//       employeelist=> {
-//         app.innerHTML = EmployeeIndex(employeelist);
-//       })
-//   }})
-// }
 
    //View a Single Employee
   function singleEmployee(){
@@ -159,7 +148,17 @@ function editemployee(){
         employee=> {
         app.innerHTML = SingleEmployee(employee);
       })
-  }})
+  }})  
   }
+    document.getElementById('main').addEventListener('click', function(){
+      if(event.target.classList.contains('return_employee_submit'))
+    
+    ApiAction.getRequest("https://localhost:44390/api/employee", employeelist => {
+        app.innerHTML = EmployeeIndex(employeelist);
+      })
+  
+ 
 
+ 
 
+    })
