@@ -136,7 +136,14 @@ function editemployee(){
     }
   })
   }
+  document.getElementById('main').addEventListener('click', function(){
+    if(event.target.classList.contains('cancel_edit_submit'))
+  
+  ApiAction.getRequest("https://localhost:44390/api/employee", employeelist => {
+      app.innerHTML = EmployeeIndex(employeelist);
+    })
 
+  })
 
    //View a Single Employee
   function singleEmployee(){
