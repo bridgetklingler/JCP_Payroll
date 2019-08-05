@@ -44,6 +44,10 @@
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
   }
+
+  document.getElementById('mySidenav').addEventListener('mouseleave', function() {
+    document.getElementById('mySidenav').style.width = "0";
+  })
   // Login function -----------------------------------------------------
     document.getElementById('main').addEventListener('click', function(){
       if(event.target.classList.contains("adminlogin")){
