@@ -9,6 +9,7 @@ export default function GetAddEmployee(){
             <addinput> <label>SSN:</label> <input type="text" class="add_employee_ssn"></addinput>
             <addinput> <label>Birthdate:</label> <input type="date" class="add_employee_birthdate"></addinput>
             <addinput> <label>Email:</label> <input type="text" class="add_employee_email"></addinput>
+            <addinput> <label>RoleId:</label> <input type="text" class="add_employee_roleId"></addinput>
             <button class="add_employee_submit multibutton submit">Submit</button>
             </addemployee>
     `
