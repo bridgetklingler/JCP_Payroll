@@ -36,7 +36,7 @@ function employeeindex(){
 //Gets the Add Employee Page
 function getaddemployee() {
   document.getElementById('Nav_add_employee').addEventListener('click', function(){
-    app.innerHTML = GetAddEmployee();
+    GetAddEmployee();
   })
 }
 
@@ -83,7 +83,7 @@ function addemployee(){
   const ssn = document.querySelector('.add_employee_ssn').value;
   const birthdate = document.querySelector('.add_employee_birthdate').value;
   const email = document.querySelector('.add_employee_email').value;
-  const roleId = document.querySelector('.add_employee_roleId').value;
+  const roleId = document.querySelector('#role_select').value;
   const data = {
     employeeId: employeeId,
     phoneNumber: phoneNumber,
@@ -94,7 +94,7 @@ function addemployee(){
     ssn: ssn,
     birthdate: birthdate,
     email: email,
-    roleId: roleId
+   
   };
   
     ApiAction.postRequest('https://localhost:44390/api/employee', data,
