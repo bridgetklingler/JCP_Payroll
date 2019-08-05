@@ -41,14 +41,18 @@ function getaddemployee() {
 }
 
 function geteditemployee() {
-  document.getElementById('main').addEventListener('click', function(){
-      if(event.target.classList.contains("edit_employee")){
-        const employeeId = event.target.querySelector(".employee_id").value
-    console.log(employeeId)
-        ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId,
-        employee => {app.innerHTML= GetEditEmployee(employee)})
-      }
- } )}
+  document.querySelector('.edit_employee').addEventListener('click', function(){
+    GetEditEmployee();
+  })
+}
+  //document.getElementById('main').addEventListener('click', function(){
+//       if(event.target.classList.contains("edit_employee")){
+//         const employeeId = event.target.querySelector(".employee_id").value
+//     console.log(employeeId)
+//         ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId,
+//         employee => {app.innerHTML= GetEditEmployee(employee)})
+//       }
+//  } )}
 
  //Delete an Employee
  function deleteEmployee(){
@@ -112,7 +116,7 @@ function editemployee(){
     if (event.target.classList.contains('edit_employee_submit')){
     console.log("i");
     const employeeId = document.querySelector('.edit_employee_id').value;
-    const roleId = document.querySelector('.edit_employee_role').value;
+    const roleId = document.querySelector('#role_select').value;
     const firstName = document.querySelector('.edit_employee_first_name').value;
     const lastName = document.querySelector('.edit_employee_last_name').value;
     const address = document.querySelector('.edit_employee_address').value;
