@@ -5,34 +5,34 @@
         <link rel="stylesheet" href="style.css">
     </head>
       <body>
-    
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a id="Nav_employee_index" href="#">Employees</a>
-      <a href="#">Edit Hours</a>
-      <a href="#">Edit Roles</a>
-      <a id="Nav_add_employee" href="#">Add Employee</a>
-      <a href="#">Current Pay Period</a>
-      <a href="#">Previous Pay Period</a>
+    <nav id='nav'>
+      <div id="mySidenav" class="sidenav">
+       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+       <a id="Nav_employee_index" href="#">Employees</a>
+       <a href="#">Edit Hours</a>
+       <a href="#">Edit Roles</a>
+        <a id="Nav_add_employee" href="#">Add Employee</a>
+       <a href="#">Current Pay Period</a>
+       <a href="#">Previous Pay Period</a>
     </div>
     <span id='hidenav' style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-        </div> 
+      <mainnav id='mainnav'>
+        <n>Profile</n>
+        <n>Current Pay-Period</n>
+        <n>Past Pay-Period</n>
+      </mainnav>
+    </nav>
         <div id="main">
-          <button class="adminlogin multibutton">admin</button>
-          <button class="employeelogin multibutton">employee</button>
+          <loginbox id='loginbox'>
+            Username:
+            <input id='username' type="text">
+            Password:
+            <input id='password' type="password">
+          <button class="adminlogin multibutton loginbutton">Login</button>
+          <p id='invalid' style='color: red; display:none;'>Invalid username or password</p>
+        </loginbox>
         </div>
     </body>
-<!-- <nav>
-    <ul>
-        <img src="" alt="">
-        <li id="nav__home">JCP Payroll App!!</li>
-        <li id="nav__edit hours">Edit Hours</li>
-        <li id="nav__edit role">Edit Role</li>
-        <li id="nav_add employee">Add Employee</li>
-        <li id="nav_current pay period">Current Pay Period</li>
-        <li id="nav_previous pay period">Previous Pay Period</li>
-    </ul>
-</nav> -->
 <script>
   function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
@@ -41,11 +41,48 @@
   function closeNav() {
     document.getElementById("mySidenav").style.width = "0";
   }
-
+  // Login function -----------------------------------------------------
     document.getElementById('main').addEventListener('click', function(){
       if(event.target.classList.contains("adminlogin")){
+        if(document.getElementById('username').value == 'admin'){
+          if(document.getElementById('password').value == 'password') {
       document.getElementById('hidenav').style.display = 'block'
-      }})
+      document.getElementById('nav').style.display = 'flex'
+      document.getElementById('mainnav').style.display = 'flex'
+      document.getElementById('loginbox').style.display = 'none'
+      }}}})
+
+      document.getElementById('main').addEventListener('click', function(){
+      if(event.target.classList.contains("adminlogin")){
+        if(document.getElementById('username').value != 'admin'){
+          document.getElementById('invalid').style.display = 'block';
+          document.getElementById('invalid').innerHTML = 'Invalid username'
+        }}})
+
+        document.getElementById('main').addEventListener('click', function(){
+      if(event.target.classList.contains("adminlogin")){
+        if(document.getElementById('username').value == 'admin'){
+          if(document.getElementById('password').value != 'password') {
+          document.getElementById('invalid').style.display = 'block';
+          document.getElementById('invalid').innerHTML = 'Invalid password please try again'
+        }}}})
+
+        document.getElementById('main').addEventListener('click', function(){
+      if(event.target.classList.contains("adminlogin")){
+        if(document.getElementById('username').value == 'employee'){
+          if(document.getElementById('password').value != '123') {
+          document.getElementById('invalid').style.display = 'block';
+          document.getElementById('invalid').innerHTML = 'Invalid password please try again'
+        }}}})
+
+      document.getElementById('main').addEventListener('click', function(){
+      if(event.target.classList.contains("adminlogin")){
+        if(document.getElementById('username').value == 'employee'){
+          if(document.getElementById('password').value == '123') {
+      document.getElementById('nav').style.display = 'flex'
+      document.getElementById('mainnav').style.display = 'flex'
+      document.getElementById('loginbox').style.display = 'none'
+      }}}})
 
   </script>
 <script src="./Js/app.js"></script>
