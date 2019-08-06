@@ -49,8 +49,8 @@ function geteditemployee() {
       if(event.target.classList.contains("edit_employee")){
         const employeeId = event.target.querySelector(".employee_id").value
     console.log(employeeId)
-        ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId,
-        GetEditEmployee())
+        ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId, employee=> {
+        GetEditEmployee(employee)})
       }
  } )}
 
