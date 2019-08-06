@@ -125,7 +125,19 @@ function addemployee(){
   }
 })
 }
-
+// convert time in time out to total hours in minutes
+function converthours(timeOut,timeIn){
+  console.log("time in"); console.log(timeIn);
+  console.log("timeOut"); console.log(timeOut);
+  var fromDate = parseInt(new Date(timeOut).getTime()/1000)
+  console.log(fromDate);
+  var toDate = parseInt(new Date(timeIn).getTime()/1000)
+  console.log(toDate);
+  var timeDiff = (toDate-fromDate)/3600;
+  console.log(timeDiff);
+  console.log("i was here!")
+  return timeDiff;
+}
 //add hours for employee
 function addhours(){
   document.getElementById('main').addEventListener('click', function() {
@@ -133,16 +145,19 @@ function addhours(){
   console.log("i");
   const hoursId = 0;
   const employeeId = document.querySelector('.add_employee_id_hours').value
-  const dateWorked = document.querySelector('.add_hours_date').value
+ // const dateWorked = document.querySelector('.add_hours_date').value
   const timeIn = document.querySelector('.add_hours_time_in').value
   const timeOut = document.querySelector('.add_hours_time_out').value
-  const totalHours = document.querySelector('.add_hours_total_hours').value
+  
+  const totalHours = converthours(timeIn,timeOut);
+  
+  console.log(totalHours);
   const approved = false;
   //document.querySelector('.approved').value
   const data = {
     HoursId: hoursId,
     EmployeeId: employeeId,
-    DateWorked: dateWorked,
+    //DateWorked: dateWorked,
     TimeIn: timeIn,
     TimeOut: timeOut,
     TotalHours: totalHours,
