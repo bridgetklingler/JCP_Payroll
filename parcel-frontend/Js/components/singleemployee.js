@@ -12,6 +12,7 @@ export default function SingleEmployee(employee){
             <ssn>SSN</ssn>
             <bd>BirthDate</bd>
             <email>Email</email>
+            <roleId>roleId</roleId>
             <employeebuttons></employeebuttons>
         </employee>
             <employee>
@@ -24,6 +25,7 @@ export default function SingleEmployee(employee){
             <ssn>${employee.ssn}</ssn>
             <bd>${employee.birthdate.substring(0,10)}</bd>
             <email>${employee.email}</email>
+            <roleId>${employee.roleId}</roleId>
             <employeebuttons>
             <button class="edit_employee multibutton">Edit 
             <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
@@ -31,6 +33,10 @@ export default function SingleEmployee(employee){
             <button class="delete_employee_submit multibutton">Delete 
             <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
             </button> 
+            <button class='return_employee_submit multibutton'>Return to Index
+            <input class='return_employee_id' type='hidden' value ='${employee.employeeId}'>
+            </button>
+            </button>
             </button>
             </employeebuttons>
             </employee>
