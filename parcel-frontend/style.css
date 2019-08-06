@@ -1,5 +1,58 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
 body {
   background-color: rgb(230, 237, 240);
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  justify-content: space-between;
+  background-color: rgb(11, 33, 43);
+  height: 8vh;
+  display: none;
+}
+
+mainnav {
+  display: flex;
+  justify-content: space-around;
+  width: 33%;
+  align-items: center;
+  display: none;
+}
+
+n {
+  color: rgb(154, 195, 212);
+  padding: 2.1vh 20px 2.1vh 20px;
+}
+
+n:hover {
+  background-color: rgb(17, 54, 71);
+}
+
+loginbox {
+  display: flex;
+  height: 92vh;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.loginbutton {
+  padding: 14px 50px 14px 50px;
+  margin-top: 8vh;
+  font-size: 25px;
+}
+
+.logininput {
+  padding: 1vh 0 1vh 0;
+  font-size: 20px;
 }
 
 #mySidenav {
@@ -70,6 +123,7 @@ body {
 
 #main {
   padding: 0 5vw 5vh 5vw;
+  transition: 0.5s;
 }
 
 h1 {
