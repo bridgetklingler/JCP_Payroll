@@ -51,7 +51,7 @@ function hoursindex(){
 //Gets the Add Employee Page
 function getaddemployee() {
   document.getElementById('Nav_add_employee').addEventListener('click', function(){
-    app.innerHTML = GetAddEmployee();
+    GetAddEmployee();
   })
 }
 function getAddHours(){
@@ -61,12 +61,16 @@ function getAddHours(){
 }
 
 function geteditemployee() {
+//   document.querySelector('.edit_employee').addEventListener('click', function(){
+//     GetEditEmployee();
+//   })
+// }
   document.getElementById('main').addEventListener('click', function(){
       if(event.target.classList.contains("edit_employee")){
         const employeeId = event.target.querySelector(".employee_id").value
     console.log(employeeId)
-        ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId,
-        employee => {app.innerHTML= GetEditEmployee(employee)})
+        ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId, employee=> {
+        GetEditEmployee(employee)})
       }
  } )}
 
@@ -103,7 +107,7 @@ function addemployee(){
   const ssn = document.querySelector('.add_employee_ssn').value;
   const birthdate = document.querySelector('.add_employee_birthdate').value;
   const email = document.querySelector('.add_employee_email').value;
-  const roleId = document.querySelector('.add_employee_roleId').value;
+  const roleId = document.querySelector('#role_select').value;
   const data = {
     employeeId: employeeId,
     phoneNumber: phoneNumber,
@@ -114,7 +118,7 @@ function addemployee(){
     ssn: ssn,
     birthdate: birthdate,
     email: email,
-    roleId: roleId
+   
   };
   
     ApiAction.postRequest('https://localhost:44390/api/employee', data,
@@ -165,7 +169,7 @@ function editemployee(){
     if (event.target.classList.contains('edit_employee_submit')){
     console.log("i");
     const employeeId = document.querySelector('.edit_employee_id').value;
-    const roleId = document.querySelector('.edit_employee_role').value;
+    const roleId = document.querySelector('#role_select').value;
     const firstName = document.querySelector('.edit_employee_first_name').value;
     const lastName = document.querySelector('.edit_employee_last_name').value;
     const address = document.querySelector('.edit_employee_address').value;
