@@ -12,7 +12,6 @@ import EmployeeHoursIndex from "./components/employeehoursindex"
 pageBuild();
 
 function pageBuild(){
-
   employeeindex();
   hoursindex();
   getaddemployee();
@@ -24,6 +23,7 @@ function pageBuild(){
   singleEmployee()
   getAddHours();
 }
+
 const app = document.getElementById('main');
 
 //Gets all Employees
