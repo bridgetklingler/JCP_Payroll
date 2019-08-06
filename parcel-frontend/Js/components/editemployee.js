@@ -38,7 +38,7 @@ export default function GetEditEmployee(employee){
 function setRoles(roles){
     let roleHtml = '';
     for(const role of roles){
-        roleHtml += `<option value='${role.roleId}'>${role.roleName}'</option>`
+        roleHtml += `<option value='${role.roleId}'>${role.roleName}</option>`
 
     }
     document.querySelector("#role_select").innerHTML = roleHtml;
