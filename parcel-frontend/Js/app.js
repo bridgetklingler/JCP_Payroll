@@ -3,7 +3,8 @@ import GetAddEmployee from "./components/addemployee"
 import ApiAction from "./api/api-actions"
 import GetEditEmployee from "./components/editemployee"
 import SingleEmployee from "./components/singleemployee"
-
+import GetAddHours from "./components/employeeaddhours"
+import EmployeeHoursIndex from "./components/employeehoursindex"
 
 
 
@@ -13,12 +14,15 @@ pageBuild();
 function pageBuild(){
 
   employeeindex();
+  hoursindex();
   getaddemployee();
   addemployee();
+  addhours();
   geteditemployee();
   editemployee();
   deleteEmployee()
   singleEmployee()
+  getAddHours();
 }
 const app = document.getElementById('main');
 
@@ -33,10 +37,26 @@ function employeeindex(){
 };
 
 
+function hoursindex(){
+  const hoursindex = document.getElementById('Nav_hours_index');
+  hoursindex.addEventListener('click', function(){
+    ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
+      console.log("i2")
+      app.innerHTML = EmployeeHoursIndex(hourslist);
+    })
+  })
+}
+
+
 //Gets the Add Employee Page
 function getaddemployee() {
   document.getElementById('Nav_add_employee').addEventListener('click', function(){
     app.innerHTML = GetAddEmployee();
+  })
+}
+function getAddHours(){
+  document.getElementById('Nav_add_hours').addEventListener('click', function(){
+    app.innerHTML = GetAddHours();
   })
 }
 
@@ -105,6 +125,39 @@ function addemployee(){
   }
 })
 }
+
+//add hours for employee
+function addhours(){
+  document.getElementById('main').addEventListener('click', function() {
+  if (event.target.classList.contains('add_employee_hours_submit')){
+  console.log("i");
+  const hoursId = 0;
+  const employeeId = document.querySelector('.add_employee_id_hours').value
+  const dateWorked = document.querySelector('.add_hours_date').value
+  const timeIn = document.querySelector('.add_hours_time_in').value
+  const timeOut = document.querySelector('.add_hours_time_out').value
+  const totalHours = document.querySelector('.add_hours_total_hours').value
+  const approved = false;
+  //document.querySelector('.approved').value
+  const data = {
+    HoursId: hoursId,
+    EmployeeId: employeeId,
+    DateWorked: dateWorked,
+    TimeIn: timeIn,
+    TimeOut: timeOut,
+    TotalHours: totalHours,
+    Approved: approved
+  };
+  
+    ApiAction.postRequest('https://localhost:44390/api/hours', data,
+    hourslist=> {
+      console.log("i2")
+      app.innerHTML = EmployeeHoursIndex(hourslist);
+    })
+  }
+})
+}
+
 
 //Edit Employee Data
 function editemployee(){

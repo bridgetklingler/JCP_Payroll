@@ -4,14 +4,16 @@ using JumboCaramelPayroll;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace JumboCaramelPayroll.Migrations
 {
     [DbContext(typeof(SiteContext))]
-    partial class SiteContextModelSnapshot : ModelSnapshot
+    [Migration("20190805022154_HoursAddedAndLinked")]
+    partial class HoursAddedAndLinked
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,10 +50,10 @@ namespace JumboCaramelPayroll.Migrations
                     b.ToTable("Employees");
 
                     b.HasData(
-                        new { EmployeeId = 1, Address = "123 Front street", Birthdate = new DateTime(2019, 8, 5, 0, 0, 0, 0, DateTimeKind.Local), Email = "Jon.Smith@gmail.com", FirstName = "Jon", LastName = "Smith", PhoneNumber = "216-867-5309", RoleId = 1, SSN = "200-300-5000" },
-                        new { EmployeeId = 2, Address = "666 Mockingbird Lane", Birthdate = new DateTime(2019, 8, 5, 0, 0, 0, 0, DateTimeKind.Local), Email = "Joe.Carter@gmail.com", FirstName = "Joe", LastName = "Carter", PhoneNumber = "555-555-555", RoleId = 2, SSN = "200-310-5690" },
-                        new { EmployeeId = 3, Address = "578 Elm Street", Birthdate = new DateTime(2019, 8, 5, 0, 0, 0, 0, DateTimeKind.Local), Email = "Fred.Johnson@yaho.com", FirstName = "Fred", LastName = "Johnson", PhoneNumber = "216-210-5310", RoleId = 2, SSN = "100-600-4000" },
-                        new { EmployeeId = 4, Address = "3346 W. 4th", Birthdate = new DateTime(2019, 8, 5, 0, 0, 0, 0, DateTimeKind.Local), Email = "Jen.Morgan@hotmail.com", FirstName = "Jen", LastName = "Morgan", PhoneNumber = "440-551-5309", RoleId = 1, SSN = "001-003-5000" }
+                        new { EmployeeId = 1, Address = "123 Front street", Birthdate = new DateTime(2019, 8, 4, 0, 0, 0, 0, DateTimeKind.Local), Email = "Jon.Smith@gmail.com", FirstName = "Jon", LastName = "Smith", PhoneNumber = "216-867-5309", RoleId = 1, SSN = "200-300-5000" },
+                        new { EmployeeId = 2, Address = "666 Mockingbird Lane", Birthdate = new DateTime(2019, 8, 4, 0, 0, 0, 0, DateTimeKind.Local), Email = "Joe.Carter@gmail.com", FirstName = "Joe", LastName = "Carter", PhoneNumber = "555-555-555", RoleId = 2, SSN = "200-310-5690" },
+                        new { EmployeeId = 3, Address = "578 Elm Street", Birthdate = new DateTime(2019, 8, 4, 0, 0, 0, 0, DateTimeKind.Local), Email = "Fred.Johnson@yaho.com", FirstName = "Fred", LastName = "Johnson", PhoneNumber = "216-210-5310", RoleId = 2, SSN = "100-600-4000" },
+                        new { EmployeeId = 4, Address = "3346 W. 4th", Birthdate = new DateTime(2019, 8, 4, 0, 0, 0, 0, DateTimeKind.Local), Email = "Jen.Morgan@hotmail.com", FirstName = "Jen", LastName = "Morgan", PhoneNumber = "440-551-5309", RoleId = 1, SSN = "001-003-5000" }
                     );
                 });
 
@@ -60,8 +62,6 @@ namespace JumboCaramelPayroll.Migrations
                     b.Property<int>("HoursId")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Approved");
 
                     b.Property<DateTime>("DateWorked");
 
@@ -73,15 +73,13 @@ namespace JumboCaramelPayroll.Migrations
 
                     b.Property<int>("TotalHours");
 
+                    b.Property<bool>("approved");
+
                     b.HasKey("HoursId");
 
                     b.HasIndex("EmployeeId");
 
                     b.ToTable("Hours");
-
-                    b.HasData(
-                        new { HoursId = 1, Approved = false, DateWorked = new DateTime(1984, 12, 16, 12, 32, 54, 0, DateTimeKind.Unspecified), EmployeeId = 1, TimeIn = new DateTime(1984, 12, 16, 12, 32, 54, 0, DateTimeKind.Unspecified), TimeOut = new DateTime(1984, 12, 16, 22, 32, 54, 0, DateTimeKind.Unspecified), TotalHours = 10 }
-                    );
                 });
 
             modelBuilder.Entity("JumboCaramelPayroll.Models.Role", b =>
