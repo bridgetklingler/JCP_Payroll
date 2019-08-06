@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: rgb(230, 237, 240);
+  background-color: rgb(244, 247, 247);
 }
 
 nav {
@@ -55,10 +55,6 @@ loginbox {
   font-size: 20px;
 }
 
-/* #mySidenav {
-
-} */
-
 #hidenav {
   display: none;
 }
@@ -103,7 +99,6 @@ loginbox {
 }
 
 
-
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
   .sidenav {padding-top: 15px;}
@@ -111,14 +106,15 @@ loginbox {
 }
 
 .multibutton {
-  background-color: rgb(64, 133, 165);
-  border-color: rgb(21, 48, 16);
-  color: rgb(255, 255, 255);
+  background: linear-gradient(to bottom, rgb(182, 209, 221), rgb(122, 160, 177));
+  background-color: rgb(154, 195, 212);
+  border-color: rgb(1, 21, 31);
+  color:  rgb(1, 21, 31);
+  padding: .25em;
 }
 
 .multibutton:hover{
-  background-color: rgb(5, 63, 90);
-
+  background: linear-gradient(to top, rgb(252, 173, 69), rgb(236, 103, 26));
 }
 
 #main {
@@ -127,7 +123,7 @@ loginbox {
 }
 
 h1 {
-  color: rgb(21, 48, 16);
+  color: rgb(1, 21, 31);
 }
 
 employees{
@@ -144,9 +140,13 @@ employee {
   display: flex;
   justify-content: space-between;
   border: 1px solid rgb(21, 48, 16);
-  background-color: rgb(211, 226, 235);
+  background-color: rgb(255, 235, 213);
   font-size: 14px;
   padding: .5vh .5vw;
+}
+
+#role_select{
+  background-color: rgb(252, 244, 222);
 }
 
 fname{
@@ -209,12 +209,31 @@ label {
 
 input {
   width: 40vw;
-  background-color: rgb(211, 226, 235);
-  border: 1px solid rgb(21, 48, 16);
+  background-color: rgb(252, 244, 222);
+  border: 1px solid rgb(1, 21, 31);
 
 }
 
-.submit {
+.submit, .cancel {
   max-width: 20vw;
-  margin-top: 5vh;
+  margin-top: 10vh;
+  padding: .25em;
+  min-width: 7vw;
+  margin: 1.25vw;
+}
+
+.edit_buttons{
+  display: flex;
+  width: 50vw;
+}
+
+footer{
+  background-color: rgb(211, 226, 235);
+  position: fixed;
+  bottom: 0px;
+  left: 0px;
+  text-align: center;
+  padding: .5em;
+  width: 100%;
+
 }
