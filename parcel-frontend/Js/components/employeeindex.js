@@ -10,8 +10,6 @@ export default function EmployeeIndex(employeelist){
             </names>
             <address>Address</address>
             <pn>Phone Number</pn>
-            <ssn>SSN</ssn>
-            <bd>BirthDate</bd>
             <email>Email</email>
             <rollId>rollId</rollId>
             <employeebuttons></employeebuttons>
@@ -21,13 +19,11 @@ export default function EmployeeIndex(employeelist){
         
             <employee>
             <names>
+            <lname>${employee.lastName} ,</lname>
             <fname>${employee.firstName}</fname>
-            <lname>${employee.lastName}</lname>
             </names>
             <address>${employee.address}</address>
             <pn>${employee.phoneNumber}</pn>
-            <ssn>${employee.ssn}</ssn>
-            <bd>${employee.birthdate.substring(0,10)}</bd>
             <email>${employee.email}</email>
             <roleId>${employee.roleId}</roleId>
             <employeebuttons>
