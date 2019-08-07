@@ -39,47 +39,20 @@
         <footer> Jumbo Caramel Productions &copy; 2019</footer>
     </body>
 <script>
-function getRequest(location, callback){
-    fetch(location)
-    .then(response => response.json())
-    .then(jsonData => callback(jsonData))
-    .catch(err => console.log(err))
-}
+      function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById('main').style.paddingLeft = "275px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById('main').style.paddingLeft = "5vw";
+    }
   
-  function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById('main').style.paddingLeft = "275px";
-  }
-  
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById('main').style.paddingLeft = "5vw";
-  }
-
-  document.getElementById('mySidenav').addEventListener('mouseleave', function() {
-    document.getElementById('mySidenav').style.width = "0";
-    document.getElementById('main').style.paddingLeft = "5vw";
-  })
-  // Login function -----------------------------------------------------
-  document.getElementById('main').addEventListener('click', function(){
-      if(event.target.classList.contains("adminlogin")){
-  const username = document.getElementById('username').value;
-  const password = document.getElementById('password').value;
-  console.log('test');
-      getRequest("https://localhost:44390/api/employee/login/"+username+"/"+password, auth => {
-        console.log(auth);
-          if (auth.ssn = password)
-          {
-            document.getElementById('hidenav').style.display = 'block'
-      document.getElementById('nav').style.display = 'flex'
-      document.getElementById('mainnav').style.display = 'flex'
-      document.getElementById('main').innerHTML = `<h1>Welcome,</br> ${auth.firstName}</h1>`
-          }
-        })
-      }
+    document.getElementById('mySidenav').addEventListener('mouseleave', function() {
+      document.getElementById('mySidenav').style.width = "0";
+      document.getElementById('main').style.paddingLeft = "5vw";
     })
-
-
     // document.getElementById('main').addEventListener('click', function(){
     //   if(event.target.classList.contains("adminlogin")){
     //     if(document.getElementById('username').value == 'admin'){
