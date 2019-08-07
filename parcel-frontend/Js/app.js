@@ -1,4 +1,4 @@
-import EmployeeIndex from "./components/employeeindex"
+import GetAdminEmployeeIndex from "./components/admin/AdminEmployeeIndexView"
 import GetAddEmployee from "./components/addemployee"
 import ApiAction from "./api/api-actions"
 import GetEditEmployee from "./components/editemployee"
@@ -11,7 +11,7 @@ import SingleEmployeeHours from "./components/singleemployeehours"
 pageBuild();
 
 function pageBuild(){
-  employeeindex();
+  adminEmployeeIndex();
   getaddemployee();
   addemployee();
   geteditemployee();
@@ -30,11 +30,11 @@ function pageBuild(){
 const app = document.getElementById('main');
 
 //Gets all Employees
-function employeeindex(){
+function adminEmployeeIndex(){
   const employeeindex = document.getElementById('Nav_employee_index');
   employeeindex.addEventListener('click', function(){
       ApiAction.getRequest("https://localhost:44390/api/employee", employeelist => {
-          app.innerHTML = EmployeeIndex(employeelist);
+          app.innerHTML = GetAdminEmployeeIndex(employeelist);
       })
   })
 };
@@ -107,7 +107,7 @@ function geteditemployee() {
     ApiAction.deleteRequest('https://localhost:44390/api/employee', 
     data,
     employeelist=> {
-      app.innerHTML = EmployeeIndex(employeelist);
+      app.innerHTML = GetAdminEmployeeIndex(employeelist);
     })
   }
 }})
@@ -143,7 +143,7 @@ function addemployee(){
     ApiAction.postRequest('https://localhost:44390/api/employee', data,
     employeelist=> {
       console.log("i2")
-      app.innerHTML = EmployeeIndex(employeelist);
+      app.innerHTML = GetAdminEmployeeIndex(employeelist);
     })
   }
 })
@@ -228,7 +228,7 @@ function editemployee(){
       ApiAction.putRequest('https://localhost:44390/api/employee', data,
       employeelist=> {
         console.log("i2")
-        app.innerHTML = EmployeeIndex(employeelist);
+        app.innerHTML = GetAdminEmployeeIndex(employeelist);
       })
     }
   })
@@ -237,7 +237,7 @@ function editemployee(){
     if(event.target.classList.contains('cancel_edit_submit'))
   
   ApiAction.getRequest("https://localhost:44390/api/employee", employeelist => {
-      app.innerHTML = EmployeeIndex(employeelist);
+      app.innerHTML = GetAdminEmployeeIndex(employeelist);
     })
 
   })
@@ -258,7 +258,7 @@ function editemployee(){
       if(event.target.classList.contains('return_employee_submit'))
     
     ApiAction.getRequest("https://localhost:44390/api/employee", employeelist => {
-        app.innerHTML = EmployeeIndex(employeelist);
+        app.innerHTML = GetAdminEmployeeIndex(employeelist);
       })
     })
 
