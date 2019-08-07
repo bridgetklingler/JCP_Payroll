@@ -15,6 +15,7 @@ export default function EmployeeHoursIndex(hourslist){
     </hours>
         ${hourslist.map(hours => {
         return `  
+    <employee>
         <hours>
             <dates>
                 <dateworked> ${hours.timeIn.substring(0, 10)}</dateworked>
@@ -35,7 +36,9 @@ export default function EmployeeHoursIndex(hourslist){
                     </button>
             
                 </hoursbuttons>
-        </hours>    
+        </hours> 
+        </employee>
+         
         `      
         })     
         .join("")}
