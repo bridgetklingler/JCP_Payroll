@@ -230,6 +230,7 @@ function editemployee(){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     console.log('test');
+    document.getElementById('invalid').innerHTML = "Invalid Username or Password"
         ApiAction.getRequest("https://localhost:44390/api/employee/login/"+username+"/"+password, auth => {
           console.log(auth);
             if (auth.ssn === password)
@@ -238,7 +239,7 @@ function editemployee(){
         document.getElementById('nav').style.display = 'flex'
         document.getElementById('mainnav').style.display = 'flex'
         document.getElementById('main').innerHTML = `<h1>Welcome Back,</br> ${auth.firstName} ${auth.lastName}</h1>`
-            }
+            }    
           })
         }
       })
