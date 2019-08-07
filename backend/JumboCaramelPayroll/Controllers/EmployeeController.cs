@@ -38,9 +38,13 @@ namespace JumboCaramelPayroll.Controllers
         {
             Employee employee = db.Employees.Single(a => a.EmployeeId == id);
             if (employee.SSN == password)
-            { return db.Employees.Single(a => a.EmployeeId == id); }
-            else { return null; }
+            {
+                return db.Employees.Single(a => a.EmployeeId == id);
+            }
 
+            else {
+                return BadRequest();
+            }
         }
 
         // POST api/Employee
