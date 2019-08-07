@@ -273,10 +273,9 @@ function editemployee(){
           console.log(auth);
             if (auth.ssn === password)
             {
-              document.getElementById('hidenav').style.display = 'block'
-        document.getElementById('nav').style.display = 'flex'
-        document.getElementById('mainnav').style.display = 'flex'
-        document.getElementById('main').innerHTML = `<h1>Welcome Back,</br> ${auth.firstName} ${auth.lastName}</h1>`
+              document.getElementById('nav').style.display = 'flex'
+              document.getElementById('mainnav').style.display = 'flex'
+              document.getElementById('main').innerHTML = `<h1>Welcome Back,</br> ${auth.firstName} ${auth.lastName}</h1>`
         document.getElementById('mainnav').innerHTML = `        
         <n class="empprofile">Profile
         <input type="hidden" class="getprofile" value="${auth.employeeId}">
@@ -286,6 +285,8 @@ function editemployee(){
         </n>
         <n value="${auth.employeeId}">Past Pay-Period</n>
         `
+        if (auth.admin == true)
+        document.getElementById('hidenav').style.display = 'block'
             }    
           })
         }
