@@ -254,7 +254,26 @@ function editemployee(){
         document.getElementById('nav').style.display = 'flex'
         document.getElementById('mainnav').style.display = 'flex'
         document.getElementById('main').innerHTML = `<h1>Welcome Back,</br> ${auth.firstName} ${auth.lastName}</h1>`
+        document.getElementById('mainnav').innerHTML = `        
+        <n class="empprofile">Profile
+        <input type="hidden" class="getprofile" value="${auth.employeeId}">
+        </n>
+        <n value="${auth.employeeId}">Current Pay-Period</n>
+        <n value="${auth.employeeId}">Past Pay-Period</n>
+        `
             }    
           })
         }
       })
+
+      //Views logged in Employee Profile
+        document.getElementById('mainnav').addEventListener('click', function() {
+          if (event.target.classList.contains('empprofile')){
+          const employeeId = event.target.querySelector('.getprofile').value;  
+          console.log(employeeId);   
+          ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
+            employee=> {
+            app.innerHTML = SingleEmployee(employee);
+          })
+      }})  
+      
