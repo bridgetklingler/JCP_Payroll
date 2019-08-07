@@ -5,6 +5,7 @@ import GetEditEmployee from "./components/editemployee"
 import SingleEmployee from "./components/singleemployee"
 import GetAddHours from "./components/employeeaddhours"
 import EmployeeHoursIndex from "./components/employeehoursindex"
+import SingleEmployeeHours from "./components/singleemployeehours"
 
 pageBuild();
 
@@ -19,6 +20,7 @@ function pageBuild(){
   deleteEmployee()
   singleEmployee()
   getAddHours();
+  singleemployeehours();
 }
 
 const app = document.getElementById('main');
@@ -258,7 +260,9 @@ function editemployee(){
         <n class="empprofile">Profile
         <input type="hidden" class="getprofile" value="${auth.employeeId}">
         </n>
-        <n value="${auth.employeeId}">Current Pay-Period</n>
+        <n class="emphours">Current Pay-Period
+        <input type="hidden" class="gethours" value="${auth.employeeId}">
+        </n>
         <n value="${auth.employeeId}">Past Pay-Period</n>
         `
             }    
@@ -266,7 +270,7 @@ function editemployee(){
         }
       })
 
-      //Views logged in Employee Profile
+      //Views logged in Employee Profile from Nav
         document.getElementById('mainnav').addEventListener('click', function() {
           if (event.target.classList.contains('empprofile')){
           const employeeId = event.target.querySelector('.getprofile').value;  
@@ -275,5 +279,18 @@ function editemployee(){
             employee=> {
             app.innerHTML = SingleEmployee(employee);
           })
-      }})  
+      }})
       
+      //View logged in Employee's Hours from Nav
+      function singleemployeehours() {
+      document.getElementById('mainnav').addEventListener('click', function() {
+        if (event.target.classList.contains('emphours')){
+        const employeeId = event.target.querySelector('.gethours').value;  
+        console.log(employeeId);   
+        ApiAction.getRequest('https://localhost:44390/api/hours/'+employeeId, 
+          hours=> {
+            console.log(hours)
+          app.innerHTML = SingleEmployeeHours(hours);
+        })
+    }})  
+  }
