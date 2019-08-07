@@ -1,4 +1,10 @@
+import ApiActions from "../api/api-actions"
+
 export default function SingleEmployee(employee){
+        ApiActions.getRequest('https://localhost:44390/api/role/'+employee.roleId,
+roletoname=> {
+document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
+})
     return `    
             <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
             <employees>
@@ -25,7 +31,9 @@ export default function SingleEmployee(employee){
             <ssn>${employee.ssn}</ssn>
             <bd>${employee.birthdate.substring(0,10)}</bd>
             <email>${employee.email}</email>
-            <roleId>${employee.roleId}</roleId>
+            <roleId id='${employee.employeeId}'>
+            <input id='roleidtoname' type="hidden" value="${employee.roleId}">
+            </roleId>
             <employeebuttons>
             <button class="edit_employee multibutton">Edit 
             <input class="employee_id" type="hidden" value="${employee.employeeId}"> 

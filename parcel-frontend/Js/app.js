@@ -17,9 +17,7 @@ function pageBuild(){
   geteditemployee();
   editemployee();
   deleteEmployee()
-  
   singleEmployee()
-  
   hoursindex();
   addhours();
   getAdminAddHours();
