@@ -45,7 +45,7 @@ function hoursindex(){
 }
 
 
-//Gets the Add Employee Page
+//Gets the Add Employee Page -pushing to styling
 function getaddemployee() {
   document.getElementById('Nav_add_employee').addEventListener('click', function(){
     GetAddEmployee();
