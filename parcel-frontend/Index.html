@@ -1,11 +1,10 @@
-    <!DOCTYPE html>
-    <html>
+ <!DOCTYPE html>
+        <html>
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
     </head>
       <body>
-
     <nav id='nav'>
       <div id="mySidenav" class="sidenav">
        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -23,8 +22,7 @@
         <n>Current Pay-Period</n>
         <n>Past Pay-Period</n>
       </mainnav>
-    </nav>
-        
+    </nav>      
         <div id="main">
           <loginbox id='loginbox'>
             <strong>Username:</strong>
@@ -41,6 +39,13 @@
         <footer> Jumbo Caramel Productions &copy; 2019</footer>
     </body>
 <script>
+function getRequest(location, callback){
+    fetch(location)
+    .then(response => response.json())
+    .then(jsonData => callback(jsonData))
+    .catch(err => console.log(err))
+}
+  
   function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
     document.getElementById('main').style.paddingLeft = "275px";
@@ -56,47 +61,34 @@
     document.getElementById('main').style.paddingLeft = "5vw";
   })
   // Login function -----------------------------------------------------
-    document.getElementById('main').addEventListener('click', function(){
+  document.getElementById('main').addEventListener('click', function(){
       if(event.target.classList.contains("adminlogin")){
-        if(document.getElementById('username').value == 'admin'){
-          if(document.getElementById('password').value == 'password') {
-      document.getElementById('hidenav').style.display = 'block'
+  const username = document.getElementById('username').value;
+  const password = document.getElementById('password').value;
+  console.log('test');
+      getRequest("https://localhost:44390/api/employee/login/"+username+"/"+password, auth => {
+        console.log(auth);
+          if (auth.ssn = password)
+          {
+            document.getElementById('hidenav').style.display = 'block'
       document.getElementById('nav').style.display = 'flex'
       document.getElementById('mainnav').style.display = 'flex'
-      document.getElementById('main').innerHTML = "<h1>Welcome,</br> Admin</h1>"
-      }}}})
+      document.getElementById('main').innerHTML = `<h1>Welcome,</br> ${auth.firstName}</h1>`
+          }
+        })
+      }
+    })
 
-      document.getElementById('main').addEventListener('click', function(){
-      if(event.target.classList.contains("adminlogin")){
-        if(document.getElementById('username').value != 'admin'){
-          document.getElementById('invalid').style.display = 'block';
-          document.getElementById('invalid').innerHTML = 'Invalid username'
-        }}})
 
-        document.getElementById('main').addEventListener('click', function(){
-      if(event.target.classList.contains("adminlogin")){
-        if(document.getElementById('username').value == 'admin'){
-          if(document.getElementById('password').value != 'password') {
-          document.getElementById('invalid').style.display = 'block';
-          document.getElementById('invalid').innerHTML = 'Invalid password please try again'
-        }}}})
-
-        document.getElementById('main').addEventListener('click', function(){
-      if(event.target.classList.contains("adminlogin")){
-        if(document.getElementById('username').value == 'employee'){
-          if(document.getElementById('password').value != '123') {
-          document.getElementById('invalid').style.display = 'block';
-          document.getElementById('invalid').innerHTML = 'Invalid password please try again'
-        }}}})
-
-      document.getElementById('main').addEventListener('click', function(){
-      if(event.target.classList.contains("adminlogin")){
-        if(document.getElementById('username').value == 'employee'){
-          if(document.getElementById('password').value == '123') {
-      document.getElementById('nav').style.display = 'flex'
-      document.getElementById('mainnav').style.display = 'flex'
-      document.getElementById('main').innerHTML = '<h1>Welcome, </br> Employee</h1>'
-      }}}})
+    // document.getElementById('main').addEventListener('click', function(){
+    //   if(event.target.classList.contains("adminlogin")){
+    //     if(document.getElementById('username').value == 'admin'){
+    //       if(document.getElementById('password').value == 'password') {
+    //   document.getElementById('hidenav').style.display = 'block'
+    //   document.getElementById('nav').style.display = 'flex'
+    //   document.getElementById('mainnav').style.display = 'flex'
+    //   document.getElementById('main').innerHTML = "<h1>Welcome,</br> Admin</h1>"
+    //   }}}})
 
   </script>
 <script src="./Js/app.js"></script>

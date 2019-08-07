@@ -6,9 +6,6 @@ import SingleEmployee from "./components/singleemployee"
 import GetAddHours from "./components/employeeaddhours"
 import EmployeeHoursIndex from "./components/employeehoursindex"
 
-
-
-
 pageBuild();
 
 function pageBuild(){
