@@ -6,9 +6,6 @@ import SingleEmployee from "./components/singleemployee"
 import GetAddHours from "./components/employeeaddhours"
 import EmployeeHoursIndex from "./components/employeehoursindex"
 
-
-
-
 pageBuild();
 
 function pageBuild(){
@@ -225,9 +222,24 @@ function editemployee(){
     ApiAction.getRequest("https://localhost:44390/api/employee", employeelist => {
         app.innerHTML = EmployeeIndex(employeelist);
       })
-  
- 
-
- 
-
     })
+
+    // Login function -----------------------------------------------------
+    document.getElementById('main').addEventListener('click', function(){
+        if(event.target.classList.contains("adminlogin")){
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    console.log('test');
+    document.getElementById('invalid').innerHTML = "Invalid Username or Password"
+        ApiAction.getRequest("https://localhost:44390/api/employee/login/"+username+"/"+password, auth => {
+          console.log(auth);
+            if (auth.ssn === password)
+            {
+              document.getElementById('hidenav').style.display = 'block'
+        document.getElementById('nav').style.display = 'flex'
+        document.getElementById('mainnav').style.display = 'flex'
+        document.getElementById('main').innerHTML = `<h1>Welcome Back,</br> ${auth.firstName} ${auth.lastName}</h1>`
+            }    
+          })
+        }
+      })

@@ -32,6 +32,20 @@ namespace JumboCaramelPayroll.Controllers
             return db.Employees.Single(a => a.EmployeeId == id);
         }
 
+        //Get Login Key
+        [HttpGet("login/{id}/{password}")]
+        public ActionResult<Employee> GetLoginKey(int id, string password)
+        {
+            Employee employee = db.Employees.Single(a => a.EmployeeId == id);
+            if (employee.SSN == password)
+            {
+                return db.Employees.Single(a => a.EmployeeId == id);
+            }
+
+            else {
+                return BadRequest();
+            }
+        }
 
         // POST api/Employee
         [HttpPost]
