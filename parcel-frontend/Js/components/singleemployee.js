@@ -33,6 +33,10 @@ export default function SingleEmployee(employee){
             <button class="delete_employee_submit multibutton">Delete 
             <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
             </button> 
+            <button class='return_employee_submit multibutton'>Return to Index
+            <input class='return_employee_id' type='hidden' value ='${employee.employeeId}'>
+            </button>
+            </button>
             </button>
             </employeebuttons>
             </employee>

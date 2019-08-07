@@ -3,20 +3,24 @@ import GetAddEmployee from "./components/addemployee"
 import ApiAction from "./api/api-actions"
 import GetEditEmployee from "./components/editemployee"
 import SingleEmployee from "./components/singleemployee"
-
-
+import GetAddHours from "./components/employeeaddhours"
+import EmployeeHoursIndex from "./components/employeehoursindex"
 
 pageBuild();
 
 function pageBuild(){
   employeeindex();
+  hoursindex();
   getaddemployee();
   addemployee();
+  addhours();
   geteditemployee();
   editemployee();
   deleteEmployee()
   singleEmployee()
+  getAddHours();
 }
+
 const app = document.getElementById('main');
 
 //Gets all Employees
@@ -29,20 +33,41 @@ function employeeindex(){
   })
 };
 
+
+function hoursindex(){
+  const hoursindex = document.getElementById('Nav_hours_index');
+  hoursindex.addEventListener('click', function(){
+    ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
+      console.log("i2")
+      app.innerHTML = EmployeeHoursIndex(hourslist);
+    })
+  })
+}
+
+
 //Gets the Add Employee Page
 function getaddemployee() {
   document.getElementById('Nav_add_employee').addEventListener('click', function(){
-    app.innerHTML = GetAddEmployee();
+    GetAddEmployee();
+  })
+}
+function getAddHours(){
+  document.getElementById('Nav_add_hours').addEventListener('click', function(){
+    app.innerHTML = GetAddHours();
   })
 }
 
 function geteditemployee() {
+//   document.querySelector('.edit_employee').addEventListener('click', function(){
+//     GetEditEmployee();
+//   })
+// }
   document.getElementById('main').addEventListener('click', function(){
       if(event.target.classList.contains("edit_employee")){
         const employeeId = event.target.querySelector(".employee_id").value
     console.log(employeeId)
-        ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId,
-        employee => {app.innerHTML= GetEditEmployee(employee)})
+        ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId, employee=> {
+        GetEditEmployee(employee)})
       }
  } )}
 
@@ -54,11 +79,15 @@ function geteditemployee() {
       const data = {
           employeeId: employeeId
       }
+
+      var result = confirm("Are you sure you want to delete this employee?");
+      if (result) {
     ApiAction.deleteRequest('https://localhost:44390/api/employee', 
     data,
     employeelist=> {
       app.innerHTML = EmployeeIndex(employeelist);
     })
+  }
 }})
 }
 
@@ -75,7 +104,7 @@ function addemployee(){
   const ssn = document.querySelector('.add_employee_ssn').value;
   const birthdate = document.querySelector('.add_employee_birthdate').value;
   const email = document.querySelector('.add_employee_email').value;
-  const roleId = document.querySelector('.add_employee_roleId').value;
+  const roleId = document.querySelector('#role_select').value;
   const data = {
     employeeId: employeeId,
     phoneNumber: phoneNumber,
@@ -86,7 +115,7 @@ function addemployee(){
     ssn: ssn,
     birthdate: birthdate,
     email: email,
-    roleId: roleId
+   
   };
   
     ApiAction.postRequest('https://localhost:44390/api/employee', data,
@@ -98,13 +127,46 @@ function addemployee(){
 })
 }
 
+//add hours for employee
+function addhours(){
+  document.getElementById('main').addEventListener('click', function() {
+  if (event.target.classList.contains('add_employee_hours_submit')){
+  console.log("i");
+  const hoursId = 0;
+  const employeeId = document.querySelector('.add_employee_id_hours').value
+  const dateWorked = document.querySelector('.add_hours_date').value
+  const timeIn = document.querySelector('.add_hours_time_in').value
+  const timeOut = document.querySelector('.add_hours_time_out').value
+  const totalHours = document.querySelector('.add_hours_total_hours').value
+  const approved = false;
+  //document.querySelector('.approved').value
+  const data = {
+    HoursId: hoursId,
+    EmployeeId: employeeId,
+    DateWorked: dateWorked,
+    TimeIn: timeIn,
+    TimeOut: timeOut,
+    TotalHours: totalHours,
+    Approved: approved
+  };
+  
+    ApiAction.postRequest('https://localhost:44390/api/hours', data,
+    hourslist=> {
+      console.log("i2")
+      app.innerHTML = EmployeeHoursIndex(hourslist);
+    })
+  }
+})
+}
+
+
 //Edit Employee Data
 function editemployee(){
   document.getElementById('main').addEventListener('click', function() {
     if (event.target.classList.contains('edit_employee_submit')){
     console.log("i");
     const employeeId = document.querySelector('.edit_employee_id').value;
-    const roleId = document.querySelector('.edit_employee_role').value;
+    const roleId = document.querySelector('#role_select').value;
     const firstName = document.querySelector('.edit_employee_first_name').value;
     const lastName = document.querySelector('.edit_employee_last_name').value;
     const address = document.querySelector('.edit_employee_address').value;
@@ -133,22 +195,14 @@ function editemployee(){
     }
   })
   }
+  document.getElementById('main').addEventListener('click', function(){
+    if(event.target.classList.contains('cancel_edit_submit'))
+  
+  ApiAction.getRequest("https://localhost:44390/api/employee", employeelist => {
+      app.innerHTML = EmployeeIndex(employeelist);
+    })
 
-//   //Delete an Employee
-//   function deleteEmployee(){
-//     document.getElementById('main').addEventListener('click', function() {
-//       if (event.target.classList.contains('delete_employee_submit')){
-//       const employeeId = document.querySelector('.delete_employee_id').value;
-//         const data = {
-//             employeeId: employeeId
-//         }
-//       ApiAction.deleteRequest('https://localhost:44390/api/employee', 
-//       data,
-//       employeelist=> {
-//         app.innerHTML = EmployeeIndex(employeelist);
-//       })
-//   }})
-// }
+  })
 
    //View a Single Employee
   function singleEmployee(){
@@ -160,7 +214,32 @@ function editemployee(){
         employee=> {
         app.innerHTML = SingleEmployee(employee);
       })
-  }})
+  }})  
   }
+    document.getElementById('main').addEventListener('click', function(){
+      if(event.target.classList.contains('return_employee_submit'))
+    
+    ApiAction.getRequest("https://localhost:44390/api/employee", employeelist => {
+        app.innerHTML = EmployeeIndex(employeelist);
+      })
+    })
 
-
+    // Login function -----------------------------------------------------
+    document.getElementById('main').addEventListener('click', function(){
+        if(event.target.classList.contains("adminlogin")){
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+    console.log('test');
+    document.getElementById('invalid').innerHTML = "Invalid Username or Password"
+        ApiAction.getRequest("https://localhost:44390/api/employee/login/"+username+"/"+password, auth => {
+          console.log(auth);
+            if (auth.ssn === password)
+            {
+              document.getElementById('hidenav').style.display = 'block'
+        document.getElementById('nav').style.display = 'flex'
+        document.getElementById('mainnav').style.display = 'flex'
+        document.getElementById('main').innerHTML = `<h1>Welcome Back,</br> ${auth.firstName} ${auth.lastName}</h1>`
+            }    
+          })
+        }
+      })

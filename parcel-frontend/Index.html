@@ -1,43 +1,68 @@
-    <!DOCTYPE html>
-    <html>
+ <!DOCTYPE html>
+        <html>
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
     </head>
       <body>
-    
-    <div id="mySidenav" class="sidenav">
-      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a id="Nav_employee_index" href="#">Employees</a>
-      <a href="#">Edit Hours</a>
-      <a href="#">Edit Roles</a>
-      <a id="Nav_add_employee" href="#">Add Employee</a>
-      <a href="#">Current Pay Period</a>
-      <a href="#">Previous Pay Period</a>
+    <nav id='nav'>
+      <div id="mySidenav" class="sidenav">
+       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+       <a id="Nav_employee_index" href="#">Employees</a>
+       <a id="Nav_add_hours">Add Hours</a>
+       <a href="#">Edit Hours</a>
+       <a href="#">Edit Roles</a>
+       <a id="Nav_add_employee" href="#">Add Employee</a>
+       <a id="Nav_hours_index">Current Pay Period</a>
+       <a href="#">Previous Pay Period</a>
     </div>
-    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
-        </div> 
-        <div id="main"></div>
+    <span id='hidenav' style="font-size:30px;cursor:pointer;color:rgb(154, 195, 212);margin-left:1vw;" onclick="openNav()">&#9776;</span>
+      <mainnav id='mainnav'>
+        <n>Profile</n>
+        <n>Current Pay-Period</n>
+        <n>Past Pay-Period</n>
+      </mainnav>
+    </nav>      
+        <div id="main">
+          <loginbox id='loginbox'>
+            <strong>Username:</strong>
+            <input class='logininput' id='username' type="text">
+          </br>
+            <strong>Password:</strong>
+            <input class='logininput' id='password' type="password">
+          <button class="adminlogin multibutton loginbutton">Login</button>
+          </br>
+        </br>
+          <p id='invalid' style='color: red;;'></p>
+        </loginbox>
+        </div>
+        <footer> Jumbo Caramel Productions &copy; 2019</footer>
     </body>
-<!-- <nav>
-    <ul>
-        <img src="" alt="">
-        <li id="nav__home">JCP Payroll App!!</li>
-        <li id="nav__edit hours">Edit Hours</li>
-        <li id="nav__edit role">Edit Role</li>
-        <li id="nav_add employee">Add Employee</li>
-        <li id="nav_current pay period">Current Pay Period</li>
-        <li id="nav_previous pay period">Previous Pay Period</li>
-    </ul>
-</nav> -->
 <script>
-  function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-  }
+      function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+      document.getElementById('main').style.paddingLeft = "275px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+      document.getElementById('main').style.paddingLeft = "5vw";
+    }
   
-  function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-  }
+    document.getElementById('mySidenav').addEventListener('mouseleave', function() {
+      document.getElementById('mySidenav').style.width = "0";
+      document.getElementById('main').style.paddingLeft = "5vw";
+    })
+    // document.getElementById('main').addEventListener('click', function(){
+    //   if(event.target.classList.contains("adminlogin")){
+    //     if(document.getElementById('username').value == 'admin'){
+    //       if(document.getElementById('password').value == 'password') {
+    //   document.getElementById('hidenav').style.display = 'block'
+    //   document.getElementById('nav').style.display = 'flex'
+    //   document.getElementById('mainnav').style.display = 'flex'
+    //   document.getElementById('main').innerHTML = "<h1>Welcome,</br> Admin</h1>"
+    //   }}}})
+
   </script>
 <script src="./Js/app.js"></script>
 </html>

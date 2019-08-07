@@ -11,6 +11,7 @@ namespace JumboCaramelPayroll
     {
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Hours> Hours { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -103,6 +104,19 @@ namespace JumboCaramelPayroll
                     HourRate = 12,
 
                 }
+                );
+            modelBuilder.Entity<Hours>().HasData(
+                new Hours()
+                {
+                    HoursId = 1,
+                    DateWorked = new DateTime(1984, 12, 16, 12, 32, 54, DateTimeKind.Unspecified),
+                    TimeIn = new DateTime(1984, 12, 16, 12, 32, 54, DateTimeKind.Unspecified),
+                    TimeOut = new DateTime(1984, 12, 16, 22, 32, 54, DateTimeKind.Unspecified),
+                    TotalHours = 10,
+                    Approved = false,
+                    EmployeeId = 1
+                }
+
                 );
 
         }
