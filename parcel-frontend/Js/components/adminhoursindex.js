@@ -1,4 +1,4 @@
-export default function EmployeeHoursIndex(hourslist){
+export default function AdminHoursIndex(hourslist){
     console.log("Hours Index")
     return `
     <h1>Hours Index</h1>
@@ -25,6 +25,18 @@ export default function EmployeeHoursIndex(hourslist){
             </dates>
                 <totalhours> ${hours.totalHours} </totalhours>
                 <approved> ${hours.approved} </approved>
+                <hoursbuttons>
+                <button class="edit_hours multibutton">Edit 
+                        <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
+                    </button> 
+                    <button class="delete_hours_submit multibutton">Delete 
+                        <input class="delete_hours_id" type="hidden" value="${hours.hoursId}"> 
+                    </button> 
+                    <button class="single_hours_submit multibutton">Select
+                        <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
+                    </button>
+            
+                </hoursbuttons>
         </hours> 
         </employee>
          

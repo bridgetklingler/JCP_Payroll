@@ -3,23 +3,27 @@ import GetAddEmployee from "./components/addemployee"
 import ApiAction from "./api/api-actions"
 import GetEditEmployee from "./components/editemployee"
 import SingleEmployee from "./components/singleemployee"
-import GetAddHours from "./components/employeeaddhours"
-import EmployeeHoursIndex from "./components/employeehoursindex"
+import AdminAddHours from "./components/admin/adminaddhours"
+import EmployeeAddHours from "./components/employeeaddhours"
+import AdminHoursIndex from "./components/adminhoursindex"
 import SingleEmployeeHours from "./components/singleemployeehours"
 
 pageBuild();
 
 function pageBuild(){
   employeeindex();
-  hoursindex();
   getaddemployee();
   addemployee();
-  addhours();
   geteditemployee();
   editemployee();
   deleteEmployee()
+  
   singleEmployee()
-  getAddHours();
+  
+  hoursindex();
+  addhours();
+  getAdminAddHours();
+  getEmployeeAddHours();
   singleemployeehours();
 }
 
@@ -45,6 +49,16 @@ function hoursindex(){
     })
   })
 }
+function employeehoursindex(){
+  const employeeHours = document.getElementById('User_view_hours_index');
+  employeeHours.addEventListener('click', function (){
+    const employeeId = event.target.querySelector('.single_employee_id').value;
+       
+    ApiAction.getRequest('https://localhost:44390/api/hours/' + employeeId, hourslist => {
+      app.innerHTML = EmployeeHoursIndex
+    })
+  })
+}
 
 
 //Gets the Add Employee Page
@@ -53,11 +67,17 @@ function getaddemployee() {
     GetAddEmployee();
   })
 }
-function getAddHours(){
+function getAdminAddHours(){
   document.getElementById('Nav_add_hours').addEventListener('click', function(){
-    app.innerHTML = GetAddHours();
+    app.innerHTML = AdminAddHours();
   })
 }
+function getEmployeeAddHours(){
+  document.getElementById('User_hours_index').addEventListener('click', function(){
+    app.innerhtml = EmployeeAddHours();
+  })
+}
+
 
 function geteditemployee() {
 //   document.querySelector('.edit_employee').addEventListener('click', function(){
@@ -138,29 +158,30 @@ function converthours(timeOut,timeIn){
   console.log(toDate);
   var timeDiff = (toDate-fromDate)/3600;
   console.log(timeDiff);
-  console.log("i was here!")
-  return timeDiff;
+  const timeRound = Math.round((timeDiff+.04)*10)/10;
+  console.log(timeRound)
+  return timeRound;
 }
 //add hours for employee
 function addhours(){
   document.getElementById('main').addEventListener('click', function() {
   if (event.target.classList.contains('add_employee_hours_submit')){
-  console.log("i");
+
   const hoursId = 0;
   const employeeId = document.querySelector('.add_employee_id_hours').value
- // const dateWorked = document.querySelector('.add_hours_date').value
   const timeIn = document.querySelector('.add_hours_time_in').value
   const timeOut = document.querySelector('.add_hours_time_out').value
   
   const totalHours = converthours(timeIn,timeOut);
   
   console.log(totalHours);
-  const approved = false;
-  //document.querySelector('.approved').value
+  const approved = document.querySelector(".add_hours_approved").value;
+  console.log(approved)
+
   const data = {
     HoursId: hoursId,
     EmployeeId: employeeId,
-    //DateWorked: dateWorked,
+    
     TimeIn: timeIn,
     TimeOut: timeOut,
     TotalHours: totalHours,
