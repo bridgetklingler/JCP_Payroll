@@ -6,6 +6,7 @@ import SingleEmployee from "./components/singleemployee"
 import AdminAddHours from "./components/admin/adminaddhours"
 import EmployeeAddHours from "./components/employeeaddhours"
 import AdminHoursIndex from "./components/adminhoursindex"
+import SingleEmployeeHours from "./components/singleemployeehours"
 
 pageBuild();
 
@@ -23,6 +24,7 @@ function pageBuild(){
   addhours();
   getAdminAddHours();
   getEmployeeAddHours();
+  singleemployeehours();
 }
 
 const app = document.getElementById('main');
@@ -275,7 +277,41 @@ function editemployee(){
         document.getElementById('nav').style.display = 'flex'
         document.getElementById('mainnav').style.display = 'flex'
         document.getElementById('main').innerHTML = `<h1>Welcome Back,</br> ${auth.firstName} ${auth.lastName}</h1>`
+        document.getElementById('mainnav').innerHTML = `        
+        <n class="empprofile">Profile
+        <input type="hidden" class="getprofile" value="${auth.employeeId}">
+        </n>
+        <n class="emphours">Current Pay-Period
+        <input type="hidden" class="gethours" value="${auth.employeeId}">
+        </n>
+        <n value="${auth.employeeId}">Past Pay-Period</n>
+        `
             }    
           })
         }
       })
+
+      //Views logged in Employee Profile from Nav
+        document.getElementById('mainnav').addEventListener('click', function() {
+          if (event.target.classList.contains('empprofile')){
+          const employeeId = event.target.querySelector('.getprofile').value;  
+          console.log(employeeId);   
+          ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
+            employee=> {
+            app.innerHTML = SingleEmployee(employee);
+          })
+      }})
+      
+      //View logged in Employee's Hours from Nav
+      function singleemployeehours() {
+      document.getElementById('mainnav').addEventListener('click', function() {
+        if (event.target.classList.contains('emphours')){
+        const employeeId = event.target.querySelector('.gethours').value;  
+        console.log(employeeId);   
+        ApiAction.getRequest('https://localhost:44390/api/hours/'+employeeId, 
+          hours=> {
+            console.log(hours)
+          app.innerHTML = SingleEmployeeHours(hours);
+        })
+    }})  
+  }
