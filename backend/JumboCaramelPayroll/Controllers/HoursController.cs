@@ -26,9 +26,9 @@ namespace JumboCaramelPayroll.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Hours> GetById(int id)
+        public IEnumerable<Hours> GetByEmployeeId(int id)
         {
-            return db.Hours.Single(a => a.HoursId == id);
+            return db.Hours.Where(a => a.EmployeeId == id);
         }
 
 
