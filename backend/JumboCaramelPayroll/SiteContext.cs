@@ -36,6 +36,7 @@ namespace JumboCaramelPayroll
                     SSN = "200-300-5000",
                     Birthdate = DateTime.Today,
                     Email = "Jon.Smith@gmail.com",
+                    Admin = true,
                     RoleId = 1
 
 
@@ -50,6 +51,7 @@ namespace JumboCaramelPayroll
                     SSN = "200-310-5690",
                     Birthdate = DateTime.Today,
                     Email = "Joe.Carter@gmail.com",
+                    Admin = false,
                     RoleId = 2
 
 
@@ -65,6 +67,7 @@ namespace JumboCaramelPayroll
                     SSN = "100-600-4000",
                     Birthdate = DateTime.Today,
                     Email = "Fred.Johnson@yaho.com",
+                    Admin = false,
                     RoleId = 2
 
 
@@ -80,6 +83,7 @@ namespace JumboCaramelPayroll
                     SSN = "001-003-5000",
                     Birthdate = DateTime.Today,
                     Email = "Jen.Morgan@hotmail.com",
+                    Admin = false,
                     RoleId = 1
 
 
