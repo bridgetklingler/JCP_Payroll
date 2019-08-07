@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: rgb(244, 247, 247);
+  background-color: rgb(251, 255, 255);
 }
 
 nav {
@@ -26,12 +26,12 @@ mainnav {
 }
 
 n {
-  color: rgb(154, 195, 212);
+  color: rgb(205, 233, 245);
   padding: 2.1vh 20px 2.1vh 20px;
 }
 
 n:hover {
-  background-color: rgb(17, 54, 71);
+  background-color: rgb(28, 67, 85);
 }
 
 loginbox {
@@ -85,7 +85,7 @@ loginbox {
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
   color: rgb(230, 237, 240);
-  background-color: rgb(17, 54, 71);
+  background-color: rgb(28, 67, 85);
   transition: none;
 }
 
@@ -106,7 +106,7 @@ loginbox {
 }
 
 .multibutton {
-  background: linear-gradient(to bottom, rgb(182, 209, 221), rgb(122, 160, 177));
+  background: linear-gradient(to bottom, rgb(198, 225, 236), rgb(122, 160, 177));
   background-color: rgb(154, 195, 212);
   border-color: rgb(1, 21, 31);
   color:  rgb(1, 21, 31);

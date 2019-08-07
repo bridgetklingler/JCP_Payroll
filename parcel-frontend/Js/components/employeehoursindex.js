@@ -15,11 +15,13 @@ export default function EmployeeHoursIndex(hourslist){
     </hours>
         ${hourslist.map(hours => {
         return `  
+    <employee>
         <hours>
             <dates>
                 <dateworked> ${hours.timeIn.substring(0, 10)}</dateworked>
                 <timein> ${hours.timeIn.substring(11, 19)}</timein>
-                <timeout> ${hours.timeOut.substring(11, 19)} </timeout>
+                <timeout> ${hours.timeOut.substring(11, 19)}
+                </timeout>
             </dates>
                 <totalhours> ${hours.totalHours} </totalhours>
                 <approved> ${hours.approved} </approved>
@@ -35,7 +37,9 @@ export default function EmployeeHoursIndex(hourslist){
                     </button>
             
                 </hoursbuttons>
-        </hours>    
+        </hours> 
+        </employee>
+         
         `      
         })     
         .join("")}

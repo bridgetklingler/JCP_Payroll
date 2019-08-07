@@ -11,7 +11,7 @@ export default function EmployeeIndex(employeelist){
             <address>Address</address>
             <pn>Phone Number</pn>
             <email>Email</email>
-            <rollId>rollId</rollId>
+            <roleId>Role Id</roleId>
             <employeebuttons></employeebuttons>
         </employee>
         ${employeelist.map(employee => {
