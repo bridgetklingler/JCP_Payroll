@@ -7,6 +7,7 @@ import AdminAddHours from "./components/admin/adminaddhours"
 import EmployeeAddHours from "./components/employeeaddhours"
 import AdminHoursIndex from "./components/adminhoursindex"
 import SingleEmployeeHours from "./components/singleemployeehours"
+import Home from "./components/home"
 
 pageBuild();
 
@@ -25,6 +26,8 @@ function pageBuild(){
   getAdminAddHours();
   getEmployeeAddHours();
   singleemployeehours();
+
+  //clockin();
 }
 
 const app = document.getElementById('main');
@@ -275,7 +278,7 @@ function editemployee(){
             {
               document.getElementById('nav').style.display = 'flex'
               document.getElementById('mainnav').style.display = 'flex'
-              document.getElementById('main').innerHTML = `<h1>Welcome Back,</br> ${auth.firstName} ${auth.lastName}</h1>`
+              document.getElementById('main').innerHTML = Home(auth);
         document.getElementById('mainnav').innerHTML = `        
         <n class="empprofile">Profile
         <input type="hidden" class="getprofile" value="${auth.employeeId}">
@@ -316,4 +319,5 @@ function editemployee(){
         })
     }})  
   }
+  
 

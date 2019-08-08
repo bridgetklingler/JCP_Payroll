@@ -34,6 +34,18 @@ n:hover {
   background-color: rgb(28, 67, 85);
 }
 
+.multibutton {
+  background: linear-gradient(to bottom, rgb(198, 225, 236), rgb(122, 160, 177));
+  background-color: rgb(154, 195, 212);
+  border-color: rgb(1, 21, 31);
+  color:  rgb(1, 21, 31);
+  padding: .25em;
+}
+
+.multibutton:hover{
+  background: linear-gradient(to top, rgb(252, 173, 69), rgb(236, 103, 26));
+}
+
 loginbox {
   display: flex;
   height: 92vh;
@@ -45,7 +57,7 @@ loginbox {
 }
 
 .loginbutton {
-  padding: 14px 50px 14px 50px;
+  padding: 20px 37px 20px 37px;
   margin-top: 8vh;
   font-size: 25px;
 }
@@ -105,16 +117,21 @@ loginbox {
   .sidenav a {font-size: 18px;}
 }
 
-.multibutton {
-  background: linear-gradient(to bottom, rgb(198, 225, 236), rgb(122, 160, 177));
-  background-color: rgb(154, 195, 212);
-  border-color: rgb(1, 21, 31);
-  color:  rgb(1, 21, 31);
-  padding: .25em;
+.clock{
+  padding: 2em;
+  width: 20vw;
+  text-emphasis: bold;
+  font-size: 20px;
+  margin: .5em;
+  height: -1vw;
 }
 
-.multibutton:hover{
-  background: linear-gradient(to top, rgb(252, 173, 69), rgb(236, 103, 26));
+clockbutton{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  align-content: flex-end;
 }
 
 #main {
@@ -180,6 +197,41 @@ email {
 names {
   min-width:10vw;
   max-width: 10vw;
+}
+
+sfname{
+  grid-template-columns: 20vw 20vw;
+  grid-template-rows: 5vh;
+}
+
+slname {
+  grid-template-columns: 20vw 20vw;
+  grid-template-rows: 5vh;
+}
+
+saddress {
+  grid-template-columns: 20vw 20vw;
+  grid-template-rows: 5vh;
+}
+
+spn {
+  grid-template-columns: 20vw 20vw;
+  grid-template-rows: 5vh;
+}
+
+sssn {
+  grid-template-columns: 20vw 20vw;
+  grid-template-rows: 5vh;
+}
+
+sbd {
+  grid-template-columns: 20vw 20vw;
+  grid-template-rows: 5vh;
+}
+
+semail {
+  grid-template-columns: 20vw 20vw;
+  grid-template-rows: 5vh;
 }
 
 employeebuttons {

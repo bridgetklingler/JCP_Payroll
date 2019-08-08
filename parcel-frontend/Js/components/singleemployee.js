@@ -1,31 +1,17 @@
 export default function SingleEmployee(employee){
     return `    
             <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
-            <employees>
-    <employee  style="font-weight: 800; background-color: rgb(120, 161, 182)">    
-    <names>
-            <fname></fname>
-            <lname>Name</lname>
-            </names>
-            <address>Address</address>
-            <pn>Phone Number</pn>
-            <ssn>SSN</ssn>
-            <bd>BirthDate</bd>
-            <email>Email</email>
-            <roleId>roleId</roleId>
-            <employeebuttons></employeebuttons>
-        </employee>
-            <employee>
             <names>
-            <fname>${employee.firstName}</fname>
-            <lname>${employee.lastName}</lname>
+            <sfname><h3>First Name:</h3>      ${employee.firstName}</sfname>
+            <slname><h3>Last Name: </h3>      <strong>${employee.lastName}</strong></slname>
             </names>
-            <address>${employee.address}</address>
-            <pn>${employee.phoneNumber}</pn>
-            <ssn>${employee.ssn}</ssn>
-            <bd>${employee.birthdate.substring(0,10)}</bd>
-            <email>${employee.email}</email>
-            <roleId>${employee.roleId}</roleId>
+            <semail><h3>Email:</h3>           <strong>${employee.email}</strong></semail>
+            <sroleId><h3>Role:</h3>           ${employee.roleId}</sroleId>
+            <br/>
+            <saddress><h3>Address:</h3>       ${employee.address}</saddress>
+            <spn><h3>Phone:</h3>              ${employee.phoneNumber}</spn>
+            <sssn><h3>SSN:</h3>               ${employee.ssn}</sssn>
+            <sbd><h3>Date of Birth:</h3>      ${employee.birthdate.substring(0,10)}</sbd>
             <employeebuttons>
             <button class="edit_employee multibutton">Edit 
             <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
@@ -33,13 +19,8 @@ export default function SingleEmployee(employee){
             <button class="delete_employee_submit multibutton">Delete 
             <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
             </button> 
-            <button class='return_employee_submit multibutton'>Return to Index
-            <input class='return_employee_id' type='hidden' value ='${employee.employeeId}'>
-            </button>
             </button>
             </button>
             </employeebuttons>
-            </employee>
-            </employees>
     `
 }
