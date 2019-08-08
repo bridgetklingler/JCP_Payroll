@@ -27,22 +27,10 @@ function pageBuild(){
   adminEditEmployee();
   adminDeleteEmployee()
   adminAddHours();
-
-
-
-
-
-
-
-
-  
-  
-  //hoursindex();
-
-
-
+ 
+  //unsorted code------------------------
+  employeehoursindex();
   getEmployeeAddHours();
-
   singleemployeehours();
 }
 
@@ -230,7 +218,6 @@ document.getElementById('main').addEventListener('click', function(){
 })
 
 
-
 //hours based
 //Gets all Hours
 function getAdminHoursIndex(){
@@ -330,44 +317,20 @@ function getEmployeeAddHours(){
 }
 
 
-//   document.querySelector('.edit_employee').addEventListener('click', function(){
-//     GetEditEmployee();
-//   })
-// }
-
-
- //Delete an Employee
- 
-
-//Creates an Employee
-
-// convert time in time out to total hours in minutes
-
-//add hours for employee
-
-
-
-//Edit Employee Data
-
   
 
-  
-    
-
-    
-
-      //Views logged in Employee Profile from Nav
-        document.getElementById('mainnav').addEventListener('click', function() {
-          if (event.target.classList.contains('empprofile')){
-          const employeeId = event.target.querySelector('.getprofile').value;  
-          console.log(employeeId);   
-          ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
-            employee=> {
-            app.innerHTML = SingleEmployee(employee);
-          })
-      }})
+//Views logged in Employee Profile from Nav
+  document.getElementById('mainnav').addEventListener('click', function() {
+    if (event.target.classList.contains('empprofile')){
+    const employeeId = event.target.querySelector('.getprofile').value;  
+    console.log(employeeId);   
+    ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
+      employee=> {
+      app.innerHTML = SingleEmployee(employee);
+    })
+}})
       
-      //View logged in Employee's Hours from Nav
+//View logged in Employee's Hours from Nav
   function singleemployeehours() {
       document.getElementById('mainnav').addEventListener('click', function() {
         if (event.target.classList.contains('emphours')){
@@ -378,5 +341,5 @@ function getEmployeeAddHours(){
             console.log(hours)
           app.innerHTML = SingleEmployeeHours(hours);
         })
-    }})  
-  }
+  }})  
+}
