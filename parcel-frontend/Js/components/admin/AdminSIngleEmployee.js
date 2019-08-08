@@ -1,29 +1,29 @@
-export default function AdminEmployeeIndex(employeelist){
-    console.log("employee Index")
-    return `
-    <h1>Employee Index</h1>
-    <employees>
-    <employee style="font-weight: 800; background-color: rgb(120, 161, 182)">    
+export default function AdminSingleEmployee(employee){
+    return `    
+            <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
+            <employees>
+    <employee  style="font-weight: 800; background-color: rgb(120, 161, 182)">    
     <names>
             <fname></fname>
             <lname>Name</lname>
             </names>
             <address>Address</address>
             <pn>Phone Number</pn>
+            <ssn>SSN</ssn>
+            <bd>BirthDate</bd>
             <email>Email</email>
-            <roleId>Role Id</roleId>
+            <roleId>roleId</roleId>
             <employeebuttons></employeebuttons>
         </employee>
-        ${employeelist.map(employee => {
-        return `  
-        
             <employee>
             <names>
-            <lname>${employee.lastName} ,</lname>
             <fname>${employee.firstName}</fname>
+            <lname>${employee.lastName}</lname>
             </names>
             <address>${employee.address}</address>
             <pn>${employee.phoneNumber}</pn>
+            <ssn>${employee.ssn}</ssn>
+            <bd>${employee.birthdate.substring(0,10)}</bd>
             <email>${employee.email}</email>
             <roleId>${employee.roleId}</roleId>
             <employeebuttons>
@@ -31,18 +31,15 @@ export default function AdminEmployeeIndex(employeelist){
             <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
             </button> 
             <button class="delete_employee_submit multibutton">Delete 
-            <input class="delete_employee_id" type="hidden" value="${employee.employeeId}">
+            <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
             </button> 
-            <button class="single_employee_submit multibutton">Select
-            <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
+            <button class='return_employee_submit multibutton'>Return to Index
+            <input class='return_employee_id' type='hidden' value ='${employee.employeeId}'>
+            </button>
+            </button>
             </button>
             </employeebuttons>
             </employee>
-
-                 `      
-        })     
-        .join("")}
-        
-    </employees>
+            </employees>
     `
 }

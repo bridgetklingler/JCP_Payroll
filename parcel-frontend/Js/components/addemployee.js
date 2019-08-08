@@ -1,5 +1,5 @@
 import apiActions from '../api/api-actions'
-export default function GetAddEmployee()
+export default function badGetAddEmployee()
 {
     console.log("addemployeepage")
     setPage();

@@ -1,5 +1,5 @@
-import apiActions from '../api/api-actions'
-export default function GetAdminAddEmployee()
+import apiActions from '../../api/api-actions'
+export default function AdminAddEmployee()
 {
     console.log("addemployeepage")
     setPage();
