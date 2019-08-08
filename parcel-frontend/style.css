@@ -28,6 +28,7 @@ mainnav {
 n {
   color: rgb(205, 233, 245);
   padding: 2.1vh 20px 2.1vh 20px;
+  cursor: default;
 }
 
 n:hover {
@@ -135,12 +136,32 @@ employees{
 
 }
 
-employee {
+employee{
   max-width: 100%;
   display: flex;
   justify-content: space-between;
   border: 1px solid rgb(21, 48, 16);
   background-color: rgb(255, 235, 213);
+  font-size: 14px;
+  padding: .5vh .5vw;
+}
+
+.green {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgb(21, 48, 16);
+  background-color: rgb(175, 201, 226);
+  font-size: 14px;
+  padding: .5vh .5vw;
+}
+
+.blue {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgb(21, 48, 16);
+  background-color: rgb(210, 234, 255);;
   font-size: 14px;
   padding: .5vh .5vw;
 }

@@ -21,9 +21,10 @@ export default function EmployeeIndex(employeelist){
     roletoname=> {
     document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
     })
+    var x = "";
+    if(employee.employeeId % 2 === 0){x = 'green'}else{x='blue'}
         return `  
-        
-            <employee>
+            <employee class='${x}'>
             <names>
             <lname>${employee.lastName} ,</lname>
             <fname>${employee.firstName}</fname>
@@ -50,6 +51,7 @@ export default function EmployeeIndex(employeelist){
         })     
 
         .join("")
+        
     }
         
         </employees>
