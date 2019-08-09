@@ -245,7 +245,6 @@ input {
   width: 40vw;
   background-color: rgb(252, 244, 222);
   border: 1px solid rgb(1, 21, 31);
-
 }
 
 .submit, .cancel {
@@ -289,3 +288,19 @@ sf{
   font-size: 13px;
 }
  
+#clock_box {
+  border: 2px solid blue;
+}
+
+#current_time {
+  color: blue;
+}
+
+#clock_in {
+  color: red;
+}
+
+#clock_out {
+  color: green;
+}
+

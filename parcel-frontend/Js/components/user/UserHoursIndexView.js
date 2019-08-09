@@ -1,5 +1,6 @@
 export default function UserHoursIndex(hourslist){
     console.log("Hours Index")
+    var i = 1;
     return `
     <h1>Hours Index</h1>
     <hours>
@@ -14,8 +15,11 @@ export default function UserHoursIndex(hourslist){
             <hoursbuttons></hoursbuttons>
     </hour>
         ${hourslist.map(hours => {
+            var x = "";
+        i += 1;
+        if(i % 2 === 0){x = 'green'}else{x='blue'}
         return `  
-    <employee>
+    <employee class='${x}'>
         
             <dates>
                 <dateworked> ${hours.timeIn.substring(0, 10)}</dateworked>

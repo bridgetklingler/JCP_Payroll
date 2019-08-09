@@ -41,6 +41,26 @@ namespace JumboCaramelPayroll.Controllers
             return db.Hours.ToList();
         }
 
+        // CLOCKIN api/Hours/Clockin
+        [HttpPost("Clockin")]
+        public ActionResult<IEnumerable<Hours>> ClockIn([FromBody] Hours hours)
+        {
+            db.Hours.Add(hours);
+            db.SaveChanges();
+            return db.Hours.ToList();
+        }
+
+        // CLOCKOUT api/hours/Clockout/id
+        [HttpPut("Clockout/{id}")]
+        public ActionResult<Hours> Clockout([FromBody] Hours hours, int id)
+        {
+            Hours clockin = db.Hours.Last(c => c.EmployeeId == id);
+            clockin.TimeOut = hours.TimeOut; 
+            db.Hours.Update(clockin);
+            db.SaveChanges();
+            return clockin;
+        }
+
         // PUT api/values/5
         [HttpPut]
         public ActionResult<IEnumerable<Hours>> Put([FromBody] Hours hours)
