@@ -237,3 +237,18 @@ footer{
   width: 100%;
 
 }
+
+/* ----- CSS for clock in and clock out box/buttons ----- */
+#clock_box {
+  border: 2px solid blue;
+
+}
+#current_time {
+  color: blue;
+}
+#clock_in {
+  color: red;
+}
+#clock_out {
+  color: green;
+}

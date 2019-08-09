@@ -12,6 +12,7 @@ import AdminSingleEmployee from "./components/admin/AdminSIngleEmployee"
 import EmployeeAddHours from "./components/employeeaddhours"
 
 import SingleEmployeeHours from "./components/singleemployeehours"
+import BuildClockMenu from "./components/user/employeeclock";
 
 pageBuild();
 
@@ -36,9 +37,18 @@ function pageBuild(){
 
 const app = document.getElementById('main');
 
+var logged_id = null; //id of person currently logged in (or null if nobody)
 // Login function -----------------------------------------------------
 document.getElementById('main').addEventListener('click', function(){
-  if(event.target.classList.contains("adminlogin")){
+  // when person clicks clock_in or clock_out, send information to API
+  if(event.target.id == 'clock_in') {
+    console.log("https://localhost:44390/api/employee/clock_in/"+logged_id);
+    ApiAction.getRequest("https://localhost:44390/api/employee/clock_in/"+logged_id);
+  }
+  else if(event.target.id == 'clock_out') {
+    ApiAction.getRequest("https://localhost:44390/api/employee/clock_out/"+logged_id);
+  }
+  else if(event.target.classList.contains("adminlogin")){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     console.log('test');
@@ -50,7 +60,9 @@ document.getElementById('main').addEventListener('click', function(){
         document.getElementById('nav').style.display = 'flex'
         document.getElementById('mainnav').style.display = 'flex'
         document.getElementById('main').innerHTML = `<h1>Welcome Back,</br> ${auth.firstName} ${auth.lastName}</h1>`
-        document.getElementById('mainnav').innerHTML = `        
+        document.getElementById('main').innerHTML += BuildClockMenu()
+
+        document.getElementById('mainnav').innerHTML = `
         <n class="empprofile">Profile
         <input type="hidden" class="getprofile" value="${auth.employeeId}">
         </n>
@@ -59,6 +71,8 @@ document.getElementById('main').addEventListener('click', function(){
         </n>
         <n value="${auth.employeeId}">Past Pay-Period</n>
         `
+
+        logged_id = auth.employeeId; //after a successful login, save ID of logged in employee
       }    
     })
   }
