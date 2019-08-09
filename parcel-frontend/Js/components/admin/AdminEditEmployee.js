@@ -8,7 +8,7 @@ export default function AdminEditEmployee(employee){
          `    
             <h1> Edit: ${employee.lastName}, ${employee.firstName}</h1>
             <input type="hidden" class="edit_employee_id" value="${employee.employeeId}">
-            <h2>${employee.employeeId}</h2>
+            <h2>Employee ID: ${employee.employeeId}</h2>
             <addemployee>
             <addinput> <label>First Name:</label><input type="text" class="edit_employee_first_name" value="${employee.firstName}"></addinput>
             <addinput> <label>Last Name:</label><input type="text" class="edit_employee_last_name" value="${employee.lastName}"></addinput>
@@ -38,7 +38,7 @@ export default function AdminEditEmployee(employee){
 function setRoles(roles){
     let roleHtml = '';
     for(const role of roles){
-        roleHtml += `<option value='${role.roleId}'>${role.roleName}</option>`
+        roleHtml += `<option id="role_select-value" value='${role.roleId}'>${role.roleName}</option>`
 
     }
     document.querySelector("#role_select").innerHTML = roleHtml;

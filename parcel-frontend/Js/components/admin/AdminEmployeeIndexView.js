@@ -14,11 +14,11 @@ export default function AdminEmployeeIndex(employeelist){
             <address>Address</address>
             <pn>Phone Number</pn>
             <email>Email</email>
-            <roleId>Role Id</roleId>
+            <roleId>Role</roleId>
             <employeebuttons></employeebuttons>
         </employee>
         ${employeelist.map(employee => {
-            ApiActions.getRequest('https://localhost:44390/api/role/'+employee.roleId,
+            ApiActions.getRequest('https://localhost:44390/api/role/'+ employee.roleId,
     roletoname=> {
     document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
     })
@@ -34,7 +34,7 @@ export default function AdminEmployeeIndex(employeelist){
             <address>${employee.address}</address>
             <pn>${employee.phoneNumber}</pn>
             <email>${employee.email}</email>
-            <roleId id='${employee.employeeId}'>
+            <roleId id='${employee.employeeId}'>${employee.employeeId}
             <input id='roleidtoname' type="hidden" value="${employee.roleId}">
             </roleId>
             <employeebuttons>

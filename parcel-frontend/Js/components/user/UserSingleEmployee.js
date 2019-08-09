@@ -5,49 +5,52 @@ export default function UserSingleEmployee(employee){
 roletoname=> {
 document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
 })
-    return `    
-            <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
-            <employees>
-    <employee  style="font-weight: 800; background-color: rgb(120, 161, 182)">    
-    <names>
-            <fname></fname>
-            <lname>Name</lname>
-            </names>
-            <address>Address</address>
-            <pn>Phone Number</pn>
-            <ssn>SSN</ssn>
-            <bd>BirthDate</bd>
-            <email>Email</email>
-            <roleId>roleId</roleId>
-            <employeebuttons></employeebuttons>
-        </employee>
-            <employee>
-            <names>
-            <fname>${employee.firstName}</fname>
-            <lname>${employee.lastName}</lname>
-            </names>
-            <address>${employee.address}</address>
-            <pn>${employee.phoneNumber}</pn>
-            <ssn>${employee.ssn}</ssn>
-            <bd>${employee.birthdate.substring(0,10)}</bd>
-            <email>${employee.email}</email>
-            <roleId id='${employee.employeeId}'>
-            <input id='roleidtoname' type="hidden" value="${employee.roleId}">
-            </roleId>
-            <employeebuttons>
-            <button class="edit_employee multibutton">Edit 
-            <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
-            </button> 
-            <button class="delete_employee_submit multibutton">Delete 
-            <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
-            </button> 
-            <button class='return_employee_submit multibutton'>Return to Index
-            <input class='return_employee_id' type='hidden' value ='${employee.employeeId}'>
-            </button>
-            </button>
-            </button>
-            </employeebuttons>
-            </employee>
-            </employees>
+    return `   
+    <div> 
+    <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
+    <h2><em>Employee ID: ${employee.employeeId} </em></h2>
+    </div class="heading">
+    <table style="width: 95%">
+
+    <tr>
+        <sfname><th>First Name: </th>
+        <td>${employee.firstName}</td></sfname>
+    </tr>
+    <tr>
+        <slname><th>Last Name: </th>
+        <td>${employee.lastName}</td></slname>
+    </tr>
+    <tr>
+        <semail><th>Email: </th>
+        <td>${employee.email}</td></semail>
+    </tr>
+    <tr>
+        <spn><th>Phone: </th>
+        <td>${employee.phoneNumber}</td></spn>
+    </tr>
+    <tr>
+        <sroleId><th>Role: </th>
+        <td>${employee.roleId}</td></sroleId>
+    </tr>
+    <tr>
+        <saddress><th>Adress: </th>
+        <td>${employee.address}</td></saddress>
+    </tr>
+    <tr>
+        <sssn><th>SSN: </th>
+        <td>${employee.ssn}</td></sssn>
+    </tr>
+    <tr>
+        <sbd><th>Birth Date: </th>
+        <td>${employee.birthdate.substring(0,10)}</td></sbd>
+    </tr>
+    </table>
+
+    <br/>
+    <employeebuttons>
+    <button class="single_edit edit_employee multibutton">Edit 
+    <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
+    </button> 
+    </employeebuttons>
     `
 }

@@ -14,6 +14,7 @@ import UserSingleEmployee from "./components/user/UserSingleEmployee"
 //user add hours
 import EmployeeAddHours from "./components/employeeaddhours"
 import BuildClockMenu from "./components/user/employeeclock";
+import Home from "./components/home";
 
 
 pageBuild();
@@ -61,8 +62,7 @@ document.getElementById('main').addEventListener('click', function(){
         document.getElementById('hidenav').style.display = 'block'
         document.getElementById('nav').style.display = 'flex'
         document.getElementById('mainnav').style.display = 'flex'
-        document.getElementById('main').innerHTML = `<h1>Welcome Back,</br> ${auth.firstName} ${auth.lastName}</h1>`
-        document.getElementById('main').innerHTML += BuildClockMenu()
+        document.getElementById('main').innerHTML = Home(auth);
 
         document.getElementById('mainnav').innerHTML = `
         <n class="empprofile">Profile
