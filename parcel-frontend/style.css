@@ -267,10 +267,27 @@ footer{
   left: 0px;
   text-align: center;
   padding: .5em;
+  max-width: 100%;
   width: 100%;
 }
 
-/* ----- CSS for clock in and clock out box/buttons ----- */
+foot {
+  display: flex;
+  max-width: 95vw;
+  width: 100vw;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+sf{
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 13px;
+}
+ 
 #clock_box {
   border: 2px solid blue;
 }
