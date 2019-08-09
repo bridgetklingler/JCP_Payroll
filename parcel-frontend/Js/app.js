@@ -372,16 +372,16 @@ document.getElementById('main').addEventListener('click', function() {
     const data = {
       HoursId: 0,
       EmployeeId: logged_id,
-      TimeIn: d.getDate,
-      TimeOut: d.getDate,
+      TimeIn: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+      TimeOut: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
       TotalHours: 0,
       Approved: false
     }
     console.log(data);
-    ApiAction.postRequest('https://localhost:44390/api/hours'), data,
-    clock => {
-      app.innerHTML = UserHoursIndex(clock);
-    }
+    ApiAction.postRequest('https://localhost:44390/api/hours', data,
+    clock => {   
+
+    })
   }
 })
 
@@ -389,16 +389,18 @@ document.getElementById('main').addEventListener('click', function() {
 document.getElementById('main').addEventListener('click', function() {
   if (event.target.classList.contains('clock_out')){
     console.log('clockout')
+    var d = new Date()
     const data = {
+      HoursId: 0,
       EmployeeId: logged_id,
-      TimeIn: Date.getTime,
-      TimeOut: Date.getTime,
+      TimeIn: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+      TimeOut: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
       TotalHours: 0,
       Approved: false
     }
-    ApiAction.putRequest('https://localhost:44390/api/hours/Clockout/'+ loggedinid), data,
+    ApiAction.putRequest('https://localhost:44390/api/hours/Clockout/'+ logged_id, data,
     clock=> {
-      app.innerHTML = BuildClockMenu(clock);
-    }
+
+    })
   }
 })
