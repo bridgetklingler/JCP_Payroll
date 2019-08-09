@@ -247,8 +247,9 @@ function adminAddHours(){
   const hoursId = 0;
   const employeeId = document.querySelector('.add_employee_id_hours').value
   const timeIn = document.querySelector('.add_hours_time_in').value
+  console.log(timeIn)
   const timeOut = document.querySelector('.add_hours_time_out').value
-  
+  console.log(timeOut)
   const totalHours = converthours(timeIn,timeOut);
   
   console.log(totalHours);
