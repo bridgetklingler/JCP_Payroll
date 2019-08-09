@@ -12,7 +12,7 @@ import UserSingleEmployee from "./components/user/UserSingleEmployee"
 
 //admin single employee view
 //user add hours
-import EmployeeAddHours from "./components/employeeaddhours"
+import UserAddHours from "./components/employeeaddhours"
 
 pageBuild();
 
@@ -32,7 +32,8 @@ function pageBuild(){
  
   getUserSingleEmployee();
   getUserHoursIndex();
-  
+  userClockHours();
+  userAddHours();  
 }
 
 const app = document.getElementById('main');
@@ -51,7 +52,10 @@ document.getElementById('main').addEventListener('click', function(){
         document.getElementById('nav').style.display = 'flex'
         document.getElementById('mainnav').style.display = 'flex'
         document.getElementById('main').innerHTML = `<h1>Welcome Back,</br> ${auth.firstName} ${auth.lastName}</h1>`
-        document.getElementById('mainnav').innerHTML = `        
+        document.getElementById('mainnav').innerHTML = `  
+        <n class="emphours">Clock Hours
+        <input type="hidden" class="getemphours" value="${auth.employeeId}">
+        </n>      
         <n class="empprofile">Profile
         <input type="hidden" class="getprofile" value="${auth.employeeId}">
         </n>
@@ -274,6 +278,43 @@ function adminAddHours(){
   }
 })
 }
+
+function userAddHours(){
+document.getElementById('main').addEventListener('click', function() {
+  if (event.target.classList.contains('user_add_employee_hours_submit')){
+
+  const hoursId = 0;
+  const employeeId = document.querySelector('.user_add_employee_id_hours').value
+  const timeIn = document.querySelector('.user_add_hours_time_in').value
+  console.log(timeIn)
+  const timeOut = document.querySelector('.user_add_hours_time_out').value
+  console.log(timeOut)
+  const totalHours = converthours(timeIn,timeOut);
+  
+  console.log(totalHours);
+  const approved = document.querySelector(".user_add_hours_approved").value;
+  console.log(approved)
+
+  const data = {
+    HoursId: hoursId,
+    EmployeeId: employeeId,
+    
+    TimeIn: timeIn,
+    TimeOut: timeOut,
+    TotalHours: totalHours,
+    Approved: approved
+  };
+  
+    ApiAction.postRequest('https://localhost:44390/api/hours', data,
+    hourslist=> {
+      console.log("user version")
+      app.innerHTML = UserHoursIndex(hourslist);
+    })
+  }
+})
+}
+
+
 //Converts Time in and Time out to display correctly
 function converthours(timeOut,timeIn){
   console.log("time in"); console.log(timeIn);
@@ -306,19 +347,34 @@ function getUserSingleEmployee(){
   })
 }
 
+function userClockHours(){
+  document.getElementById('mainnav').addEventListener('click', function() {
+    if (event.target.classList.contains('emphours')){
+      const employeeId = event.target.querySelector('.getemphours').value;  
+      console.log(employeeId);   
+      ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
+        employee=> {
+        app.innerHTML = UserAddHours(employee);
+        }
+      )
+    }
+  })
+}
+
+
 
 //Hours Functions
 function getUserHoursIndex() {
-    document.getElementById('mainnav').addEventListener('click', function() {
-      if (event.target.classList.contains('emphours')){
-      const employeeId = event.target.querySelector('.gethours').value;  
-      console.log(employeeId);   
-      ApiAction.getRequest('https://localhost:44390/api/hours/'+employeeId, 
-        hours=> {
-          console.log(hours)
-        app.innerHTML = UserHoursIndex(hours);
-      })
-}})  
+//     document.getElementById('mainnav').addEventListener('click', function() {
+//       if (event.target.classList.contains('emphours')){
+//       const employeeId = event.target.querySelector('.gethours').value;  
+//       console.log(employeeId);   
+//       ApiAction.getRequest('https://localhost:44390/api/hours/'+employeeId, 
+//         hours=> {
+//           console.log(hours)
+//         app.innerHTML = UserHoursIndex(hours);
+//       })
+// }})  
 }
 
 
