@@ -3,19 +3,19 @@ export default function AdminHoursIndex(hourslist){
     return `
     <h1>Hours Index</h1>
     <hours>
-    <hours style="font-weight: 800; background-color: rgb(120, 161, 182)">    
-        <dates>
-            <dateworked> Date Worked </dateworked>
-            <timein> Time In </timein>
-            <timeout> Time Out </timeout>
-        </dates>
-            <totalhours> Total Hours </totalhours>
-            <approved> Approved </approved>
-            <hoursbuttons></hoursbuttons>
-    </hours>
+        <hours style="font-weight: 800; background-color: rgb(120, 161, 182)">    
+            <dates>
+                <dateworked> Date Worked </dateworked>
+                <timein> Time In </timein>
+                <timeout> Time Out </timeout>
+            </dates>
+                <totalhours> Total Hours </totalhours>
+                <approved> Approved </approved>
+                <hoursbuttons></hoursbuttons>
+        </hours>
         ${hourslist.map(hours => {
         return `  
-    <employee>
+        <employee>
         <hours>
             <dates>
                 <dateworked> ${hours.timeIn.substring(0, 10)}</dateworked>

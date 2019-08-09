@@ -1,4 +1,5 @@
 import ApiAction from "./api/api-actions"
+
 import AdminEmployeeIndex from "./components/admin/AdminEmployeeIndexView"
 import AdminAddEmployee from "./components/admin/AdminAddEmployee"
 import AdminEditEmployee from "./components/admin/AdminEditEmployee"
@@ -6,21 +7,24 @@ import AdminHoursIndex from "./components/admin/AdminHoursIndexView"
 import AdminAddHours from "./components/admin/AdminAddHours"
 import AdminSingleEmployee from "./components/admin/AdminSIngleEmployee"
 
+import UserHoursIndex from "./components/user/UserHoursIndexView"
+
 
 //admin single employee view
 //user add hours
 import EmployeeAddHours from "./components/employeeaddhours"
-
-import SingleEmployeeHours from "./components/singleemployeehours"
 import BuildClockMenu from "./components/user/employeeclock";
+
 
 pageBuild();
 
 function pageBuild(){
+
   getAdminEmployeeIndex();
   getAdminAddEmployee();
   getAdminEditEmployee();
   getAdminHoursIndex();
+
   getAdminAddHours();
   getAdminSingleEmployee()
   
@@ -29,10 +33,9 @@ function pageBuild(){
   adminDeleteEmployee()
   adminAddHours();
  
+  getUserHoursIndex();
   //unsorted code------------------------
-  employeehoursindex();
   getEmployeeAddHours();
-  singleemployeehours();
 }
 
 const app = document.getElementById('main');
@@ -91,6 +94,7 @@ function getAdminEmployeeIndex(){
 
 //Add Employee Functions
 function getAdminAddEmployee() {
+
   document.getElementById('Nav_add_employee').addEventListener('click', function(){
     console.log("admin version")
     AdminAddEmployee();
@@ -300,7 +304,21 @@ function converthours(timeOut,timeIn){
   return timeRound;
 }
 
+//User Functions Below
 
+//Hours Functions
+function getUserHoursIndex() {
+    document.getElementById('mainnav').addEventListener('click', function() {
+      if (event.target.classList.contains('emphours')){
+      const employeeId = event.target.querySelector('.gethours').value;  
+      console.log(employeeId);   
+      ApiAction.getRequest('https://localhost:44390/api/hours/'+employeeId, 
+        hours=> {
+          console.log(hours)
+        app.innerHTML = UserHoursIndex(hours);
+      })
+}})  
+}
 
 
 
@@ -311,16 +329,16 @@ function converthours(timeOut,timeIn){
 //
 //
 
-function employeehoursindex(){
-  const employeeHours = document.getElementById('User_view_hours_index');
-  employeeHours.addEventListener('click', function (){
-    const employeeId = event.target.querySelector('.single_employee_id').value;
+// function employeehoursindex(){
+//   const employeeHours = document.getElementById('User_view_hours_index');
+//   employeeHours.addEventListener('click', function (){
+//     const employeeId = event.target.querySelector('.single_employee_id').value;
        
-    ApiAction.getRequest('https://localhost:44390/api/hours/' + employeeId, hourslist => {
-      app.innerHTML = EmployeeHoursIndex();
-    })
-  })
-}
+//     ApiAction.getRequest('https://localhost:44390/api/hours/' + employeeId, hourslist => {
+//       app.innerHTML = EmployeeHoursIndex(hourslist);
+//     })
+//   })
+// }
 
 
 //Gets the Add Employee Page
@@ -345,15 +363,3 @@ function getEmployeeAddHours(){
 }})
       
 //View logged in Employee's Hours from Nav
-  function singleemployeehours() {
-      document.getElementById('mainnav').addEventListener('click', function() {
-        if (event.target.classList.contains('emphours')){
-        const employeeId = event.target.querySelector('.gethours').value;  
-        console.log(employeeId);   
-        ApiAction.getRequest('https://localhost:44390/api/hours/'+employeeId, 
-          hours=> {
-            console.log(hours)
-          app.innerHTML = SingleEmployeeHours(hours);
-        })
-  }})  
-}
