@@ -13,6 +13,8 @@ import UserSingleEmployee from "./components/user/UserSingleEmployee"
 //admin single employee view
 //user add hours
 import EmployeeAddHours from "./components/employeeaddhours"
+import BuildClockMenu from "./components/user/employeeclock";
+
 
 pageBuild();
 
@@ -37,9 +39,18 @@ function pageBuild(){
 
 const app = document.getElementById('main');
 
+var logged_id = null; //id of person currently logged in (or null if nobody)
 // Login function -----------------------------------------------------
 document.getElementById('main').addEventListener('click', function(){
-  if(event.target.classList.contains("adminlogin")){
+  // when person clicks clock_in or clock_out, send information to API
+  if(event.target.id == 'clock_in') {
+    console.log("https://localhost:44390/api/employee/clock_in/"+logged_id);
+    ApiAction.getRequest("https://localhost:44390/api/employee/clock_in/"+logged_id);
+  }
+  else if(event.target.id == 'clock_out') {
+    ApiAction.getRequest("https://localhost:44390/api/employee/clock_out/"+logged_id);
+  }
+  else if(event.target.classList.contains("adminlogin")){
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
     console.log('test');
@@ -51,7 +62,9 @@ document.getElementById('main').addEventListener('click', function(){
         document.getElementById('nav').style.display = 'flex'
         document.getElementById('mainnav').style.display = 'flex'
         document.getElementById('main').innerHTML = `<h1>Welcome Back,</br> ${auth.firstName} ${auth.lastName}</h1>`
-        document.getElementById('mainnav').innerHTML = `        
+        document.getElementById('main').innerHTML += BuildClockMenu()
+
+        document.getElementById('mainnav').innerHTML = `
         <n class="empprofile">Profile
         <input type="hidden" class="getprofile" value="${auth.employeeId}">
         </n>
@@ -60,10 +73,13 @@ document.getElementById('main').addEventListener('click', function(){
         </n>
         <n value="${auth.employeeId}">Past Pay-Period</n>
         `
+
+        logged_id = auth.employeeId; //after a successful login, save ID of logged in employee
       }    
     })
   }
 })
+
 
 //List Employees
 function getAdminEmployeeIndex(){
@@ -321,5 +337,45 @@ function getUserHoursIndex() {
 }})  
 }
 
+//Clock in 
+document.getElementById('main').addEventListener('click', function() {
+  if (event.target.classList.contains('clock_in')){
+    console.log('clockin')
+    var d = new Date()
+    const data = {
+      HoursId: 0,
+      EmployeeId: logged_id,
+      TimeIn: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+      TimeOut: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+      TotalHours: 0,
+      Approved: false
+    }
+    console.log(data);
+    ApiAction.postRequest('https://localhost:44390/api/hours', data,
+    clock => {   
+
+    })
+  }
+})
+
+//Clock out
+document.getElementById('main').addEventListener('click', function() {
+  if (event.target.classList.contains('clock_out')){
+    console.log('clockout')
+    var d = new Date()
+    const data = {
+      HoursId: 0,
+      EmployeeId: logged_id,
+      TimeIn: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+      TimeOut: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+      TotalHours: 0,
+      Approved: false
+    }
+    ApiAction.putRequest('https://localhost:44390/api/hours/Clockout/'+ logged_id, data,
+    clock=> {
+
+    })
+  }
+})
 
 
