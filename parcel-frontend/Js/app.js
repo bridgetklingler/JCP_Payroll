@@ -81,6 +81,7 @@ document.getElementById('main').addEventListener('click', function(){
   }
 })
 
+
 //List Employees
 function getAdminEmployeeIndex(){
   const employeeindex = document.getElementById('Nav_employee_index');
@@ -356,10 +357,48 @@ function getEmployeeAddHours(){
     if (event.target.classList.contains('empprofile')){
     const employeeId = event.target.querySelector('.getprofile').value;  
     console.log(employeeId);   
-    ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
+    
+    ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, data,
       employee=> {
       app.innerHTML = SingleEmployee(employee);
     })
 }})
       
-//View logged in Employee's Hours from Nav
+//Clock in 
+document.getElementById('main').addEventListener('click', function() {
+  if (event.target.classList.contains('clock_in')){
+    console.log('clockin')
+    var d = new Date()
+    const data = {
+      HoursId: 0,
+      EmployeeId: logged_id,
+      TimeIn: d.getDate,
+      TimeOut: d.getDate,
+      TotalHours: 0,
+      Approved: false
+    }
+    console.log(data);
+    ApiAction.postRequest('https://localhost:44390/api/hours'), data,
+    clock => {
+      app.innerHTML = UserHoursIndex(clock);
+    }
+  }
+})
+
+//Clock out
+document.getElementById('main').addEventListener('click', function() {
+  if (event.target.classList.contains('clock_out')){
+    console.log('clockout')
+    const data = {
+      EmployeeId: logged_id,
+      TimeIn: Date.getTime,
+      TimeOut: Date.getTime,
+      TotalHours: 0,
+      Approved: false
+    }
+    ApiAction.putRequest('https://localhost:44390/api/hours/Clockout/'+ loggedinid), data,
+    clock=> {
+      app.innerHTML = BuildClockMenu(clock);
+    }
+  }
+})
