@@ -35,3 +35,4 @@ export default function EmployeeHoursIndex(hourslist){
     </hours>
     `
 }
+
