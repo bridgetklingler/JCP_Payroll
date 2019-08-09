@@ -127,7 +127,7 @@ h1 {
   color: rgb(1, 21, 31);
 }
 
-employees{
+hours, employees{
   max-width: 100vw;
   display: flex;
   flex-direction: column;
@@ -136,7 +136,8 @@ employees{
 
 }
 
-employee{
+
+employee, hour {
   max-width: 100%;
   display: flex;
   justify-content: space-between;
@@ -145,6 +146,7 @@ employee{
   font-size: 14px;
   padding: .5vh .5vw;
 }
+
 
 .green {
   max-width: 100%;
@@ -170,19 +172,24 @@ employee{
   background-color: rgb(252, 244, 222);
 }
 
-fname{
+fname, approved{
   width: 5vw;
 }
 
-lname {
+lname, totalhours {
   min-width: 20vw;
+
 }
 
-address {
+address, timein, timeout {
   width: 12vw;
 }
 
-pn {
+timein{
+  width: 10vw;
+}
+
+pn, totalhours {
   width: 10vw;
 }
 
@@ -190,7 +197,13 @@ ssn {
   width:10vw;
 }
 
-bd {
+dates{
+  width: 50vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+bd, dateworked {
   width: 15vw;
 }
 
@@ -203,7 +216,7 @@ names {
   max-width: 10vw;
 }
 
-employeebuttons {
+hoursbuttons , employeebuttons {
     min-width:15vw;
     justify-content: center;
     text-align: right;
