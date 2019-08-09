@@ -5,10 +5,10 @@ import AdminAddEmployee from "./components/admin/AdminAddEmployee"
 import AdminEditEmployee from "./components/admin/AdminEditEmployee"
 import AdminHoursIndex from "./components/admin/AdminHoursIndexView"
 import AdminAddHours from "./components/admin/AdminAddHours"
-import AdminSingleEmployee from "./components/admin/AdminSIngleEmployee"
+import AdminSingleEmployee from "./components/admin/AdminSingleEmployee"
 
 import UserHoursIndex from "./components/user/UserHoursIndexView"
-
+import UserSingleEmployee from "./components/user/UserSingleEmployee"
 
 //admin single employee view
 //user add hours
@@ -19,7 +19,6 @@ import BuildClockMenu from "./components/user/employeeclock";
 pageBuild();
 
 function pageBuild(){
-
   getAdminEmployeeIndex();
   getAdminAddEmployee();
   getAdminEditEmployee();
@@ -33,9 +32,9 @@ function pageBuild(){
   adminDeleteEmployee()
   adminAddHours();
  
+  getUserSingleEmployee();
   getUserHoursIndex();
-  //unsorted code------------------------
-  getEmployeeAddHours();
+  
 }
 
 const app = document.getElementById('main');
@@ -232,7 +231,7 @@ document.getElementById('main').addEventListener('click', function(){
   if(event.target.classList.contains('return_employee_submit'))
 
     ApiAction.getRequest("https://localhost:44390/api/employee", employeelist => {
-    app.innerHTML = GetAdminEmployeeIndex(employeelist);
+    app.innerHTML = AdminEmployeeIndex(employeelist);
   })
 })
 
@@ -264,8 +263,9 @@ function adminAddHours(){
   const hoursId = 0;
   const employeeId = document.querySelector('.add_employee_id_hours').value
   const timeIn = document.querySelector('.add_hours_time_in').value
+  console.log(timeIn)
   const timeOut = document.querySelector('.add_hours_time_out').value
-  
+  console.log(timeOut)
   const totalHours = converthours(timeIn,timeOut);
   
   console.log(totalHours);
@@ -306,6 +306,22 @@ function converthours(timeOut,timeIn){
 }
 
 //User Functions Below
+//Employee Based Function
+//Views logged in Employee Profile from User Nav
+function getUserSingleEmployee(){
+  document.getElementById('mainnav').addEventListener('click', function() {
+    if (event.target.classList.contains('empprofile')){
+      const employeeId = event.target.querySelector('.getprofile').value;  
+      console.log(employeeId);   
+      ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
+        employee=> {
+        app.innerHTML = UserSingleEmployee(employee);
+        }
+      )
+    }
+  })
+}
+
 
 //Hours Functions
 function getUserHoursIndex() {
@@ -321,49 +337,6 @@ function getUserHoursIndex() {
 }})  
 }
 
-
-
-
-//below is unsorted code--------------------------------------------------------------------------------------------------- 
-//
-//
-//
-//
-
-// function employeehoursindex(){
-//   const employeeHours = document.getElementById('User_view_hours_index');
-//   employeeHours.addEventListener('click', function (){
-//     const employeeId = event.target.querySelector('.single_employee_id').value;
-       
-//     ApiAction.getRequest('https://localhost:44390/api/hours/' + employeeId, hourslist => {
-//       app.innerHTML = EmployeeHoursIndex(hourslist);
-//     })
-//   })
-// }
-
-
-//Gets the Add Employee Page
-function getEmployeeAddHours(){
-  document.getElementById('User_hours_index').addEventListener('click', function(){
-    app.innerhtml = EmployeeAddHours();
-  })
-}
-
-
-  
-
-//Views logged in Employee Profile from Nav
-  document.getElementById('mainnav').addEventListener('click', function() {
-    if (event.target.classList.contains('empprofile')){
-    const employeeId = event.target.querySelector('.getprofile').value;  
-    console.log(employeeId);   
-    
-    ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, data,
-      employee=> {
-      app.innerHTML = SingleEmployee(employee);
-    })
-}})
-      
 //Clock in 
 document.getElementById('main').addEventListener('click', function() {
   if (event.target.classList.contains('clock_in')){
@@ -404,3 +377,5 @@ document.getElementById('main').addEventListener('click', function() {
     })
   }
 })
+
+

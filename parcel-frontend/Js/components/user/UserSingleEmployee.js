@@ -1,6 +1,6 @@
-import ApiActions from "../api/api-actions"
+import ApiActions from "../../api/api-actions"
 
-export default function SingleEmployee(employee){
+export default function UserSingleEmployee(employee){
         ApiActions.getRequest('https://localhost:44390/api/role/'+employee.roleId,
 roletoname=> {
 document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
