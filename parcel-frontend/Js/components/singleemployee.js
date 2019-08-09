@@ -1,26 +1,49 @@
 export default function SingleEmployee(employee){
     return `    
             <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
-            <names>
-            <sfname><h3>First Name:</h3>      ${employee.firstName}</sfname>
-            <slname><h3>Last Name: </h3>      <strong>${employee.lastName}</strong></slname>
-            </names>
-            <semail><h3>Email:</h3>           <strong>${employee.email}</strong></semail>
-            <sroleId><h3>Role:</h3>           ${employee.roleId}</sroleId>
+            <h2>Employee ID: ${employee.employeeId} </h2>
+            <table style="width: 95%">
+
+            <tr>
+                <sfname><th>First Name: </th>
+                <td>${employee.firstName}</td></sfname>
+            </tr>
+
+            <tr>
+                <slname><th>Last Name: </th>
+                <td>${employee.lastName}</td></slname>
+            </tr>
+            <tr>
+                <semail><th>Email: </th>
+                <td>${employee.email}</td></semail>
+            </tr>
+            <tr>
+                <spn><th>Phone: </th>
+                <td>${employee.phoneNumber}</td></spn>
+            </tr>
+            <tr>
+                <sroleId><th>Role: </th>
+                <td>${employee.roleId}</td></sroleId>
+            </tr>
+            <tr>
+                <saddress><th>Adress: </th>
+                <td>${employee.address}</td></saddress>
+            </tr>
+            <tr>
+                <sssn><th>SSN: </th>
+                <td>${employee.ssn}</td></sssn>
+            </tr>
+            <tr>
+                <sbd><th>Birth Date: </th>
+                <td>${employee.birthdate.substring(0,10)}</td></sbd>
+            </tr>
+            </table>
+
             <br/>
-            <saddress><h3>Address:</h3>       ${employee.address}</saddress>
-            <spn><h3>Phone:</h3>              ${employee.phoneNumber}</spn>
-            <sssn><h3>SSN:</h3>               ${employee.ssn}</sssn>
-            <sbd><h3>Date of Birth:</h3>      ${employee.birthdate.substring(0,10)}</sbd>
             <employeebuttons>
             <button class="edit_employee multibutton">Edit 
             <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
             </button> 
-            <button class="delete_employee_submit multibutton">Delete 
-            <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
-            </button> 
-            </button>
-            </button>
             </employeebuttons>
-    `
-}
+            `
+        }
