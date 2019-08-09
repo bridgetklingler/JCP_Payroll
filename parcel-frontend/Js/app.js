@@ -77,6 +77,7 @@ function getAdminEmployeeIndex(){
 
 //Add Employee Functions
 function getAdminAddEmployee() {
+
   document.getElementById('Nav_add_employee').addEventListener('click', function(){
     console.log("admin version")
     AdminAddEmployee();
