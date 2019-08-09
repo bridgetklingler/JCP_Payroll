@@ -2,6 +2,7 @@ import ApiActions from "../api/api-actions"
 
 export default function EmployeeIndex(employeelist){
     console.log("employee Index")
+    var i = 1;
     return `
     <h1>Employee Index</h1>
     <employees>
@@ -22,7 +23,8 @@ export default function EmployeeIndex(employeelist){
     document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
     })
     var x = "";
-    if(employee.employeeId % 2 === 0){x = 'green'}else{x='blue'}
+    i += 1;
+    if(i % 2 === 0){x = 'green'}else{x='blue'}
         return `  
             <employee class='${x}'>
             <names>
