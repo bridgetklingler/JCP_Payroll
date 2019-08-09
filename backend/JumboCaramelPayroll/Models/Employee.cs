@@ -15,6 +15,7 @@ namespace JumboCaramelPayroll.Models
         public string SSN { get; set; }
         public DateTime Birthdate { get; set; }
         public string Email { get; set; }
+        public bool Admin { get; set; }
 
         public virtual int RoleId { get; set; }
 

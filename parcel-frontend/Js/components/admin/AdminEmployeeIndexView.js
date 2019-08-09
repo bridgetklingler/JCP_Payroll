@@ -1,11 +1,5 @@
-export default function EmployeeIndex(employeelist){
+export default function AdminEmployeeIndex(employeelist){
     console.log("employee Index")
-    function getRequest(location, callback){
-        fetch(location)
-        .then(response => response.json())
-        .then(jsonData => callback(jsonData))
-        .catch(err => console.log(err))
-    }
     return `
     <h1>Employee Index</h1>
     <employees>
@@ -21,10 +15,6 @@ export default function EmployeeIndex(employeelist){
             <employeebuttons></employeebuttons>
         </employee>
         ${employeelist.map(employee => {
-            getRequest('https://localhost:44390/api/role/'+employee.roleId,
-    roletoname=> {
-    document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
-    })
         return `  
         
             <employee>
@@ -35,9 +25,7 @@ export default function EmployeeIndex(employeelist){
             <address>${employee.address}</address>
             <pn>${employee.phoneNumber}</pn>
             <email>${employee.email}</email>
-            <roleId id='${employee.employeeId}'>
-            <input id='roleidtoname' type="hidden" value="${employee.roleId}">
-            </roleId>
+            <roleId>${employee.roleId}</roleId>
             <employeebuttons>
             <button class="edit_employee multibutton">Edit 
             <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
@@ -50,13 +38,11 @@ export default function EmployeeIndex(employeelist){
             </button>
             </employeebuttons>
             </employee>
-            `      
+
+                 `      
         })     
-
-        .join("")
-    }
+        .join("")}
         
-        </employees>
-        `
+    </employees>
+    `
 }
-
