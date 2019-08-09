@@ -28,6 +28,7 @@ mainnav {
 n {
   color: rgb(205, 233, 245);
   padding: 2.1vh 20px 2.1vh 20px;
+  cursor: default;
 }
 
 n:hover {
@@ -135,6 +136,7 @@ hours, employees{
 
 }
 
+
 employee, hour {
   max-width: 100%;
   display: flex;
@@ -145,6 +147,26 @@ employee, hour {
   padding: .5vh .5vw;
 }
 
+
+.green {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgb(21, 48, 16);
+  background-color: rgb(175, 201, 226);
+  font-size: 14px;
+  padding: .5vh .5vw;
+}
+
+.blue {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgb(21, 48, 16);
+  background-color: rgb(210, 234, 255);;
+  font-size: 14px;
+  padding: .5vh .5vw;
+}
 
 #role_select{
   background-color: rgb(252, 244, 222);
@@ -247,5 +269,6 @@ footer{
   text-align: center;
   padding: .5em;
   width: 100%;
-
 }
+
+ 

@@ -16,10 +16,12 @@ import SingleEmployeeHours from "./components/singleemployeehours"
 pageBuild();
 
 function pageBuild(){
+
   getAdminEmployeeIndex();
   getAdminAddEmployee();
   getAdminEditEmployee();
   getAdminHoursIndex();
+
   getAdminAddHours();
   getAdminSingleEmployee()
   

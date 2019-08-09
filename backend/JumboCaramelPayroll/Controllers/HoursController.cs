@@ -54,6 +54,7 @@ namespace JumboCaramelPayroll.Controllers
         [HttpDelete]
         public ActionResult<IEnumerable<Hours>> Delete(Hours hours)
         {
+           
             db.Hours.Remove(hours);
             db.SaveChanges();
             return db.Hours.ToList();
