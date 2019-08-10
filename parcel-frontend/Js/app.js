@@ -20,6 +20,8 @@ import Home from "./components/home";
 pageBuild();
 
 function pageBuild(){
+  login();
+
   getAdminEmployeeIndex();
   getAdminAddEmployee();
   getAdminEditEmployee();
@@ -42,43 +44,38 @@ const app = document.getElementById('main');
 
 var logged_id = null; //id of person currently logged in (or null if nobody)
 // Login function -----------------------------------------------------
-document.getElementById('main').addEventListener('click', function(){
-  // when person clicks clock_in or clock_out, send information to API
-  if(event.target.id == 'clock_in') {
-    console.log("https://localhost:44390/api/employee/clock_in/"+logged_id);
-    ApiAction.getRequest("https://localhost:44390/api/employee/clock_in/"+logged_id);
-  }
-  else if(event.target.id == 'clock_out') {
-    ApiAction.getRequest("https://localhost:44390/api/employee/clock_out/"+logged_id);
-  }
-  else if(event.target.classList.contains("adminlogin")){
-    const username = document.getElementById('username').value;
-    const password = document.getElementById('password').value;
-    console.log('test');
-    document.getElementById('invalid').innerHTML = "Invalid Username or Password"
-    ApiAction.getRequest("https://localhost:44390/api/employee/login/"+username+"/"+password, auth => {
-      console.log(auth);
-      if (auth.ssn === password){
-        document.getElementById('hidenav').style.display = 'block'
-        document.getElementById('nav').style.display = 'flex'
-        document.getElementById('mainnav').style.display = 'flex'
-        document.getElementById('main').innerHTML = Home(auth);
+function login(){
+  document.getElementById('main').addEventListener('click', function(){
+    // when person clicks clock_in or clock_out, send information to API
+    if(event.target.classList.contains("adminlogin")){
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      console.log('test');
+      document.getElementById('invalid').innerHTML = "Invalid Username or Password"
+      ApiAction.getRequest("https://localhost:44390/api/employee/login/"+username+"/"+password, auth => {
+        console.log(auth);
+        if (auth.ssn === password){
+          document.getElementById('hidenav').style.display = 'block'
+          document.getElementById('nav').style.display = 'flex'
+          document.getElementById('mainnav').style.display = 'flex'
+          document.getElementById('main').innerHTML = Home(auth);
 
-        document.getElementById('mainnav').innerHTML = `
-        <n class="empprofile">Profile
-        <input type="hidden" class="getprofile" value="${auth.employeeId}">
-        </n>
-        <n class="emphours">Current Pay-Period
-        <input type="hidden" class="gethours" value="${auth.employeeId}">
-        </n>
-        <n value="${auth.employeeId}">Past Pay-Period</n>
-        `
+          document.getElementById('mainnav').innerHTML = `
+          <n class="empprofile">Profile
+          <input type="hidden" class="getprofile" value="${auth.employeeId}">
+          </n>
+          <n class="emphours">Current Pay-Period
+          <input type="hidden" class="gethours" value="${auth.employeeId}">
+          </n>
+          <n value="${auth.employeeId}">Past Pay-Period</n>
+          `
 
-        logged_id = auth.employeeId; //after a successful login, save ID of logged in employee
-      }    
-    })
-  }
-})
+          logged_id = auth.employeeId; //after a successful login, save ID of logged in employee
+        }    
+      })
+    }
+  })
+}
 
 
 //List Employees
