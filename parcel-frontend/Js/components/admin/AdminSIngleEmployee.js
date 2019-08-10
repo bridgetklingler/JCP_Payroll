@@ -1,4 +1,4 @@
-export default function SingleEmployee(employee){
+export default function AdminSingleEmployee(employee){
     return `    
             <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
             <employees>
@@ -14,7 +14,8 @@ export default function SingleEmployee(employee){
             <email>Email</email>
             <roleId>roleId</roleId>
             <employeebuttons></employeebuttons>
-        </employee>
+            </employee>
+       
             <employee>
             <names>
             <fname>${employee.firstName}</fname>
@@ -27,19 +28,18 @@ export default function SingleEmployee(employee){
             <email>${employee.email}</email>
             <roleId>${employee.roleId}</roleId>
             <employeebuttons>
-            <button class="edit_employee multibutton">Edit 
-            <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
-            </button> 
-            <button class="delete_employee_submit multibutton">Delete 
-            <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
-            </button> 
-            <button class='return_employee_submit multibutton'>Return to Index
-            <input class='return_employee_id' type='hidden' value ='${employee.employeeId}'>
-            </button>
-            </button>
-            </button>
+                <button class="edit_employee multibutton">Edit 
+                <input class="edit_employee_id" type="hidden" value="${employee.employeeId}"> 
+                </button>
+
+                <button class="delete_employee_submit multibutton">Delete 
+                <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
+                </button>
+
+                <button class='return_employee_submit multibutton'>Return to Index</button>
             </employeebuttons>
             </employee>
             </employees>
-    `
+            `
+
 }

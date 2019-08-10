@@ -26,9 +26,9 @@ namespace JumboCaramelPayroll.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Hours> GetById(int id)
+        public IEnumerable<Hours> GetByEmployeeId(int id)
         {
-            return db.Hours.Single(a => a.HoursId == id);
+            return db.Hours.Where(a => a.EmployeeId == id);
         }
 
 
@@ -39,6 +39,26 @@ namespace JumboCaramelPayroll.Controllers
             db.Hours.Add(hours);
             db.SaveChanges();
             return db.Hours.ToList();
+        }
+
+        // CLOCKIN api/Hours/Clockin
+        [HttpPost("Clockin")]
+        public ActionResult<IEnumerable<Hours>> ClockIn([FromBody] Hours hours)
+        {
+            db.Hours.Add(hours);
+            db.SaveChanges();
+            return db.Hours.ToList();
+        }
+
+        // CLOCKOUT api/hours/Clockout/id
+        [HttpPut("Clockout/{id}")]
+        public ActionResult<Hours> Clockout([FromBody] Hours hours, int id)
+        {
+            Hours clockin = db.Hours.Last(c => c.EmployeeId == id);
+            clockin.TimeOut = hours.TimeOut; 
+            db.Hours.Update(clockin);
+            db.SaveChanges();
+            return clockin;
         }
 
         // PUT api/values/5
@@ -54,6 +74,7 @@ namespace JumboCaramelPayroll.Controllers
         [HttpDelete]
         public ActionResult<IEnumerable<Hours>> Delete(Hours hours)
         {
+           
             db.Hours.Remove(hours);
             db.SaveChanges();
             return db.Hours.ToList();

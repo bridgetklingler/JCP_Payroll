@@ -28,6 +28,7 @@ mainnav {
 n {
   color: rgb(205, 233, 245);
   padding: 2.1vh 20px 2.1vh 20px;
+  cursor: default;
 }
 
 n:hover {
@@ -117,30 +118,76 @@ loginbox {
   background: linear-gradient(to top, rgb(252, 173, 69), rgb(236, 103, 26));
 }
 
+.single_edit{
+  padding: 12px 20px;
+}
+
+.clock{
+  padding: 2em;
+  width: 20vw;
+  text-emphasis: bold;
+  font-size: 20px;
+  margin: .5em;
+  height: -1vw;
+}
+
+clockbutton{
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  height: 100%;
+  align-content: flex-end;
+}
+
 #main {
   padding: 0 5vw 5vh 5vw;
+  margin: 2em 0 3em 2em;
   transition: 0.5s;
+  min-height: 25em; 
 }
 
 h1 {
   color: rgb(1, 21, 31);
 }
 
-employees{
+.heading{
+  text-align: center;
+}
+
+hours, employees{
   max-width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: left;
-
 }
 
-employee {
+employee, hour {
   max-width: 100%;
   display: flex;
   justify-content: space-between;
-  border: 1px solid rgb(21, 48, 16);
-  background-color: rgb(255, 235, 213);
+  border: 1px solid rgb(1, 21, 31);
+  background-color: rgb(243, 242, 242);
+  font-size: 14px;
+  padding: .5vh .5vw;
+}
+
+.green {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgb(1, 21, 31);
+  background-color: rgb(250, 225, 201);
+  font-size: 14px;
+  padding: .5vh .5vw;
+}
+
+.blue {
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid rgb(1, 21, 31);
+  background-color: rgb(247, 242, 230);;
   font-size: 14px;
   padding: .5vh .5vw;
 }
@@ -149,19 +196,28 @@ employee {
   background-color: rgb(252, 244, 222);
 }
 
-fname{
+role_select-value:hover{
+  background-color: rgb(154, 195, 212);
+}
+
+fname, approved{
   width: 5vw;
 }
 
-lname {
+lname, totalhours {
   min-width: 20vw;
+
 }
 
-address {
+address, timein, timeout {
   width: 12vw;
 }
 
-pn {
+timein{
+  width: 10vw;
+}
+
+pn, totalhours {
   width: 10vw;
 }
 
@@ -169,7 +225,13 @@ ssn {
   width:10vw;
 }
 
-bd {
+dates{
+  width: 50vw;
+  display: flex;
+  justify-content: space-between;
+}
+
+bd, dateworked {
   width: 15vw;
 }
 
@@ -182,7 +244,26 @@ names {
   max-width: 10vw;
 }
 
-employeebuttons {
+table{
+  margin: 1.5em;
+  margin-left: 2em;
+}
+
+tr{
+  text-align: left;
+  padding: 1em;
+  font-size: 20px;
+}
+
+td{
+  padding: .3em;
+}
+
+th{
+  width: 20vw;
+}
+
+hoursbuttons , employeebuttons {
     min-width:15vw;
     justify-content: center;
     text-align: right;
@@ -211,7 +292,6 @@ input {
   width: 40vw;
   background-color: rgb(252, 244, 222);
   border: 1px solid rgb(1, 21, 31);
-
 }
 
 .submit, .cancel {
@@ -229,11 +309,46 @@ input {
 
 footer{
   background-color: rgb(211, 226, 235);
-  position: fixed;
+  position: bottom;
   bottom: 0px;
   left: 0px;
   text-align: center;
   padding: .5em;
+  max-width: 100%;
   width: 100%;
-
+  margin-top: 1em;
 }
+
+foot {
+  display: flex;
+  max-width: 95vw;
+  width: 100vw;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 800;
+  font-size: 18px;
+}
+
+sf{
+  display: flex;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 13px;
+}
+ 
+#clock_box {
+  border: 2px solid blue;
+}
+
+#current_time {
+  color: blue;
+}
+
+#clock_in {
+  color: red;
+}
+
+#clock_out {
+  color: green;
+}
+

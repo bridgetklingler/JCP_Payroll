@@ -13,7 +13,7 @@ namespace JumboCaramelPayroll.Models
         public DateTime TimeOut { get; set; }
         public decimal TotalHours { get; set; }
         public bool Approved { get; set; }
-
+        
         public virtual int EmployeeId { get; set; }
     }
 }

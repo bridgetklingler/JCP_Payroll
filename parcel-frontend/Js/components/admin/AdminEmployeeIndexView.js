@@ -1,5 +1,8 @@
-export default function EmployeeIndex(employeelist){
+import ApiActions from "../../api/api-actions"
+
+export default function AdminEmployeeIndex(employeelist){
     console.log("employee Index")
+    var i = 1;
     return `
     <h1>Employee Index</h1>
     <employees>
@@ -11,13 +14,19 @@ export default function EmployeeIndex(employeelist){
             <address>Address</address>
             <pn>Phone Number</pn>
             <email>Email</email>
-            <roleId>Role Id</roleId>
+            <roleId>Role</roleId>
             <employeebuttons></employeebuttons>
         </employee>
         ${employeelist.map(employee => {
+            ApiActions.getRequest('https://localhost:44390/api/role/'+ employee.roleId,
+    roletoname=> {
+    document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
+    })
+    var x = "";
+    i += 1;
+    if(i % 2 === 0){x = 'green'}else{x='blue'}
         return `  
-        
-            <employee>
+            <employee class='${x}'>
             <names>
             <lname>${employee.lastName} ,</lname>
             <fname>${employee.firstName}</fname>
@@ -25,10 +34,12 @@ export default function EmployeeIndex(employeelist){
             <address>${employee.address}</address>
             <pn>${employee.phoneNumber}</pn>
             <email>${employee.email}</email>
-            <roleId>${employee.roleId}</roleId>
+            <roleId id='${employee.employeeId}'>${employee.employeeId}
+            <input id='roleidtoname' type="hidden" value="${employee.roleId}">
+            </roleId>
             <employeebuttons>
             <button class="edit_employee multibutton">Edit 
-            <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
+            <input class="edit_employee_id" type="hidden" value="${employee.employeeId}"> 
             </button> 
             <button class="delete_employee_submit multibutton">Delete 
             <input class="delete_employee_id" type="hidden" value="${employee.employeeId}">
@@ -38,11 +49,14 @@ export default function EmployeeIndex(employeelist){
             </button>
             </employeebuttons>
             </employee>
-
-                 `      
+            `      
         })     
-        .join("")}
+
+        .join("")
         
-    </employees>
-    `
+    }
+        
+        </employees>
+        `
 }
+
