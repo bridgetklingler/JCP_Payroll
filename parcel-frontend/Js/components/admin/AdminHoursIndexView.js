@@ -40,10 +40,17 @@ export default function AdminHoursIndex(hourslist){
                         <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
                     </button> 
                     <button class="delete_hours_submit multibutton">Delete 
-                        <input class="delete_hours_id" type="hidden" value="${hours.hoursId}"> 
-                    </button> 
-                    <button class="single_hours_submit multibutton">Select
+                    <input class="delete_hours_id" type="hidden" value="${hours.hoursId}"> 
+                    </button>
+                    <!--<button class="single_hours_submit multibutton">Select
+                     <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
+                    >/button>-->
+                    <button class="approve_hours_submit multibutton">Approve
                         <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
+                        <input class="singleemployee_hours_id" type="hidden" value="${hours.employeeId}"> 
+                        <input class="time_in" type="hidden" value="${hours.timeIn}">
+                        <input class="time_out" type="hidden" value="${hours.timeOut}">
+                        <input class="total_hours" type="hidden" value="${hours.totalHours}">
                     </button>
             
                 </hoursbuttons>

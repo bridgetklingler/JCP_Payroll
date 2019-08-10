@@ -32,6 +32,7 @@ function pageBuild(){
   adminEditEmployee();
   adminDeleteEmployee()
   adminAddHours();
+  adminApproveHours();
  
   getUserSingleEmployee();
   getUserHoursIndex();
@@ -303,6 +304,33 @@ function converthours(timeOut,timeIn){
   const timeRound = Math.round((timeDiff+.04)*10)/10;
   console.log(timeRound)
   return timeRound;
+}
+
+function adminApproveHours(){
+  document.getElementById('main').addEventListener('click', function() {
+  if (event.target.classList.contains('approve_hours_submit')){
+
+  const hoursId = event.target.querySelector('.single_hours_id').value
+  const employeeId = event.target.querySelector('.singleemployee_hours_id').value
+  const timeIn = event.target.querySelector('.time_in').value
+  const timeOut = event.target.querySelector('.time_out').value
+  const totalHours = event.target.querySelector('.total_hours').value;
+  const data = {
+
+    hoursId: hoursId,
+    employeeId: employeeId,
+    timeIn: timeIn,
+    timeOut: timeOut,
+    totalHours: totalHours,
+    approved: true
+  };
+
+  ApiAction.putRequest('https://localhost:44390/api/hours', data,
+  hourslist=> {
+    app.innerHTML = AdminHoursIndex(hourslist);
+  })
+}
+})
 }
 
 //User Functions Below
