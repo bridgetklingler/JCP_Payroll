@@ -139,7 +139,7 @@ function adminAddEmployee(){
 //Edit Employee Functions
 function getAdminEditEmployee() {
   document.getElementById('main').addEventListener('click', function(){
-    if(event.target.classList.contains("edit_employee")){
+    if(event.target.classList.contains("admin_edit_employee")){
       const employeeId = event.target.querySelector(".edit_employee_id").value
       console.log(employeeId)
       ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId, employee=> {
@@ -195,7 +195,7 @@ document.getElementById('main').addEventListener('click', function(){
 //Delete Employee Functions
 function adminDeleteEmployee(){
   document.getElementById('main').addEventListener('click', function() {
-    if (event.target.classList.contains('delete_employee_submit')){
+    if (event.target.classList.contains('admin_delete_employee_submit')){
       const employeeId = event.target.querySelector('.delete_employee_id').value;
       const data = {
         employeeId: employeeId

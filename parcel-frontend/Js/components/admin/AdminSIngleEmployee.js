@@ -28,11 +28,11 @@ export default function AdminSingleEmployee(employee){
             <email>${employee.email}</email>
             <roleId>${employee.roleId}</roleId>
             <employeebuttons>
-                <button class="edit_employee multibutton">Edit 
-                <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
+                <button class="admin_edit_employee multibutton">Edit 
+                <input class="edit_employee_id" type="hidden" value="${employee.employeeId}"> 
                 </button> 
-                <button class="delete_employee_submit multibutton">Delete 
-                <input class="single_delete_employee_id" type="hidden" value="${employee.employeeId}"> 
+                <button class="admin_delete_employee_submit multibutton">Delete 
+                <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
                 </button> 
                 <button class='return_employee_submit multibutton'>Return to Index
                 <input class='single_return_employee_id' type='hidden' value ='${employee.employeeId}'>
