@@ -39,7 +39,7 @@ export default function AdminEmployeeIndex(employeelist){
             </roleId>
             <employeebuttons>
             <button class="edit_employee multibutton">Edit 
-            <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
+            <input class="edit_employee_id" type="hidden" value="${employee.employeeId}"> 
             </button> 
             <button class="delete_employee_submit multibutton">Delete 
             <input class="delete_employee_id" type="hidden" value="${employee.employeeId}">
