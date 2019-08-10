@@ -141,8 +141,9 @@ clockbutton{
 
 #main {
   padding: 0 5vw 5vh 5vw;
-  margin: 2em 0 0 2em;
+  margin: 2em 0 3em 2em;
   transition: 0.5s;
+  min-height: 25em; 
 }
 
 h1 {
@@ -308,13 +309,14 @@ input {
 
 footer{
   background-color: rgb(211, 226, 235);
-  position: fixed;
+  position: bottom;
   bottom: 0px;
   left: 0px;
   text-align: center;
   padding: .5em;
   max-width: 100%;
   width: 100%;
+  margin-top: 1em;
 }
 
 foot {
