@@ -36,7 +36,7 @@ function pageBuild(){
  
   getUserSingleEmployee();
   getUserHoursIndex();
-  
+  logOut();
 }
 
 const app = document.getElementById('main');
@@ -73,6 +73,8 @@ document.getElementById('main').addEventListener('click', function(){
         <input type="hidden" class="gethours" value="${auth.employeeId}">
         </n>
         <n value="${auth.employeeId}">Past Pay-Period</n>
+        <n class="logout">Log Out
+        <input type="hidden" class="logout_submit"></n>
         `
 
         logged_id = auth.employeeId; //after a successful login, save ID of logged in employee
@@ -418,3 +420,11 @@ document.getElementById('main').addEventListener('click', function() {
     )
   }
 })
+
+function logOut() {
+  document.getElementById('mainnav').addEventListener('click', function() {
+    if (event.target.classList.contains('logout')){
+    app.innerHTML = document.location.reload(true);
+    }
+})};
+
