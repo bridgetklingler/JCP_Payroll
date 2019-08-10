@@ -140,7 +140,7 @@ function adminAddEmployee(){
 function getAdminEditEmployee() {
   document.getElementById('main').addEventListener('click', function(){
     if(event.target.classList.contains("edit_employee")){
-      const employeeId = event.target.querySelector(".employee_id").value
+      const employeeId = event.target.querySelector(".edit_employee_id").value
       console.log(employeeId)
       ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId, employee=> {
         console.log("admin version")
