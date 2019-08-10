@@ -1,4 +1,5 @@
 export default function AdminHoursIndex(hourslist){
+    console.log(hourslist);
     console.log("Hours Index")
     var i = 1;
     return `
@@ -40,7 +41,9 @@ export default function AdminHoursIndex(hourslist){
                     <button class="single_hours_submit multibutton">Select
                         <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
                     </button>
-            
+                    <button class="approve_hours_submit multibutton">Approve
+                        <input class="approve_hours_id" type="hidden" value="${hours.hoursId}"> 
+                    </button>
                 </hoursbuttons>
          
         </employee>
