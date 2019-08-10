@@ -379,3 +379,14 @@ document.getElementById('main').addEventListener('click', function() {
 })
 
 
+//View Date Range on Admin Pay Index
+document.getElementById('main').addEventListener('click', function() {
+  if (event.target.classList.contains('getdaterange')) {
+    const date1 = document.querySelector('.range_date1').value;
+    const date2 = document.querySelector('.range_date2').value;
+    ApiAction.getRequest('https://localhost:44390/api/hours/range/'+date1+"/"+date2, 
+    daterange=> {
+    app.innerHTML = AdminHoursIndex(daterange);}
+    )
+  }
+})

@@ -30,7 +30,12 @@ namespace JumboCaramelPayroll.Controllers
         {
             return db.Hours.Where(a => a.EmployeeId == id);
         }
-
+        
+        [HttpGet("range/{date1}/{date2}")]
+        public IEnumerable<Hours> GetPayRange(DateTime date1, DateTime date2)
+        { 
+            return db.Hours.Where(a => a.TimeIn > date1 && a.TimeIn < date2);
+        }
 
         // POST api/Hours
         [HttpPost]
@@ -79,8 +84,5 @@ namespace JumboCaramelPayroll.Controllers
             db.SaveChanges();
             return db.Hours.ToList();
         }
-
-
-
     }
 }
