@@ -355,11 +355,13 @@ function getUserSingleEmployee(){
 function getUserHoursIndex() {
     document.getElementById('mainnav').addEventListener('click', function() {
       if (event.target.classList.contains('emphours')){
-      const employeeId = event.target.querySelector('.gethours').value;  
+      const employeeId = event.target.querySelector('.gethours').value;
+        
       console.log(employeeId);   
       ApiAction.getRequest('https://localhost:44390/api/hours/'+employeeId, 
         hours=> {
-          console.log(hours)
+         console.log("hours=")
+         console.log(hours)
         app.innerHTML = UserHoursIndex(hours.reverse());
       })
 }})  
