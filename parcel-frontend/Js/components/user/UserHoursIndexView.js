@@ -22,6 +22,7 @@ export default function UserHoursIndex(hourslist){
     <employee class='${x}'>
         
             <dates>
+                
                 <dateworked> ${hours.timeIn.substring(0, 10)}</dateworked>
                 <timein> ${hours.timeIn.substring(11, 19)}</timein>
                 <timeout> ${hours.timeOut.substring(11, 19)}
