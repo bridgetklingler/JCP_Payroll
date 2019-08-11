@@ -360,7 +360,7 @@ function getUserHoursIndex() {
       ApiAction.getRequest('https://localhost:44390/api/hours/'+employeeId, 
         hours=> {
           console.log(hours)
-        app.innerHTML = UserHoursIndex(hours);
+        app.innerHTML = UserHoursIndex(hours.reverse());
       })
 }})  
 }

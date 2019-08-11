@@ -20,7 +20,7 @@ export default function UserHoursIndex(hourslist){
         if(i % 2 === 0){x = 'green'}else{x='blue'}
         return `  
     <employee class='${x}'>
-        
+         
             <dates>
                 <dateworked> ${hours.timeIn.substring(0, 10)}</dateworked>
                 <timein> ${hours.timeIn.substring(11, 19)}</timein>
