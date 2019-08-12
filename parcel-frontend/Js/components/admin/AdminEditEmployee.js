@@ -53,19 +53,18 @@ export default function AdminEditEmployee(employee){
            
     `
     document.querySelector("#main").innerHTML = page;
-    
-}
-
- function loadRoles(){
-     apiActions.getRequest('https://localhost:44390/api/role', setRoles)
-
-}
-function setRoles(roles){
-    let roleHtml = '';
-    for(const role of roles){
-        roleHtml += `<option id="role_select-value" value='${role.roleId}'>${role.roleName}</option>`
-
     }
-    document.querySelector("#role_select").innerHTML = roleHtml;
-}
+
+    function loadRoles(){
+        apiActions.getRequest('https://localhost:44390/api/role', setRoles)
+    }
+
+    function setRoles(roles){
+        let roleHtml = '';
+        for(const role of roles){
+            roleHtml += `<option id="role_select-value" value='${role.roleId}'>${role.roleName}</option>`
+
+        }
+        document.querySelector("#role_select").innerHTML = roleHtml;
+    }
 }

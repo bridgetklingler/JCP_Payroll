@@ -30,11 +30,23 @@ namespace JumboCaramelPayroll.Controllers
         {
             return db.Hours.Where(a => a.EmployeeId == id);
         }
-        
+
+        //Get payment history by date range
         [HttpGet("range/{date1}/{date2}")]
         public IEnumerable<Hours> GetPayRange(DateTime date1, DateTime date2)
         { 
             return db.Hours.Where(a => a.TimeIn > date1 && a.TimeIn < date2);
+        }
+
+        //Search for hours log by Last Name
+        [HttpGet("search/{lName}")]
+        public IEnumerable<Hours> SearchByEmployeeName(string lName)
+        {
+            Employee foundEmployee = db.Employees.First(a => a.LastName == lName);
+            List<Hours> searchHours = new List<Hours>();
+            searchHours = db.Hours.Where(h => h.EmployeeId == foundEmployee.EmployeeId).ToList();
+            return searchHours;;
+            
         }
 
         // POST api/Hours
