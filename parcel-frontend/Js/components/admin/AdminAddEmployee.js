@@ -16,9 +16,11 @@ export default function AdminAddEmployee()
             <addinput> <label>SSN:</label> <input type="text" class="add_employee_ssn"></addinput>
             <addinput> <label>Birthdate:</label> <input type="date" class="add_employee_birthdate"></addinput>
             <addinput> <label>Email:</label> <input type="text" class="add_employee_email"></addinput>
+
             <div>
             <addinput> <label>RoleId:</label> <select id="role_select" class="add_employee_roleId"></select></addinput>
             </div>
+            
             <button class="add_employee_submit multibutton submit">Submit</button>
             </addemployee>
 

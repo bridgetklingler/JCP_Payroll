@@ -253,6 +253,7 @@ function getAdminHoursIndex(){
     })
   })
 }
+
 //sortadminviewuserhours
 //sort user hours function
 function sortAdminViewUserHours(hourslist){
@@ -263,11 +264,12 @@ function sortAdminViewUserHours(hourslist){
   console.log(sortedHours);
 
 }
+
 //Admin Add Hours
 function getAdminAddHours(){
   document.getElementById('Nav_add_hours').addEventListener('click', function(){
     console.log("admin version")
-    app.innerHTML = AdminAddHours();
+    AdminAddHours();
   })
 }
 
@@ -276,7 +278,7 @@ function adminAddHours(){
   if (event.target.classList.contains('add_employee_hours_submit')){
 
   const hoursId = 0;
-  const employeeId = document.querySelector('.add_employee_id_hours').value
+  const employeeId = document.querySelector('#employee_select').value
   const timeIn = document.querySelector('.add_hours_time_in').value
   console.log(timeIn)
   const timeOut = document.querySelector('.add_hours_time_out').value
