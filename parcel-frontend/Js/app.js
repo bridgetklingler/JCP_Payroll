@@ -61,11 +61,12 @@ document.getElementById('main').addEventListener('click', function(){
     ApiAction.getRequest("https://localhost:44390/api/employee/login/"+username+"/"+password, auth => {
       console.log(auth);
       if (auth.ssn === password){
+        if (auth.admin === true){
         document.getElementById('hidenav').style.display = 'block'
+        }
         document.getElementById('nav').style.display = 'flex'
         document.getElementById('mainnav').style.display = 'flex'
         document.getElementById('main').innerHTML = Home(auth);
-
         document.getElementById('mainnav').innerHTML = `
         <n class="empprofile">Profile
         <input type="hidden" class="getprofile" value="${auth.employeeId}">
