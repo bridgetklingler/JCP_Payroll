@@ -1,7 +1,4 @@
-export default function Home(employee){
-
-
-    
+export default function  EmployeeTimeClock(employee){
     var d = new Date()
     console.log(d)
     var date = d.toDateString();
@@ -12,14 +9,11 @@ export default function Home(employee){
 
     return `
     <h1>Welcome Back,</br><strong>${employee.firstName} ${employee.lastName}</strong></h1>
-    <span id="current_time">${date}<span><br>
+    <span id="current_date">${date}<span><br>
     <span id="clock">&nbsp;</span>
     <clockbutton>
     <button class="clockin_submit clock multibutton">Clock In
     <button class="clockout_submit clock multibutton">Clock Out 
     </clockbutton>
-  
-    
-
     `
- }
+}

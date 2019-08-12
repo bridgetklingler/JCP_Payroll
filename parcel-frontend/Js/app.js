@@ -13,7 +13,7 @@ import UserSingleEmployee from "./components/user/UserSingleEmployee"
 //admin single employee view
 //user add hours
 import EmployeeAddHours from "./components/employeeaddhours"
-import BuildClockMenu from "./components/user/employeeclock";
+import EmployeeTimeClock from "./components/user/EmployeeTimeClock";
 import Home from "./components/home";
 
 
@@ -35,7 +35,7 @@ function pageBuild(){
  
   getUserSingleEmployee();
   getUserHoursIndex();
-  
+  getEmployeeTimeClock();
 }
 
 const app = document.getElementById('main');
@@ -67,6 +67,9 @@ document.getElementById('main').addEventListener('click', function(){
         document.getElementById('mainnav').innerHTML = `
         <n class="empprofile">Profile
         <input type="hidden" class="getprofile" value="${auth.employeeId}">
+        </n>
+        <n class="emptimeclock">Time Clock
+        <input type="hidden" class="gettimeclock" value="${auth.employeeId}">
         </n>
         <n class="emphours">Current Pay-Period
         <input type="hidden" class="gethours" value="${auth.employeeId}">
@@ -337,16 +340,31 @@ function getUserHoursIndex() {
 }})  
 }
 
+function getEmployeeTimeClock(){
+  document.getElementById('mainnav').addEventListener('click', function() {
+    if (event.target.classList.contains('emptimeclock')){
+      const employeeId = event.target.querySelector('.gettimeclock').value;  
+      console.log(employeeId);   
+      ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
+        employee=> {
+        app.innerHTML = EmployeeTimeClock(employee);
+        }
+      )
+    }
+  })
+}
+
 //Clock in 
 document.getElementById('main').addEventListener('click', function() {
-  if (event.target.classList.contains('clock_in')){
+  if (event.target.classList.contains('clockin_submit')){
     console.log('clockin')
     var d = new Date()
+    d.toLocaleTimeString();
     const data = {
       HoursId: 0,
       EmployeeId: logged_id,
-      TimeIn: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
-      TimeOut: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+      TimeIn: d, //d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+      TimeOut: d, //d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
       TotalHours: 0,
       Approved: false
     }
@@ -360,17 +378,20 @@ document.getElementById('main').addEventListener('click', function() {
 
 //Clock out
 document.getElementById('main').addEventListener('click', function() {
-  if (event.target.classList.contains('clock_out')){
+  if (event.target.classList.contains('clockout_submit')){
     console.log('clockout')
     var d = new Date()
     const data = {
       HoursId: 0,
       EmployeeId: logged_id,
-      TimeIn: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
-      TimeOut: d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+      //TimeIn: TimeIn, //d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+      TimeOut: d//.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
+      ,
       TotalHours: 0,
       Approved: false
     }
+    console.log("clock out data")
+    console.log(data)
     ApiAction.putRequest('https://localhost:44390/api/hours/Clockout/'+ logged_id, data,
     clock=> {
 
@@ -390,3 +411,6 @@ document.getElementById('main').addEventListener('click', function() {
     )
   }
 })
+
+
+
