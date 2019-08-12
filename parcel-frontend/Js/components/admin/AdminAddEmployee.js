@@ -43,7 +43,7 @@ export default function AdminAddEmployee()
                 </tr>
             </table>
             
-            <button class="add_employee_submit multibutton submit">Submit</button>
+            <button class="add_employee_submit multibutton medbutton submit">Submit</button>
             </addemployee>
 
     `

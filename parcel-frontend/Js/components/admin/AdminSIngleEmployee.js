@@ -48,17 +48,15 @@ document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
 
     <br/>
     <employeebuttons>
-                <button class="admin_edit_employee multibutton">Edit 
-                <input class="edit_employee_id" type="hidden" value="${employee.employeeId}"> 
-                </button> 
-                <button class="admin_delete_employee_submit multibutton">Delete 
-                <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
-                </button> 
-                <button class='return_employee_submit multibutton'>Return to Index
-                <input class='single_return_employee_id' type='hidden' value ='${employee.employeeId}'>
-                </button>
-                </button>
-                </button>
-            </employeebuttons>
+        <button class="admin_edit_employee multibutton medbutton">Edit 
+            <input class="edit_employee_id" type="hidden" value="${employee.employeeId}"> 
+        </button> 
+        <button class="admin_delete_employee_submit multibutton medbutton">Delete 
+            <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
+        </button> 
+        <button class="return_employee_submit multibutton medbutton">Return to Index
+            <input class='single_return_employee_id' type='hidden' value ='${employee.employeeId}'>
+        </button>
+    </employeebuttons>
     `
 }

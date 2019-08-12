@@ -47,7 +47,7 @@ export default function UserSingleEmployee(employee){
 
     <br/>
     <employeebuttons>
-    <button class="single_edit edit_employee multibutton">Edit 
+    <button class="edit_employee multibutton medbutton">Edit 
     <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
     </button> 
     </employeebuttons>

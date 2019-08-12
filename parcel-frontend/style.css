@@ -118,7 +118,20 @@ loginbox {
   background: linear-gradient(to top, rgb(252, 173, 69), rgb(236, 103, 26));
 }
 
-.single_edit{
+.submit, .cancel {
+  max-width: 20vw;
+  margin-top: 10vh;
+  padding: .25em;
+  min-width: 7vw;
+  margin: 1.25vw;
+}
+
+.edit_buttons{
+  display: flex;
+  width: 50vw;
+}
+
+.medbutton{
   padding: 12px 20px;
 }
 
@@ -291,19 +304,6 @@ input {
   width: 40vw;
   background-color: rgb(252, 244, 222);
   border: 1px solid rgb(1, 21, 31);
-}
-
-.submit, .cancel {
-  max-width: 20vw;
-  margin-top: 10vh;
-  padding: .25em;
-  min-width: 7vw;
-  margin: 1.25vw;
-}
-
-.edit_buttons{
-  display: flex;
-  width: 50vw;
 }
 
 footer{
