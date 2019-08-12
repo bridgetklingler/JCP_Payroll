@@ -99,7 +99,7 @@ function getAdminAddEmployee() {
 
   document.getElementById('Nav_add_employee').addEventListener('click', function(){
     console.log("admin version")
-    AdminAddEmployee();
+    AdminAddEmployee();  // capital-a AdminAddEmployee
   })
 }
 
@@ -244,12 +244,23 @@ function getAdminHoursIndex(){
   const hoursindex = document.getElementById('Nav_hours_index');
   hoursindex.addEventListener('click', function(){
     ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
-      console.log("admin version")
+      console.log("hourslist.reverse")
+      console.log(hourslist.reverse());
+      sortAdminViewUserHours(hourslist);
       app.innerHTML = AdminHoursIndex(hourslist);
     })
   })
 }
+//sortadminviewuserhours
+//sort user hours function
+function sortAdminViewUserHours(hourslist){
+  console.log("just before admin sort function fires");
+  const sortedHours = hourslist.sort((a, b) => new Date(b.timeIn) - new Date(a.timeIn));
+  //const sortedHours = hours.sort((a, b) => b.timeIn - a.timeOut);
+  console.log("sorted admin view hours=");
+  console.log(sortedHours);
 
+}
 //Admin Add Hours
 function getAdminAddHours(){
   document.getElementById('Nav_add_hours').addEventListener('click', function(){
@@ -380,7 +391,9 @@ function sortUserHours(hours){
 }
 //Clock in 
 document.getElementById('main').addEventListener('click', function() {
-  if (event.target.classList.contains('clock_in')){
+  console.log(event.target.classList);
+  //cory don't change the button request from clockin_submit and the button will work.
+  if (event.target.classList.contains('clockin_submit')){
     console.log('clockin')
     var d = new Date()
     const data = {
@@ -393,6 +406,7 @@ document.getElementById('main').addEventListener('click', function() {
     }
     console.log(data);
     ApiAction.postRequest('https://localhost:44390/api/hours', data,
+    // what does this do?
     clock => {   
 
     })
