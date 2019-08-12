@@ -191,7 +191,7 @@ employee, hour {
   padding: .5vh .5vw;
 }
 
-#role_select{
+select{
   background-color: rgb(252, 244, 222);
 }
 
