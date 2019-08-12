@@ -6,8 +6,8 @@ export default function AdminHoursIndex(hourslist){
     <p>Select Range</p>
     <input type="datetime-local" class="range_date1">
     <input type="datetime-local" class="range_date2">
-    <h1>Hours Index</h1>
     <button class="getdaterange">Range</button>
+    <h1>Hours Index</h1>
     <hours>
     <hour style="font-weight: 800; background-color: rgb(120, 161, 182)">    
         <dates>
