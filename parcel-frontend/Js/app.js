@@ -37,6 +37,7 @@ function pageBuild(){
   getUserSingleEmployee();
   getUserHoursIndex();
   
+  
 }
 
 const app = document.getElementById('main');
@@ -350,23 +351,33 @@ function getUserSingleEmployee(){
   })
 }
 
-
 //Hours Functions
 function getUserHoursIndex() {
     document.getElementById('mainnav').addEventListener('click', function() {
       if (event.target.classList.contains('emphours')){
       const employeeId = event.target.querySelector('.gethours').value;
-        
+
       console.log(employeeId);   
       ApiAction.getRequest('https://localhost:44390/api/hours/'+employeeId, 
         hours=> {
+          console.log("just before call to sortUserHours")
+          sortUserHours(hours);
          console.log("hours=")
          console.log(hours)
         app.innerHTML = UserHoursIndex(hours.reverse());
+       
       })
 }})  
 }
+//sort user hours function
+function sortUserHours(hours){
+  console.log("just before sort function fires");
+  const sortedHours = hours.sort((a, b) => new Date(a.timeIn) - new Date(b.timeIn));
+  //const sortedHours = hours.sort((a, b) => b.timeIn - a.timeOut);
+  console.log("sorted hours=");
+  console.log(sortedHours);
 
+}
 //Clock in 
 document.getElementById('main').addEventListener('click', function() {
   if (event.target.classList.contains('clock_in')){

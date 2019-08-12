@@ -13,6 +13,10 @@ export default function UserHoursIndex(hourslist){
             <totalhours> Total Hours </totalhours>
             <approved> Approved </approved>
             <hoursbuttons></hoursbuttons>
+            ${hourslist.map(hours => {
+
+            })}
+            
     </hour>
         ${hourslist.map(hours => {
             var x = "";
@@ -22,6 +26,7 @@ export default function UserHoursIndex(hourslist){
     <employee class='${x}'>
          
             <dates>
+                
                 <dateworked> ${hours.timeIn.substring(0, 10)}</dateworked>
                 <timein> ${hours.timeIn.substring(11, 19)}</timein>
                 <timeout> ${hours.timeOut.substring(11, 19)}
