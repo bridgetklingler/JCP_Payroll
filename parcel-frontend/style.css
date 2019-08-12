@@ -20,7 +20,7 @@ nav {
 mainnav {
   display: flex;
   justify-content: space-around;
-  width: 33%;
+  width: 50%;
   align-items: center;
   display: none;
 }
@@ -29,10 +29,31 @@ n {
   color: rgb(205, 233, 245);
   padding: 2.1vh 20px 2.1vh 20px;
   cursor: default;
+  max-height: 8vh;
+}
+@media only screen and (max-width: 1200px){
+  mainnav{
+    width: 75%;
+
+  }
 }
 
+@media only screen and (max-width: 800px){
+  mainnav{
+    width: 90%;
+  }
+  
+  n{
+    padding: 1vh 5px 1.5vh 5px;
+  }
+}
+
+
 n:hover {
+
   background-color: rgb(28, 67, 85);
+  /* max-height: 5vh; */
+  /*padding: 0;*/
 }
 
 loginbox {
@@ -349,4 +370,3 @@ sf{
 #clock_out {
   color: green;
 }
-

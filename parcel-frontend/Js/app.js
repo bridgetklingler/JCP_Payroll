@@ -64,6 +64,7 @@ document.getElementById('main').addEventListener('click', function(){
       if (auth.ssn === password){
         if (auth.admin === true){
         document.getElementById('hidenav').style.display = 'block'
+        document.getElementById('nav').style.backgroundColor = 'rgb(78, 12, 28)'
         }
         document.getElementById('nav').style.display = 'flex'
         document.getElementById('mainnav').style.display = 'flex'
