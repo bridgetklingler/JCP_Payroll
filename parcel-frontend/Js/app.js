@@ -396,6 +396,7 @@ function sortUserHours(hours){
   //const sortedHours = hours.sort((a, b) => b.timeIn - a.timeOut);
   console.log("sorted hours=");
   console.log(sortedHours);
+}
 
 function getEmployeeTimeClock(){
   document.getElementById('mainnav').addEventListener('click', function() {
@@ -411,7 +412,7 @@ function getEmployeeTimeClock(){
   })
 }
 
-}
+
 //Clock in 
 document.getElementById('main').addEventListener('click', function() {
   console.log(event.target.classList);
