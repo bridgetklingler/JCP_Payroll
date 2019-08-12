@@ -448,6 +448,18 @@ document.getElementById('main').addEventListener('click', function() {
   }
 })
 
+
+//search Hours by employee last name
+document.getElementById('main').addEventListener('click', function() {
+  if (event.target.classList.contains('searchbutton')) {
+    const search = document.querySelector('.searchln').value;
+    ApiAction.getRequest('https://localhost:44390/api/hours/search/'+search,
+    results=> {
+      app.innerHTML = AdminHoursIndex(results);}
+    )
+  }
+})
+
 function logOut() {
   document.getElementById('mainnav').addEventListener('click', function() {
     if (event.target.classList.contains('logout')){
