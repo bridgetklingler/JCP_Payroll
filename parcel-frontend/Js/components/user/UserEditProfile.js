@@ -14,6 +14,7 @@ export default function UserEditProfile(employee){
             <div>
             <input type="hidden" class="user_roleId" value="${employee.roleId}">
             <input type="hidden" class="user_ssn" value="${employee.ssn}">
+            <input type="hidden" class="user_admin_status" value="${employee.admin}">
             </div>
             <div class="edit_buttons">
             <button class="user_edit_submit multibutton submit">Submit</button>

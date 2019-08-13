@@ -175,6 +175,7 @@ function adminEditEmployee(){
     const ssn = document.querySelector('.edit_employee_ssn').value;
     const birthdate = document.querySelector('.edit_employee_birthdate').value;
     const email = document.querySelector('.edit_employee_email').value;
+    const admin = document.querySelector('.edit_employee_admin').value;
     
     const data = {
       employeeId: employeeId,
@@ -185,7 +186,8 @@ function adminEditEmployee(){
       address: address,
       ssn: ssn,
       birthdate: birthdate,
-      email: email
+      email: email,
+      admin: admin
     };
    
       ApiAction.putRequest('https://localhost:44390/api/employee', data,
@@ -390,33 +392,37 @@ function getUserEditProfile() {
 function userEditProfile(){
   document.getElementById('main').addEventListener('click', function() {
     if (event.target.classList.contains('user_edit_submit')){
-    console.log("i");
-    const employeeId = document.querySelector('.edit_employee_id').value;
-    const roleId = document.querySelector('.user_roleId').value;
-    const firstName = document.querySelector('.edit_employee_first_name').value;
-    const lastName = document.querySelector('.edit_employee_last_name').value;
-    const address = document.querySelector('.edit_employee_address').value;
-    const phoneNumber = document.querySelector('.edit_employee_phone_number').value;
-    const ssn = document.querySelector('.user_ssn').value;
-    const birthdate = document.querySelector('.edit_employee_birthdate').value;
-    const email = document.querySelector('.edit_employee_email').value;
+      console.log("i");
+      const employeeId = document.querySelector('.edit_employee_id').value;
+      const roleId = document.querySelector('.user_roleId').value;
+      const firstName = document.querySelector('.edit_employee_first_name').value;
+      const lastName = document.querySelector('.edit_employee_last_name').value;
+      const address = document.querySelector('.edit_employee_address').value;
+      const phoneNumber = document.querySelector('.edit_employee_phone_number').value;
+      const ssn = document.querySelector('.user_ssn').value;
+      const birthdate = document.querySelector('.edit_employee_birthdate').value;
+      const email = document.querySelector('.edit_employee_email').value;
+      const admin = document.querySelector('.user_admin_status').value
+      
+      const data = {
+        employeeId: employeeId,
+        phoneNumber: phoneNumber,
+        roleId: roleId,
+        firstName: firstName,
+        lastName: lastName,
+        address: address,
+        ssn: ssn,
+        birthdate: birthdate,
+        email: email,
+        admin: admin
+      };
+      console.log(data)
     
-    const data = {
-      employeeId: employeeId,
-      phoneNumber: phoneNumber,
-      roleId: roleId,
-      firstName: firstName,
-      lastName: lastName,
-      address: address,
-      ssn: ssn,
-      birthdate: birthdate,
-      email: email
-    };
-   
       ApiAction.putRequest('https://localhost:44390/api/employee', data,
       employee=> {
-        console.log("user version")
-        app.innerHTML = UserSingleEmployee(employee);
+        ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId, employee=> {
+          app.innerHTML = UserSingleEmployee(employee)
+        })
       })
     }
   })

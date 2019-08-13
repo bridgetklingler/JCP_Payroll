@@ -17,6 +17,7 @@ export default function AdminEditEmployee(employee){
             <addinput> <label>SSN:</label><input type="text" class="edit_employee_ssn" value="${employee.ssn}"></addinput>
             <addinput> <label>BirthDate:</label><input type="date" class="edit_employee_birthdate" value="${employee.birthdate.substring(0,10)}"></addinput>
             <addinput> <label>Email:</label><input type="text" class="edit_employee_email" value="${employee.email}"></addinput>
+            <addinput> <label>Admin:</label><input type="text" class="edit_employee_admin" value="${employee.admin}"></addinput>
             <div>
             <addinput> <label>RoleId:</label> <select id="role_select" class="add_employee_roleId"></select></addinput>
             </div>
