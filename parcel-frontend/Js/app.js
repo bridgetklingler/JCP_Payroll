@@ -612,7 +612,7 @@ document.getElementById('main').addEventListener('click', function() {
     )
   }
 })
-
+}
 
 function logOut() {
   document.getElementById('mainnav').addEventListener('click', function() {

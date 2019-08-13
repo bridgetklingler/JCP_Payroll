@@ -14,9 +14,6 @@ export default function UserHoursIndex(hourslist){
         </tr>
 
         ${hourslist.map(hours => {
-            var x = "";
-        i += 1;
-        if(i % 2 === 0){x = 'green'}else{x='blue'}
        
         var utcTimeIn = hours.timeIn + "Z";
         var utcdate = new Date(utcTimeIn).toLocaleString()
@@ -30,29 +27,21 @@ export default function UserHoursIndex(hourslist){
 
 
         return `  
-        <employee class='${x}'>
-            <dates>
-               <dateworked> ${date}</dateworked>
-                <timein> ${inTime}</timein>
-                <timeout> ${outTime}
-                </timeout>
-            </dates>
-                <totalhours> ${hours.totalhours} </totalhours>
-                <approved> ${hours.approved} </approved>
 
-
-            <hoursbuttons>
-                <button class="edit_hours multibutton">Edit 
-                    <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
-                </button> 
-                <button class="single_hours_submit multibutton">Select
-                    <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
-                </button>
-        
-            </hoursbuttons>
-
-        </employee>
-         
+        <tr>
+        <td>${date}</td>
+        <td>${inTime}</td>
+        <td>${outTime}</td>
+        <td>${hours.totalHours}</td>
+        <td>${hours.approved}</td>
+        <td><button class="edit_hours multibutton">Edit 
+            <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
+        </button> 
+        <button class="single_hours_submit multibutton">Select
+            <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
+        </button></td>
+        </tr>
+            
         `      
         })     
         .join("")}
