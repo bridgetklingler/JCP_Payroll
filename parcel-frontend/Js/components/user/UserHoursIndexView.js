@@ -22,17 +22,28 @@ export default function UserHoursIndex(hourslist){
             var x = "";
         i += 1;
         if(i % 2 === 0){x = 'green'}else{x='blue'}
+        var utcTimeIn = hours.timeIn + "Z";
+        var utcdate = new Date(utcTimeIn).toLocaleString()
+        console.log(utcdate)
+        var date = new Date(utcdate).toDateString()
+        console.log(date)
+        var inTime = new Date(utcTimeIn).toLocaleTimeString()
+        var utcTimeOut = hours.timeOut + "Z";
+        var outTime = new Date(utcTimeOut).toLocaleTimeString();
+        
+
+
         return `  
     <employee class='${x}'>
          
             <dates>
                 
-                <dateworked> ${hours.timeIn.substring(0, 10)}</dateworked>
-                <timein> ${hours.timeIn.substring(11, 19)}</timein>
-                <timeout> ${hours.timeOut.substring(11, 19)}
+                <dateworked> ${date}</dateworked>
+                <timein> ${inTime}</timein>
+                <timeout> ${outTime}
                 </timeout>
             </dates>
-                <totalhours> ${hours.totalHours} </totalhours>
+                <totalhours> ${hours.totalhours} </totalhours>
                 <approved> ${hours.approved} </approved>
 
                 <hoursbuttons>

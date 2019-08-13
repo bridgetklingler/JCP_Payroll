@@ -9,6 +9,7 @@ import AdminSingleEmployee from "./components/admin/AdminSingleEmployee"
 
 import UserHoursIndex from "./components/user/UserHoursIndexView"
 import UserSingleEmployee from "./components/user/UserSingleEmployee"
+import UserEditProfile from "./components/user/UserEditProfile"
 
 //admin single employee view
 //user add hours
@@ -35,8 +36,11 @@ function pageBuild(){
   adminApproveHours();
  
   getUserSingleEmployee();
+  getUserEditProfile();
   getUserHoursIndex();
   getEmployeeTimeClock();
+
+  userEditProfile();
   
   logOut();
 }
@@ -298,8 +302,8 @@ function adminAddHours(){
     HoursId: hoursId,
     EmployeeId: employeeId,
     
-    TimeIn: timeIn,
-    TimeOut: timeOut,
+    TimeIn: timeIn.toISOString(),
+    TimeOut: timeOut.toISOString(),
     TotalHours: totalHours,
     Approved: approved
   };
@@ -371,6 +375,53 @@ function getUserSingleEmployee(){
   })
 }
 
+function getUserEditProfile() {
+  document.getElementById('main').addEventListener('click', function(){
+    if(event.target.classList.contains("user_single_edit")){
+      const employeeId = event.target.querySelector(".employee_id").value
+      console.log(employeeId)
+      ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId, employee=> {
+        console.log("user version")
+        app.innerHTML = UserEditProfile(employee)})
+    }
+  })
+}
+
+function userEditProfile(){
+  document.getElementById('main').addEventListener('click', function() {
+    if (event.target.classList.contains('user_edit_submit')){
+    console.log("i");
+    const employeeId = document.querySelector('.edit_employee_id').value;
+    const roleId = document.querySelector('.user_roleId').value;
+    const firstName = document.querySelector('.edit_employee_first_name').value;
+    const lastName = document.querySelector('.edit_employee_last_name').value;
+    const address = document.querySelector('.edit_employee_address').value;
+    const phoneNumber = document.querySelector('.edit_employee_phone_number').value;
+    const ssn = document.querySelector('.user_ssn').value;
+    const birthdate = document.querySelector('.edit_employee_birthdate').value;
+    const email = document.querySelector('.edit_employee_email').value;
+    
+    const data = {
+      employeeId: employeeId,
+      phoneNumber: phoneNumber,
+      roleId: roleId,
+      firstName: firstName,
+      lastName: lastName,
+      address: address,
+      ssn: ssn,
+      birthdate: birthdate,
+      email: email
+    };
+   
+      ApiAction.putRequest('https://localhost:44390/api/employee', data,
+      employee=> {
+        console.log("user version")
+        app.innerHTML = UserSingleEmployee(employee);
+      })
+    }
+  })
+}
+
 //Hours Functions
 function getUserHoursIndex() {
     document.getElementById('mainnav').addEventListener('click', function() {
@@ -421,12 +472,13 @@ document.getElementById('main').addEventListener('click', function() {
   if (event.target.classList.contains('clockin_submit')){
     console.log('clockin')
     var d = new Date()
-    d.toLocaleTimeString();
+    
+    //d.toLocaleTimeString();
     const data = {
       HoursId: 0,
       EmployeeId: logged_id,
-      TimeIn: d, //d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
-      TimeOut: d, //d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+      TimeIn: d.toISOString(),  //d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+      TimeOut: d.toISOString(),  //d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
       TotalHours: 0,
       Approved: false
     }
@@ -448,7 +500,7 @@ document.getElementById('main').addEventListener('click', function() {
       HoursId: 0,
       EmployeeId: logged_id,
       //TimeIn: TimeIn, //d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
-      TimeOut: d//.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
+      TimeOut: d.toISOString() //.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
       ,
       TotalHours: 0,
       Approved: false
