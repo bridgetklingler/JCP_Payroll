@@ -25,7 +25,7 @@ export default function AdminHoursIndex(hourslist){
 
         </tr>
         ${hourslist.map(hours => {
-            ApiActions.getRequest('https://localhost:44390/api/employee/'+ hours.employeeId,
+            ApiActions.getRequest('https://localhost:44390/api/employee/' + hours.employeeId, 
             hourtoname=> {
             document.getElementById(hours.hoursId).innerHTML = hourtoname.firstName + " " + hourtoname.lastName;
             })
@@ -58,8 +58,8 @@ export default function AdminHoursIndex(hourslist){
 
         </tr>
         `     
-    })     
-    .join("")}
+    })    .join("")}
+    
     </table>
 
        `

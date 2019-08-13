@@ -21,6 +21,7 @@ import Home from "./components/home";
 pageBuild();
 
 function pageBuild(){
+  ///LogIn();
   getAdminEmployeeIndex();
   getAdminAddEmployee();
   getAdminEditEmployee();
@@ -42,7 +43,6 @@ function pageBuild(){
 
   userEditProfile();
  
-  LogIn();
   logOut();
   editCancel();
   returnIndex();
@@ -55,7 +55,7 @@ function pageBuild(){
 
 const app = document.getElementById('main');
 
-function LogIn(){
+//function LogIn(){
   var logged_id = null; //id of person currently logged in (or null if nobody)
   document.getElementById('main').addEventListener('click', function(){
     // when person clicks clock_in or clock_out, send information to API
@@ -100,7 +100,7 @@ function LogIn(){
       })
     }
   })
-}
+//}
 
 //List Employees
 function getAdminEmployeeIndex(){
@@ -315,8 +315,8 @@ function adminAddHours(){
         HoursId: hoursId,
         EmployeeId: employeeId,
         
-        TimeIn: timeIn.toISOString(),
-        TimeOut: timeOut.toISOString(),
+        TimeIn: timeIn,
+        TimeOut: timeOut,
         TotalHours: totalHours,
         Approved: approved
       };
@@ -382,7 +382,7 @@ function getUserSingleEmployee(){
       console.log(employeeId);   
       ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
         employee=> {
-        UserSingleEmployee(employee);
+        app.innerHTML= UserSingleEmployee(employee);
         }
       )
     }

@@ -1,10 +1,10 @@
 import ApiActions from "../../api/api-actions"
 
 export default function UserSingleEmployee(employee){
-    setPage();
-    loadRoles();
-    function setPage(){
-        let page = `   
+    ApiActions.getRequest('https://localhost:44390/api/role/'+employee.roleId,
+    setRoles => { document.getElementById('rolenames').innerHTML = setRoles.roleName})
+        
+        return `   
     <div> 
     <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
     <h2><em>Employee ID: ${employee.employeeId} </em></h2>
@@ -52,25 +52,23 @@ export default function UserSingleEmployee(employee){
       </button> 
     </employeebuttons>
     `
-    document.querySelector("#main").innerHTML = page;
 }
 
-function loadRoles(){
-    ApiActions.getRequest('https://localhost:44390/api/role/' + employee.roleId,
-    setRoles
-    // => {
-    // document.getElementById("#roletoname").innerHTML = roletoname.roleName;
-    // apiActions.getRequest('https://localhost:44390/api/role', setRoles)
-// }
-)}
+// function loadRoles(){
+//     ApiActions.getRequest('https://localhost:44390/api/role/' + employee.roleId,
+//     setRoles
+//     // => {
+//     // document.getElementById("#roletoname").innerHTML = roletoname.roleName;
+//     // apiActions.getRequest('https://localhost:44390/api/role', setRoles)
+// // }
+// )}
 
-function setRoles(role){
-    console.log(role.roleName)
-    roleHtml += `<role id="role_select-value" value='${role.roleId}'>${role.roleName}</role>`;
+// function setRoles(role){
+//     console.log(role.roleName)
+//     roleHtml += `<role id="role_select-value" value='${role.roleId}'>${role.roleName}</role>`;
 
     
-    document.querySelector("#rolenames").innerHTML = roleHtml;
-}
+//     document.querySelector("#rolenames").innerHTML = roleHtml;
+// }
 
 
-}
