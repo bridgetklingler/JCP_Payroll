@@ -6,16 +6,13 @@ export default function UserHoursIndex(hourslist){
     <hours>
     <hour style="font-weight: 800; background-color: rgb(120, 161, 182)">    
         <dates>
-            <dateworked> Date Worked </dateworked>
-            <timein> Time In </timein>
-            <timeout> Time Out </timeout>
+            <dateworked>Date<span class="cpu_only"> Worked</span></dateworked>
+            <timein><span class="cpu_only">Time </span>In</timein>
+            <timeout><span class="cpu_only">Time </span>Out</timeout>
         </dates>
-            <totalhours> Total Hours </totalhours>
-            <approved> Approved </approved>
-            <hoursbuttons></hoursbuttons>
-            ${hourslist.map(hours => {
-
-            })}
+            <totalhours><span class="cpu_only">Total Hours</span><span class="phone_only">Hrs</span></totalhours>
+            <approved><span class="cpu_only">Approved</span><span class="phone_only">App?</span></approved>
+            <hoursbuttons>Command</hoursbuttons>
             
     </hour>
         ${hourslist.map(hours => {
@@ -23,27 +20,24 @@ export default function UserHoursIndex(hourslist){
         i += 1;
         if(i % 2 === 0){x = 'green'}else{x='blue'}
         return `  
-    <employee class='${x}'>
-         
+        <employee class='${x}'>
             <dates>
-                
-                <dateworked> ${hours.timeIn.substring(0, 10)}</dateworked>
-                <timein> ${hours.timeIn.substring(11, 19)}</timein>
-                <timeout> ${hours.timeOut.substring(11, 19)}
-                </timeout>
+                <dateworked>${hours.timeIn.substring(0, 10)}</dateworked>
+                <timein>${hours.timeIn.substring(11, 19)}</timein>
+                <timeout>${hours.timeOut.substring(11, 19)}</timeout>
             </dates>
-                <totalhours> ${hours.totalHours} </totalhours>
-                <approved> ${hours.approved} </approved>
+            <totalhours>${hours.totalHours}</totalhours>
+            <approved>${hours.approved}</approved>
 
-                <hoursbuttons>
+            <hoursbuttons>
                 <button class="edit_hours multibutton">Edit 
-                        <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
-                    </button> 
-                    <button class="single_hours_submit multibutton">Select
-                        <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
-                    </button>
-            
-                </hoursbuttons>
+                    <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
+                </button> 
+                <button class="single_hours_submit multibutton">Select
+                    <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
+                </button>
+        
+            </hoursbuttons>
 
         </employee>
          
