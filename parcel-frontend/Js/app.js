@@ -41,7 +41,8 @@ function pageBuild(){
   getEmployeeTimeClock();
 
   userEditProfile();
- 
+  userEditCancel();
+  
   //LogIn();
   logOut();
   editCancel();
@@ -437,6 +438,15 @@ function userEditProfile(){
         })
       })
     }
+  })
+}
+
+function userEditCancel(){
+  document.getElementById('main').addEventListener('click', function(){
+    if(event.target.classList.contains('user_cancel_edit_submit'))
+      ApiAction.getRequest("https://localhost:44390/api/employee/" + logged_id , singleView => {
+      app.innerHTML = UserSingleEmployee(singleView);
+    })
   })
 }
 

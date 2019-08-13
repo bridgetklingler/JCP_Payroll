@@ -18,7 +18,7 @@ export default function UserEditProfile(employee){
             </div>
             <div class="edit_buttons">
             <button class="user_edit_submit multibutton submit">Submit</button>
-            <button class='cancel_edit_submit multibutton cancel'>Cancel
+            <button class='user_cancel_edit_submit multibutton cancel'>Cancel</button>
             </div>
 
             <input class='cancel_employee_id' type='hidden' value ='${employee.employeeId}'>
