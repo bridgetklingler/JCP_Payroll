@@ -306,7 +306,7 @@ function adminAddHours(){
       console.log(timeIn)
       const timeOut = document.querySelector('.add_hours_time_out').value
       console.log(timeOut)
-      const totalHours = converthours(timeIn,timeOut);
+      const totalHours = converthours(timeOut, timeIn);
       
       console.log(totalHours);
       const approved = document.querySelector(".add_hours_approved").value;
@@ -333,15 +333,19 @@ function adminAddHours(){
 
 //Converts Time in and Time out to display correctly
 function converthours(timeOut,timeIn){
-  console.log("time in"); console.log(timeIn);
   console.log("timeOut"); console.log(timeOut);
-  var fromDate = parseInt(new Date(timeOut).getTime()/1000)
-  console.log(fromDate);
-  var toDate = parseInt(new Date(timeIn).getTime()/1000)
+  console.log("time in"); console.log(timeIn);
+
+  var toDate = parseInt(new Date(timeOut).getTime()/1000)
   console.log(toDate);
-  var timeDiff = (toDate-fromDate)/3600;
+  
+  var fromDate = parseInt(new Date(timeIn).getTime()/1000)
+  console.log(fromDate);
+  
+  var timeDiff = (toDate - fromDate)/3600;
   console.log(timeDiff);
-  const timeRound = Math.round((timeDiff+.049)*10)/10;
+  
+  const timeRound = Math.abs(Math.round((timeDiff+.049)*10)/10);
   console.log(timeRound)
   return timeRound;
 }
@@ -556,11 +560,11 @@ function clockOut(){
         console.log("get hours")
         var hoursId = targetHours.hoursId
         console.log(hoursId)
-        var timeIn = targetHours.timeIn
+        var timeIn = targetHours.timeIn + "Z"
         console.log(timeIn)
         console.log("get hours complete")
                     
-        var d = new Date()
+        var d = new Date().toISOString()
         console.log(d)
         
         console.log("start data conversion")
@@ -568,8 +572,8 @@ function clockOut(){
           HoursId: hoursId,
           EmployeeId: logged_id,
           TimeIn: timeIn,
+          TimeOut: d,
           TotalHours: converthours(d, timeIn),
-          TimeOut: d.toISOString(),
           Approved: false
         }
         console.log("end data conversion")

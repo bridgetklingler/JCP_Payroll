@@ -29,12 +29,22 @@ export default function AdminHoursIndex(hourslist){
             hourtoname=> {
             document.getElementById(hours.hoursId).innerHTML = hourtoname.firstName + " " + hourtoname.lastName;
             })
+
+            var utcTimeIn = hours.timeIn + "Z";
+            var utcdate = new Date(utcTimeIn).toLocaleString()
+            console.log(utcdate)
+            var date = new Date(utcdate).toDateString()
+            console.log(date)
+            var inTime = new Date(utcTimeIn).toLocaleTimeString()
+            var utcTimeOut = hours.timeOut + "Z";
+            var outTime = new Date(utcTimeOut).toLocaleTimeString();
+
             return            ` 
 
         <tr>
-            <td>${hours.timeIn.substring(0, 10)}</td>
-            <td>${hours.timeIn.substring(11, 19)}</td>
-            <td>${hours.timeOut.substring(11, 19)}</td>
+            <td>${date}</td>
+            <td>${inTime}</td>
+            <td>${outTime}</td>
             <td>${hours.totalHours}</td>
             <td>${hours.approved}</td>
             <td>
