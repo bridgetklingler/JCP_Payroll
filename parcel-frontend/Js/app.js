@@ -21,7 +21,6 @@ import Home from "./components/home";
 pageBuild();
 
 function pageBuild(){
-  ///LogIn();
   getAdminEmployeeIndex();
   getAdminAddEmployee();
   getAdminEditEmployee();
@@ -43,6 +42,7 @@ function pageBuild(){
 
   userEditProfile();
  
+  //LogIn();
   logOut();
   editCancel();
   returnIndex();
@@ -511,30 +511,68 @@ function clockIn(){
   })
 }
 
-//Clock out
+// //Clock out
+// function clockOut(){
+//   document.getElementById('main').addEventListener('click', function() {
+//     if (event.target.classList.contains('clockout_submit')){
+//       console.log('clockout')
+//       var d = new Date()
+//       const data = {
+//         HoursId: 0,
+//         EmployeeId: logged_id,
+//         //TimeIn: TimeIn, //d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
+//         TimeOut: d.toISOString() //.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
+//         ,
+//         TotalHours: 0,
+//         Approved: false
+//       }
+//       console.log("clock out data")
+//       console.log(data)
+//       ApiAction.putRequest('https://localhost:44390/api/hours/Clockout/'+ logged_id, data,
+//       clock=> {
+
+//       })
+//     }
+//   })
+// }
+
 function clockOut(){
   document.getElementById('main').addEventListener('click', function() {
     if (event.target.classList.contains('clockout_submit')){
-      console.log('clockout')
-      var d = new Date()
-      const data = {
-        HoursId: 0,
-        EmployeeId: logged_id,
-        //TimeIn: TimeIn, //d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
-        TimeOut: d.toISOString() //.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
-        ,
-        TotalHours: 0,
-        Approved: false
-      }
-      console.log("clock out data")
-      console.log(data)
-      ApiAction.putRequest('https://localhost:44390/api/hours/Clockout/'+ logged_id, data,
-      clock=> {
-
+      console.log('clockout start')
+      ApiAction.getRequest('https://localhost:44390/api/hours/collect/'+ logged_id, 
+      targetHours=>{
+        console.log(targetHours)
+        console.log("get hours")
+        var hoursId = targetHours.hoursId
+        console.log(hoursId)
+        var timeIn = targetHours.timeIn
+        console.log(timeIn)
+        console.log("get hours complete")
+                    
+        var d = new Date()
+        console.log(d)
+        
+        console.log("start data conversion")
+        const data = {
+          HoursId: hoursId,
+          EmployeeId: logged_id,
+          TimeIn: timeIn,
+          TotalHours: converthours(d, timeIn),
+          TimeOut: d.toISOString(),
+          Approved: false
+        }
+        console.log("end data conversion")
+        console.log(data)
+        ApiAction.putRequest('https://localhost:44390/api/hours', data,
+        clock=> {
+          
+        })
       })
     }
   })
 }
+
 
 //View Date Range on Admin Pay Index
 function viewByDateRange(){
