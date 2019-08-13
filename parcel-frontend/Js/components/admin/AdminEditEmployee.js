@@ -10,7 +10,7 @@ export default function AdminEditEmployee(employee){
             <input type="hidden" class="edit_employee_id" value="${employee.employeeId}">
             <h2><em>Employee ID: ${employee.employeeId}</em></h2>
             
-            <table style = "width: 95%">
+            <table style="width: 95%">
             <tr>
                 <th>First Name:</th>
                 <td><input type="text" class="edit_employee_first_name" value="${employee.firstName}"></td>

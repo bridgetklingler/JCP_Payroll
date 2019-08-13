@@ -9,7 +9,7 @@ export default function UserSingleEmployee(employee){
     <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
     <h2><em>Employee ID: ${employee.employeeId} </em></h2>
     </div class="heading">
-    <table class="profile" style="width: 95%">
+    <table style="width: 95%">
     
     <tr>
         <th>First Name: </th>

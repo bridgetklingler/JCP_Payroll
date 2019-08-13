@@ -167,13 +167,13 @@ h1 {
   text-align: center;
 }
 
-table, th, td {
+.indextable, .indextable th, .indextable td {
   margin-left: 0;
   border-collapse: collapse;
   border-bottom: solid 1px  rgb(1, 21, 31);
 }
 
-table{
+.indextable{
   border: solid 1px  rgb(1, 21, 31);
 }
 
@@ -188,25 +188,12 @@ tr{
   border: none;
 }
 
-tr:nth-child(even) {
+.indextable tr:nth-child(even) {
   background-color: rgb(250, 225, 201);
 }
 
-tr:nth-child(odd) {
+.indextable tr:nth-child(odd) {
   background-color: rgb(247, 242, 230);
-}
-
-.profile{
-  border: none;
-  background-color: none;
-}
-
-.profile td, .profile th{
-  border: none;
-}
-
-.profile tr{
-  background-color: white;
 }
 
 .indextable{
