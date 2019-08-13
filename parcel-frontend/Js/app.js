@@ -315,8 +315,8 @@ function adminAddHours(){
         HoursId: hoursId,
         EmployeeId: employeeId,
         
-        TimeIn: timeIn.toISOString(),
-        TimeOut: timeOut.toISOString(),
+        TimeIn: timeIn,
+        TimeOut: timeOut,
         TotalHours: totalHours,
         Approved: approved
       };
@@ -382,7 +382,7 @@ function getUserSingleEmployee(){
       console.log(employeeId);   
       ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
         employee=> {
-        UserSingleEmployee(employee);
+        app.innerHTML= UserSingleEmployee(employee);
         }
       )
     }
