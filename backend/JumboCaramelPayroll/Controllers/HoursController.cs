@@ -48,6 +48,11 @@ namespace JumboCaramelPayroll.Controllers
             return searchHours;;
             
         }
+        [HttpGet("collect/{id}")]
+        public ActionResult<Hours> CollectPreviousHours(int id)
+        {
+            return db.Hours.Last(c => c.EmployeeId == id);
+        }
 
         // POST api/Hours
         [HttpPost]
