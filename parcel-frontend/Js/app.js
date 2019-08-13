@@ -481,6 +481,8 @@ document.getElementById('main').addEventListener('click', function() {
 document.getElementById('main').addEventListener('click', function() {
   if (event.target.classList.contains('searchbutton')) {
     const search = document.querySelector('.searchln').value;
+    //search employee lastname field for string in the value field
+
     ApiAction.getRequest('https://localhost:44390/api/hours/search/'+search,
     results=> {
       app.innerHTML = AdminHoursIndex(results);}
