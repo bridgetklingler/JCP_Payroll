@@ -48,7 +48,7 @@ document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
 
     <br/>
     <employeebuttons>
-    <button class="single_edit edit_employee multibutton">Edit 
+    <button class="user_single_edit edit_employee multibutton">Edit 
     <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
     </button> 
     </employeebuttons>
