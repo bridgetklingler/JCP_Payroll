@@ -2,6 +2,7 @@ export default function UserHoursIndex(hourslist){
     console.log("Hours Index")
     return `
     <h1>Hours Index</h1>
+
     <table style="width: 100%" class="indextable">
         <tr>
             <th class="tableheader">Date Worked</th>
@@ -11,6 +12,7 @@ export default function UserHoursIndex(hourslist){
             <th class="tableheader">Approved</th>
             <th class="tableheader" id="hoursbuttons"></th>
         </tr>
+
         ${hourslist.map(hours => {
             var x = "";
         i += 1;
@@ -28,11 +30,9 @@ export default function UserHoursIndex(hourslist){
 
 
         return `  
-    <employee class='${x}'>
-         
+        <employee class='${x}'>
             <dates>
-                
-                <dateworked> ${date}</dateworked>
+               <dateworked> ${date}</dateworked>
                 <timein> ${inTime}</timein>
                 <timeout> ${outTime}
                 </timeout>
@@ -40,15 +40,16 @@ export default function UserHoursIndex(hourslist){
                 <totalhours> ${hours.totalhours} </totalhours>
                 <approved> ${hours.approved} </approved>
 
-                <hoursbuttons>
+
+            <hoursbuttons>
                 <button class="edit_hours multibutton">Edit 
-                        <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
-                    </button> 
-                    <button class="single_hours_submit multibutton">Select
-                        <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
-                    </button>
-            
-                </hoursbuttons>
+                    <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
+                </button> 
+                <button class="single_hours_submit multibutton">Select
+                    <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
+                </button>
+        
+            </hoursbuttons>
 
         </employee>
          
