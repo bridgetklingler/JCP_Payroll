@@ -33,7 +33,7 @@ document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
         <td>${employee.roleId}</td></sroleId>
     </tr>
     <tr>
-        <saddress><th>Adress: </th>
+        <saddress><th>Address: </th>
         <td>${employee.address}</td></saddress>
     </tr>
     <tr>
