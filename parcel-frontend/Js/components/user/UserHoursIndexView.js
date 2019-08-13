@@ -22,6 +22,7 @@ export default function UserHoursIndex(hourslist){
             var x = "";
         i += 1;
         if(i % 2 === 0){x = 'green'}else{x='blue'}
+       
         var utcTimeIn = hours.timeIn + "Z";
         var utcdate = new Date(utcTimeIn).toLocaleString()
         console.log(utcdate)
