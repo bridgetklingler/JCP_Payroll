@@ -1,23 +1,16 @@
 export default function UserHoursIndex(hourslist){
     console.log("Hours Index")
-    var i = 1;
     return `
     <h1>Hours Index</h1>
-    <hours>
-    <hour style="font-weight: 800; background-color: rgb(120, 161, 182)">    
-        <dates>
-            <dateworked> Date Worked </dateworked>
-            <timein> Time In </timein>
-            <timeout> Time Out </timeout>
-        </dates>
-            <totalhours> Total Hours </totalhours>
-            <approved> Approved </approved>
-            <hoursbuttons></hoursbuttons>
-            ${hourslist.map(hours => {
-
-            })}
-            
-    </hour>
+    <table style="width: 100%" class="indextable">
+        <tr>
+            <th class="tableheader">Date Worked</th>
+            <th class="tableheader">Time In</th>
+            <th class="tableheader">Time Out</th>
+            <th class="tableheader">Total Hours</th>
+            <th class="tableheader">Approved</th>
+            <th class="tableheader" id="hoursbuttons"></th>
+        </tr>
         ${hourslist.map(hours => {
             var x = "";
         i += 1;
@@ -62,8 +55,6 @@ export default function UserHoursIndex(hourslist){
         `      
         })     
         .join("")}
-        
-    </hours>
+        </table>
     `
 }
-
