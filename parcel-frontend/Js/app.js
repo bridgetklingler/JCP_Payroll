@@ -340,7 +340,7 @@ function converthours(timeOut,timeIn){
   console.log(toDate);
   var timeDiff = (toDate-fromDate)/3600;
   console.log(timeDiff);
-  const timeRound = Math.round((timeDiff+.04)*10)/10;
+  const timeRound = Math.round((timeDiff+.049)*10)/10;
   console.log(timeRound)
   return timeRound;
 }

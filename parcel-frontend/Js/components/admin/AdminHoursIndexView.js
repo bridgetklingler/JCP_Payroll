@@ -10,8 +10,8 @@ export default function AdminHoursIndex(hourslist){
     <input type='text' class='searchln'>
     <button class="searchbutton">Search</button>
     <p>Select Range</p>
-    <input type="datetime-local" class="range_date1">
-    <input type="datetime-local" class="range_date2">
+    <input type="date" class="range_date1">
+    <input type="date" class="range_date2">
     <button class="getdaterange">Range</button>
     <h1>Hours Index</h1>
     <table style="width:100%" class="indextable">
