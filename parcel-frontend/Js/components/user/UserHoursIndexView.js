@@ -3,7 +3,7 @@ export default function UserHoursIndex(hourslist){
     var i = 1;
     return `
     <h1>Hours Index</h1>
-    <table style="width: 100%">
+    <table style="width: 100%" class="indextable">
         <tr>
             <th class="tableheader">Date Worked</th>
             <th class="tableheader">Time In</th>

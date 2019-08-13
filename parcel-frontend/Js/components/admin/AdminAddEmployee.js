@@ -8,7 +8,7 @@ export default function AdminAddEmployee()
     function setPage(){
         let page = `    
             <h1> Add Employee</h1>
-            <table style="width: 95%">
+            <table style="width: 95%" class="profile">
                 <tr>
                     <th>First Name: </th>
                     <td><input type="text" class="add_employee_first_name"></td>

@@ -9,7 +9,7 @@ console.log("admin add hours")
         let page = `    
         <h1> Add Hours</h1>
 
-        <table>
+        <table class="profile"> 
             <tr>
                 <th>Employee Id:</th>
                 <td><select id="employee_select" class="add_employee_id_hours"></select></td>

@@ -9,39 +9,39 @@ export default function UserSingleEmployee(employee){
     <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
     <h2><em>Employee ID: ${employee.employeeId} </em></h2>
     </div class="heading">
-    <table style="width: 95%">
+    <table class="profile" style="width: 95%">
     
     <tr>
-        <sfname><th>First Name: </th>
-        <td><strong>${employee.firstName}</strong></td></sfname>
+        <th>First Name: </th>
+        <td><strong>${employee.firstName}</strong></td>
     </tr>
     <tr>
-    <slname><th>Last Name: </th>
-        <td><strong>${employee.lastName}</strong></td></slname>
-        </tr>
-        <tr>
-        <semail><th>Email: </th>
-        <td>${employee.email}</td></semail>
+        <th>Last Name: </th>
+        <td><strong>${employee.lastName}</strong></td>
     </tr>
     <tr>
-        <spn><th>Phone: </th>
-        <td>${employee.phoneNumber}</td></spn>
-        </tr>
-        <tr>
+        <th>Email: </th>
+        <td>${employee.email}</td>
+    </tr>
+    <tr>
+        <th>Phone: </th>
+        <td>${employee.phoneNumber}</td>
+    </tr>
+    <tr>
         <th>Role: </th>
         <td id="roletoname"><sroleId id="rolenames"></sroleId></td>
     </tr>
     <tr>
-        <saddress><th>Adress: </th>
-        <td>${employee.address}</td></saddress>
-        </tr>
+        <th>Adress: </th>
+        <td>${employee.address}</td>
+    </tr>
     <tr>
-    <sssn><th>SSN: </th>
-        <td>${employee.ssn}</td></sssn>
-        </tr>
+        <th>SSN: </th>
+        <td>${employee.ssn}</td>
+    </tr>
     <tr>
-    <sbd><th>Birth Date: </th>
-    <td>${employee.birthdate.substring(0,10)}</td></sbd>
+        <th>Birth Date: </th>
+        <td>${employee.birthdate.substring(0,10)}</td>
     </tr>
     </table>
 
