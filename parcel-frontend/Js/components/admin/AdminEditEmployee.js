@@ -8,6 +8,7 @@ export default function AdminEditEmployee(employee){
          `    
             <h1> Edit: ${employee.lastName}, ${employee.firstName}</h1>
             <input type="hidden" class="edit_employee_id" value="${employee.employeeId}">
+
             <h2><em>Employee ID: ${employee.employeeId}</em></h2>
             
             <table style="width: 95%">
@@ -44,6 +45,7 @@ export default function AdminEditEmployee(employee){
                 <td><select id="role_select" class="add_employee_roleId"></select></td>
             </tr>
             </table>
+
 
             <div class="edit_buttons">
                 <button class="edit_employee_submit multibutton submit medbutton">Submit</button>
