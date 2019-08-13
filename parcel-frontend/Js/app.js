@@ -370,7 +370,7 @@ function getUserSingleEmployee(){
       console.log(employeeId);   
       ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
         employee=> {
-        app.innerHTML = UserSingleEmployee(employee);
+        UserSingleEmployee(employee);
         }
       )
     }
