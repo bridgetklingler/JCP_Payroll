@@ -1,6 +1,5 @@
 export default function UserHoursIndex(hourslist){
     console.log("Hours Index")
-    var i = 1;
     return `
     <h1>Hours Index</h1>
     <table style="width: 100%" class="indextable">
@@ -27,13 +26,10 @@ export default function UserHoursIndex(hourslist){
                     <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
                 </button></td>
                 </tr>
-
-            
             `
         })     
         .join("")}
         </table>
-
     `
 }
 
