@@ -10,7 +10,6 @@ export default function UserHoursIndex(hourslist){
             <th class="tableheader">Time Out</th>
             <th class="tableheader">Total Hours</th>
             <th class="tableheader">Approved</th>
-            <th class="tableheader" id="hoursbuttons"></th>
         </tr>
 
         ${hourslist.map(hours => {
@@ -29,17 +28,11 @@ export default function UserHoursIndex(hourslist){
         return `  
 
         <tr>
-        <td>${date}</td>
-        <td>${inTime}</td>
-        <td>${outTime}</td>
-        <td>${hours.totalHours}</td>
-        <td>${hours.approved}</td>
-        <td><button class="edit_hours multibutton">Edit 
-            <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
-        </button> 
-        <button class="single_hours_submit multibutton">Select
-            <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
-        </button></td>
+            <td>${date}</td>
+            <td>${inTime}</td>
+            <td>${outTime}</td>
+            <td>${hours.totalHours}</td>
+            <td>${hours.approved}</td>
         </tr>
             
         `      

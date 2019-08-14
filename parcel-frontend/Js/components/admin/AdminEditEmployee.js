@@ -44,6 +44,10 @@ export default function AdminEditEmployee(employee){
                 <th>RoleId:</th>
                 <td><select id="role_select" class="add_employee_roleId"></select></td>
             </tr>
+            // // // // <tr>
+            // // // //     <th>Admin:</th>
+            // // // //     <td><input type="hidden" class="edit_employee_submit" value="${employee.admin}</td>
+            // // // // </tr>
             </table>
 
 

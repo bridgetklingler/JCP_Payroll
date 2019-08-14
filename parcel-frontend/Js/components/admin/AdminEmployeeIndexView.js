@@ -1,9 +1,9 @@
-// import ApiActions from "../../api/api-actions"
+import ApiActions from "../../api/api-actions"
 
 export default function AdminEmployeeIndex(employeelist){
     console.log("Employee Index")
     return `
-
+    
     <h1>Employee Index</h1>
     <table style="width: 100%" class="indextable">
     <tr>
@@ -15,13 +15,20 @@ export default function AdminEmployeeIndex(employeelist){
         <th class="tableheader" id="hoursbuttons"></th>
     </tr>
     ${employeelist.map(employee => {
+        
+            ApiActions.getRequest('https://localhost:44390/api/role/'+ employee.roleId,
+        
+        roletoname=> {
+        document.getElementById('rolename').innerHTML = roletoname.roleName;
+        
+        }) 
         return `
-            <tr>
+            <tr> 
                 <td>${employee.lastName}, ${employee.firstName}</td>
                 <td>${employee.address}</td>
                 <td>${employee.phoneNumber}</td>
                 <td>${employee.email}</td>
-                <td><roletoname></roletoname></td>
+                <td><roletoname id="rolename"></roletoname></td>
                 <td>
                     <button class="single_employee_submit multibutton">Select
                     <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
@@ -50,11 +57,4 @@ export default function AdminEmployeeIndex(employeelist){
     //             </employeebuttons>
     //         </employee>
         /* </employees>
-        `
-                ${employeelist.map(employee => {
-                    ApiActions.getRequest('https://localhost:44390/api/role/'+ employee.roleId,
-            
-            roletoname=> {
-            document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
-            
-            }) */
+        `*/

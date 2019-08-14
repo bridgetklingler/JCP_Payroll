@@ -15,11 +15,11 @@ document.getElementById('rolerate').innerHTML = roletoname.payRate + "    /    "
 
     <tr>
         <th>First Name: </th>
-        <td>${employee.firstName}</td>
+        <td><strong>${employee.firstName}</strong></td>
     </tr>
     <tr>
         <th>Last Name: </th>
-        <td>${employee.lastName}</td>
+        <td><strong>${employee.lastName}</strong></td>
     </tr>
     <tr>
         <th>Email: </th>
