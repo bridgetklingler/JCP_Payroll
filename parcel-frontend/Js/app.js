@@ -77,6 +77,7 @@ const app = document.getElementById('main');
         if (auth.ssn === password){
           if (auth.admin === true){
           document.getElementById('hidenav').style.display = 'block'
+          document.getElementById('nav').style.backgroundColor = 'rgb(78, 12, 28)'
           }
           document.getElementById('nav').style.display = 'flex'
           document.getElementById('mainnav').style.display = 'flex'
@@ -524,31 +525,6 @@ function clockIn(){
     }
   })
 }
-
-// //Clock out
-// function clockOut(){
-//   document.getElementById('main').addEventListener('click', function() {
-//     if (event.target.classList.contains('clockout_submit')){
-//       console.log('clockout')
-//       var d = new Date()
-//       const data = {
-//         HoursId: 0,
-//         EmployeeId: logged_id,
-//         //TimeIn: TimeIn, //d.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds(),
-//         TimeOut: d.toISOString() //.getFullYear() + "-" + d.getMonth() + "-" + d.getDay() + " " +  d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
-//         ,
-//         TotalHours: 0,
-//         Approved: false
-//       }
-//       console.log("clock out data")
-//       console.log(data)
-//       ApiAction.putRequest('https://localhost:44390/api/hours/Clockout/'+ logged_id, data,
-//       clock=> {
-
-//       })
-//     }
-//   })
-// }
 
 function clockOut(){
   document.getElementById('main').addEventListener('click', function() {
