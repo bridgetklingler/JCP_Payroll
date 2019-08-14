@@ -1,19 +1,19 @@
 import ApiActions from "../../api/api-actions"
 
-export default function AdminHoursIndex(hourslist){
-    
-
+export default function AdminPastHoursIndex(hourslist){
+    console.log("Admin Past Hours Index")
     
     return `
+    <h2>Previous Pay-Period</h2>
     <p>Lookup by Last Name</p>
-    <input type='text' class='searchIn'>
+    <input type='text' class='searchln'>
     <button class="searchbutton rangebutton">Search</button>
 
     <p>Select Range</p>
-    <input type="date" class="range_date1" style="width: 15vw;">
-    <input type="date" class="range_date2" style="width: 15vw;">
-    <button class="getdaterange rangebutton">Range</button>
-    <h1>Hours Index</h1>
+        <input type="date" class="range_date1" style="width: 15vw;">
+        <input type="date" class="range_date2" style="width: 15vw;">
+        <button class="getdaterange rangebutton">Range</button>
+
     <table style="width:100%" class="indextable">
         <tr>
             <th class="tableheader">Employee</th>
@@ -23,7 +23,6 @@ export default function AdminHoursIndex(hourslist){
             <th class="tableheader" style="text-align: center">Hours</th>
             <th class="tableheader" style="text-align: center">Approved</th>
             <th class="tableheader"></th>
-
         </tr>
         ${hourslist.map(hours => {
 
@@ -31,18 +30,23 @@ export default function AdminHoursIndex(hourslist){
             hourtoname=> {
             document.getElementById(hours.hoursId).innerHTML = hourtoname.lastName + ", " + hourtoname.firstName;
             })
+            console.log('start collection')
             var utcTimeIn = hours.timeIn + "Z";
+            console.log("timein brought in " + hours.timeIn)
             var utcdate = new Date(utcTimeIn).toLocaleString()
+            console.log(utcdate)
             var date = new Date(utcdate).toDateString()
+            console.log(date)
             var inTime = new Date(utcTimeIn).toLocaleTimeString()
             var utcTimeOut = hours.timeOut + "Z";
+            console.log("timeout brought in" + hours.timeOut)
             var outTime = new Date(utcTimeOut).toLocaleTimeString();
 
             return ` 
 
         <tr>
             <td><hourstoname id="${hours.hoursId}"></hourstoname></td>
-            <td width="22%">${date}</td>
+            <td width="19%">${date}</td>
             <td width="14%">${inTime}</td>
             <td width="14%">${outTime}</td>
             <td width="9%" style="text-align: center">${hours.totalHours}</td>
@@ -54,7 +58,7 @@ export default function AdminHoursIndex(hourslist){
             <button class="delete_hours_submit multibutton">Delete 
             <input class="delete_hours_id" type="hidden" value="${hours.hoursId}"> 
             </button>
-                        <button class="approve_hours_submit multibutton">Approve
+            <button class="approve_hours_submit multibutton">Approve
                 <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
                 <input class="singleemployee_hours_id" type="hidden" value="${hours.employeeId}"> 
                 <input class="time_in" type="hidden" value="${hours.timeIn}">
@@ -62,13 +66,10 @@ export default function AdminHoursIndex(hourslist){
                 <input class="total_hours" type="hidden" value="${hours.totalHours}">
             </button>
             </td>
-
         </tr>
         `     
-    })    .join("")}
+    }).join("")}
     
     </table>
-
        `
-
 }
