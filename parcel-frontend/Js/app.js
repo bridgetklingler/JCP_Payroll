@@ -186,7 +186,7 @@ function adminEditEmployee(){
     const ssn = document.querySelector('.edit_employee_ssn').value;
     const birthdate = document.querySelector('.edit_employee_birthdate').value;
     const email = document.querySelector('.edit_employee_email').value;
-    const admin = document.querySelector('.edit_employee_admin').value;
+    const admin = document.querySelector('#admin_select').value;
     
     const data = {
       employeeId: employeeId,
