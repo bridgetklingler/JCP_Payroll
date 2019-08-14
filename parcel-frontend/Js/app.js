@@ -28,7 +28,7 @@ function pageBuild(){
   getAdminHoursIndex();
 
   getAdminAddHours();
-  getAdminEditHours();
+  //getAdminEditHours();
   getAdminSingleEmployee();
   
   adminAddEmployee();
@@ -381,48 +381,39 @@ function adminApproveHours(){
 }
 
 //Admin Edit Hours
-function getAdminEditHours(){
-  document.getElementById('Nav_edit_hours').addEventListener('click', function(){
-    console.log("admin version")
-    AdminEditHours();
-  })
-}
+// function getAdminEditHours(){
+//   document.getElementById('Nav_edit_hours').addEventListener('click', function(){
+//     console.log("admin version")
+//     AdminEditHours();
+//   })
+// }
 
 function adminEditHours(){
   document.getElementById('main').addEventListener('click', function() {
     if (event.target.classList.contains('edit_hours_submit')){
-
-      const hoursId = 0;
-      const employeeId = document.querySelector('#employee_select').value
-      const timeIn = document.querySelector('.edit_hours_time_in').value
-      console.log(timeIn)
-      const timeOut = document.querySelector('.edit_hours_time_out').value
-      console.log(timeOut)
-      const totalHours = converthours(timeOut, timeIn);
-      
-      console.log(totalHours);
-      const approved = document.querySelector(".edit_hours_approved").value;
-      console.log(approved)
-
-      const data = {
-        HoursId: hoursId,
-        EmployeeId: employeeId,
-        
-        TimeIn: timeIn,
-        TimeOut: timeOut,
-        TotalHours: totalHours,
-        Approved: approved
-      };
-    
-      ApiAction.postRequest('https://localhost:44390/api/hours', data,
-      hourslist=> {
-        console.log("admin version")
-        app.innerHTML = AdminHoursIndex(hourslist);
-      })
-    }
+  
+    const hoursId = document.querySelector('.single_hours_id').value
+    const employeeId = document.querySelector('.single_employee_hours_id').value
+    const timeIn = document.querySelector('.edit_time_in').value
+    const timeOut = document.querySelector('.edit_time_out').value
+    const totalHours = document.querySelector('.edit_total_hours').value;
+    const data = {
+  
+      hoursId: hoursId,
+      employeeId: employeeId,
+      timeIn: timeIn,
+      timeOut: timeOut,
+      totalHours: totalHours,
+      approved: true
+    };
+  
+    ApiAction.putRequest('https://localhost:44390/api/hours', data,
+    hourslist=> {
+      app.innerHTML = AdminHoursIndex(hourslist);
+    })
+  }
   })
-}
-
+  }
 
 //User Functions Below
 //Employee Based Function
