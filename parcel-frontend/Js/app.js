@@ -364,7 +364,7 @@ function getUserSingleEmployee(){
       console.log(employeeId);   
       ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
         employee=> {
-        UserSingleEmployee(employee);
+        app.innerHTML = UserSingleEmployee(employee);
         }
       )
     }
@@ -493,4 +493,16 @@ function logOut() {
     app.innerHTML = document.location.reload(true);
     }
 })};
+
+//Show Current Pay Period (Sun-Sat)
+  const hoursindexcurrent = document.getElementById('CurrentPay');
+  hoursindexcurrent.addEventListener('click', function(){
+    ApiAction.getRequest('https://localhost:44390/api/hours/current', hourslist => {
+      console.log("hourslist.reverse")
+      console.log(hourslist.reverse());
+      sortAdminViewUserHours(hourslist);
+      app.innerHTML = AdminHoursIndex(hourslist);
+    })
+  })
+
 
