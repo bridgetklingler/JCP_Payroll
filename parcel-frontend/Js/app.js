@@ -50,7 +50,6 @@ function pageBuild(){
   clockIn();
   clockOut();
   viewByDateRange();
-  //searchByLastName();
   searchByLastNameCurrent();
   searchByLastNamePast();
   adminCurrentHours();
