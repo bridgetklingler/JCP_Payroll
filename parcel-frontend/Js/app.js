@@ -3,7 +3,8 @@ import ApiAction from "./api/api-actions"
 import AdminEmployeeIndex from "./components/admin/AdminEmployeeIndexView"
 import AdminAddEmployee from "./components/admin/AdminAddEmployee"
 import AdminEditEmployee from "./components/admin/AdminEditEmployee"
-import AdminHoursIndex from "./components/admin/AdminHoursIndexView"
+import AdminCurrentHoursIndex from "./components/admin/AdminCurrentHoursIndexView"
+import AdminPastHoursIndex from "./components/admin/AdminPastHoursIndexView"
 import AdminAddHours from "./components/admin/AdminAddHours"
 import AdminSingleEmployee from "./components/admin/AdminSingleEmployee"
 
@@ -11,8 +12,6 @@ import UserHoursIndex from "./components/user/UserHoursIndexView"
 import UserSingleEmployee from "./components/user/UserSingleEmployee"
 import UserEditProfile from "./components/user/UserEditProfile"
 
-//admin single employee view
-//user add hours
 import EmployeeAddHours from "./components/employeeaddhours"
 import EmployeeTimeClock from "./components/user/EmployeeTimeClock";
 import Home from "./components/home";
@@ -43,7 +42,6 @@ function pageBuild(){
   userEditProfile();
   userEditCancel();
   
-  //LogIn();
   logOut();
   editCancel();
   returnIndex();
@@ -51,7 +49,9 @@ function pageBuild(){
   clockOut();
   viewByDateRange();
   searchByLastName();
-
+  adminCurrentHours();
+  userCurrentHours();
+  
 }
 
 const app = document.getElementById('main');
@@ -271,7 +271,7 @@ function returnIndex(){
 //hours based
 //Gets all Hours
 function getAdminHoursIndex(){
-  const hoursindex = document.getElementById('Nav_hours_index');
+  const hoursindex = document.getElementById('PastPay');
   hoursindex.addEventListener('click', function(){
     ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
       console.log("hourslist.reverse")
@@ -279,7 +279,7 @@ function getAdminHoursIndex(){
       sortAdminViewUserHours(hourslist);
       console.log("!!!!!!!!!getAdminHoursIndex!!!!!!!!!");
       console.log(hourslist);
-      app.innerHTML = AdminHoursIndex(hourslist);
+      app.innerHTML = AdminPastHoursIndex(hourslist);
     })
   })
 }
@@ -656,22 +656,23 @@ function logOut() {
 })};
 
 //Show Current Pay Period (Sun-Sat)
+function adminCurrentHours(){
   const hoursindexcurrent = document.getElementById('CurrentPay');
   hoursindexcurrent.addEventListener('click', function(){
     ApiAction.getRequest('https://localhost:44390/api/hours/current', hourslist => {
       console.log("hourslist.reverse")
       console.log(hourslist.reverse());
       sortAdminViewUserHours(hourslist);
-      app.innerHTML = AdminHoursIndex(hourslist);
+      app.innerHTML = AdminCurrentHoursIndex(hourslist);
     })
   })
+}
 
 //Show Current Pay Period (Sun-Sat)
-
+function userCurrentHours(){
   document.getElementById('mainnav').addEventListener('click', function() {
     if (event.target.classList.contains('empcurrenthours')){
     const employeeId = event.target.querySelector('.getcurrenthours').value;
-
     console.log(employeeId);   
     ApiAction.getRequest('https://localhost:44390/api/hours/current/'+employeeId, 
       hours=> {
@@ -680,7 +681,8 @@ function logOut() {
        console.log("hours=")
        console.log(hours)
       app.innerHTML = UserHoursIndex(hours.reverse());
-     
     })
-}})  
+}
+})  
+}
 

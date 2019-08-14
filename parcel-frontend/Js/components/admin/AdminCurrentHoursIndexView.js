@@ -1,20 +1,14 @@
 import ApiActions from "../../api/api-actions"
 
-export default function AdminHoursIndex(hourslist){
-    console.log("Hours Index")
-    
-
+export default function AdminCurrentHoursIndex(hourslist){
+    console.log("Admin Current Hours Index")
     
     return `
+    <h2>Current Pay Period</h2>
     <p>Lookup by Last Name</p>
     <input type='text' class='searchln'>
     <button class="searchbutton rangebutton">Search</button>
 
-    <p>Select Range</p>
-    <input type="date" class="range_date1" style="width: 15vw;">
-    <input type="date" class="range_date2" style="width: 15vw;">
-    <button class="getdaterange rangebutton">Range</button>
-    <h1>Hours Index</h1>
     <table style="width:100%" class="indextable">
         <tr>
             <th class="tableheader">Employee</th>
@@ -24,7 +18,6 @@ export default function AdminHoursIndex(hourslist){
             <th class="tableheader" style="text-align: center">Hours</th>
             <th class="tableheader" style="text-align: center">Approved</th>
             <th class="tableheader"></th>
-
         </tr>
         ${hourslist.map(hours => {
 
@@ -48,7 +41,7 @@ export default function AdminHoursIndex(hourslist){
 
         <tr>
             <td><hourstoname id="${hours.hoursId}"></hourstoname></td>
-            <td width="22%">${date}</td>
+            <td width="19%">${date}</td>
             <td width="14%">${inTime}</td>
             <td width="14%">${outTime}</td>
             <td width="9%" style="text-align: center">${hours.totalHours}</td>
@@ -68,13 +61,10 @@ export default function AdminHoursIndex(hourslist){
                 <input class="total_hours" type="hidden" value="${hours.totalHours}">
             </button>
             </td>
-
         </tr>
         `     
-    })    .join("")}
+    }).join("")}
     
     </table>
-
        `
-
 }
