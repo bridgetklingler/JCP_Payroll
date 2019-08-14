@@ -33,7 +33,8 @@ function pageBuild(){
   adminEditEmployee();
   adminDeleteEmployee();
   adminAddHours();
-  adminApproveHours();
+  adminApproveCurrentHours();
+  adminApprovePastHours();
  
   getUserSingleEmployee();
   getUserEditProfile();
@@ -49,7 +50,9 @@ function pageBuild(){
   clockIn();
   clockOut();
   viewByDateRange();
-  searchByLastName();
+  //searchByLastName();
+  searchByLastNameCurrent();
+  searchByLastNamePast();
   adminCurrentHours();
   userCurrentHours();
   
@@ -334,7 +337,7 @@ function adminAddHours(){
       ApiAction.postRequest('https://localhost:44390/api/hours', data,
       hourslist=> {
         ApiAction.getRequest("https://localhost:44390/api/hours", listhours=> {
-          app.innerHTML = AdminCurrentHoursIndex(listhours)
+          app.innerHTML = AdminHoursCurrentIndex(listhours)
         })
       })
     }
@@ -360,7 +363,7 @@ function converthours(timeOut,timeIn){
   return timeRound;
 }
 
-function adminApproveHours(){
+function adminApproveCurrentHours(){
   document.getElementById('main').addEventListener('click', function() {
   if (event.target.classList.contains('approve_hours_submit')){
 
@@ -381,7 +384,34 @@ function adminApproveHours(){
 
   ApiAction.putRequest('https://localhost:44390/api/hours', data,
   hourslist=> {
-    app.innerHTML = AdminHoursIndex(hourslist);
+    app.innerHTML = AdminCurrentHoursIndex(hourslist);
+  })
+}
+})
+}
+
+function adminApprovePastHours(){
+  document.getElementById('main').addEventListener('click', function() {
+  if (event.target.classList.contains('approve_hours_submit')){
+
+  const hoursId = event.target.querySelector('.single_hours_id').value
+  const employeeId = event.target.querySelector('.singleemployee_hours_id').value
+  const timeIn = event.target.querySelector('.time_in').value
+  const timeOut = event.target.querySelector('.time_out').value
+  const totalHours = event.target.querySelector('.total_hours').value;
+  const data = {
+
+    hoursId: hoursId,
+    employeeId: employeeId,
+    timeIn: timeIn,
+    timeOut: timeOut,
+    totalHours: totalHours,
+    approved: true
+  };
+
+  ApiAction.putRequest('https://localhost:44390/api/hours', data,
+  hourslist=> {
+    app.innerHTML = AdminPastHoursIndex(hourslist);
   })
 }
 })
@@ -585,7 +615,7 @@ function viewByDateRange(){
       const date2 = document.querySelector('.range_date2').value;
       ApiAction.getRequest('https://localhost:44390/api/hours/range/'+date1+"/"+date2, 
       daterange=> {
-      app.innerHTML = AdminHoursIndex(daterange);}
+      app.innerHTML = AdminPastHoursIndex(daterange);}
       )
     }
   })
@@ -593,7 +623,7 @@ function viewByDateRange(){
 
 //search Hours by employee last name
 
-function searchByLastName(){
+function searchByLastNameCurrent(){
 document.getElementById('main').addEventListener('click', function() {
   if (event.target.classList.contains('searchbutton')) {
 
@@ -602,23 +632,45 @@ document.getElementById('main').addEventListener('click', function() {
     //if the search of last name is true then display that record
     ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
       let matchinghourslist = [];
-      app.innerHTML = AdminHoursIndex(matchinghourslist) 
+      app.innerHTML = AdminCurrentHoursIndex(matchinghourslist) 
       hourslist.map(hours => { 
         ApiAction.getRequest('https://localhost:44390/api/employee/'+ hours.employeeId,
           hourtoname=> {
             if (searchLastName(hourtoname.lastName,search)){
               matchinghourslist.push(hours);
-              app.innerHTML = AdminHoursIndex(matchinghourslist) 
+              app.innerHTML = AdminCurrentHoursIndex(matchinghourslist) 
             }
         });
       });
     });
-
   }
 })
 }
 
-      
+function searchByLastNamePast(){
+  document.getElementById('main').addEventListener('click', function() {
+    if (event.target.classList.contains('searchbutton')) {
+  
+      const search = document.querySelector('.searchIn').value;
+      //search on the value using the includes function on the lastname string.
+      //if the search of last name is true then display that record
+      ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
+        let matchinghourslist = [];
+        app.innerHTML = AdminPastHoursIndex(matchinghourslist) 
+        hourslist.map(hours => { 
+          ApiAction.getRequest('https://localhost:44390/api/employee/'+ hours.employeeId,
+            hourtoname=> {
+              if (searchLastName(hourtoname.lastName,search)){
+                matchinghourslist.push(hours);
+                app.innerHTML = AdminPastHoursIndex(matchinghourslist) 
+              }
+          });
+        });
+      });
+    }
+  })
+  }
+     
  
 function searchLastName(lastName, value){
   console.log(lastName);
