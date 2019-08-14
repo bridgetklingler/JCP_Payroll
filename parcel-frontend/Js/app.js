@@ -75,11 +75,11 @@ const app = document.getElementById('main');
       ApiAction.getRequest("https://localhost:44390/api/employee/login/"+username+"/"+password, auth => {
         console.log(auth);
         if (auth.ssn === password){
+          document.getElementById('nav').style = 'display: flex; justify-content: flex-end;'
           if (auth.admin === true){
           document.getElementById('hidenav').style.display = 'block'
-          document.getElementById('nav').style.backgroundColor = 'rgb(78, 12, 28)'
+          document.getElementById('nav').style = 'display: flex; background-color: rgb(78, 12, 28)'
           }
-          document.getElementById('nav').style.display = 'flex'
           document.getElementById('mainnav').style.display = 'flex'
           document.getElementById('main').innerHTML = Home(auth);
           document.getElementById('mainnav').innerHTML = `
