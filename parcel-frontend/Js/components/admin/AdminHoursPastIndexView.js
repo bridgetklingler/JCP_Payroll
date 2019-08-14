@@ -7,7 +7,7 @@ export default function AdminPastHoursIndex(hourslist){
     <h2>Previous Pay-Period</h2>
     <div style="display: flex; justify-content: space-between; padding-top:2vh;">
     <div>
-    <input placeholder="Search Last Name" type='text' class='searchln' id="searchbar">
+    <input placeholder="Search Last Name" type='text' class='searchIn' id="searchbar">
     <button class="searchbutton rangebutton">Search</button>
     </div>
     <div>
