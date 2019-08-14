@@ -32,10 +32,10 @@ export default function AdminCurrentHoursIndex(hourslist){
             var outTime = new Date(utcTimeOut).toLocaleTimeString();
 
             if(hours.approved == true){
-                var approval = `<approve id="approve">Approved</approve>`
+                var approval = `<approve id="approve"></approve>`
             }
             else{
-                var approval = `<pend id="pending"><em>pending</em></pend>`
+                var approval = `<pend id="pending"></pend>`
             }
 
             return ` 
@@ -54,7 +54,7 @@ export default function AdminCurrentHoursIndex(hourslist){
             <button class="delete_hours_submit multibutton">Delete 
             <input class="delete_hours_id" type="hidden" value="${hours.hoursId}"> 
             </button>
-                        <button class="approve_hours_submit multibutton">Approve
+                        <button class="approve_hours_current_submit multibutton">Approve
                 <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
                 <input class="singleemployee_hours_id" type="hidden" value="${hours.employeeId}"> 
                 <input class="time_in" type="hidden" value="${hours.timeIn}">

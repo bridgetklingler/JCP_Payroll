@@ -148,7 +148,7 @@ loginbox {
 
 
 .multibutton {
-  background: linear-gradient(to bottom, rgb(198, 225, 236), rgb(122, 160, 177));
+  background: linear-gradient(to bottom, rgb(187, 232, 250), rgb(88, 142, 167));
   background-color: rgb(154, 195, 212);
   border-color: rgb(1, 21, 31);
   color:  rgb(1, 21, 31);
@@ -417,10 +417,17 @@ input, select{
 }
 
 #approve{
-  font-weight: 500;
-  color: rgb(1, 21, 31)
+  display: inline-block;
+  height: 15px;
+  width: 50px;
+  background: linear-gradient( to bottom, rgb(47, 230, 30),rgb(34, 138, 25) );
+  border: solid 1.5px rgb(13, 75, 9);  
 }
 
 #pending{
-  color: rgb(79, 83, 85);
+  display: inline-block;
+  height: 15px;
+  width: 50px;
+  background: linear-gradient( to bottom, rgb(245, 15, 15),rgb(202, 30, 30) );
+  border: solid 1.5px rgb(99, 3, 3);  
 }
