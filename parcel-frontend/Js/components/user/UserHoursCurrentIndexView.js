@@ -23,13 +23,20 @@ export default function UserCurrentHoursIndex(hourslist){
         var utcTimeOut = hours.timeOut + "Z";
         var outTime = new Date(utcTimeOut).toLocaleTimeString();
 
+        if(hours.approved == true){
+            var approval = `<approve id="approve">Approved</approve>`
+        }
+        else{
+            var approval = `<pend id="pending"><em>pending</em></pend>`
+        }
+
         return `  
         <tr>
             <td>${date}</td>
             <td>${inTime}</td>
             <td>${outTime}</td>
             <td>${hours.totalHours}</td>
-            <td>${hours.approved}</td>
+            <td width="10%" style="text-align: center">${approval}</td>
         </tr>
         `      
         })     

@@ -210,7 +210,7 @@ clockbutton{
 
 #main {
   padding: 0 5vw 5vh 5vw;
-  margin: 2em 0 2em 2em;
+  margin: 2em;
   transition: 0.5s;
 }
 
@@ -389,11 +389,11 @@ sf{
     padding: 10px;
   }
 
-  #main {
+  /* #main {
     padding: 0px;
     margin: 0px;
     margin-top: 30px;
-  }
+  } */
 
   h1 {
     font-size: 150%;
@@ -414,4 +414,13 @@ sf{
 input, select{
   padding: .5em;
   font-size: 15px;
+}
+
+#approve{
+  font-weight: 500;
+  color: rgb(1, 21, 31)
+}
+
+#pending{
+  color: rgb(79, 83, 85);
 }
