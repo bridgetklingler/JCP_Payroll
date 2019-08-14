@@ -89,10 +89,12 @@ const app = document.getElementById('main');
           <n class="emptimeclock">Time Clock
           <input type="hidden" class="gettimeclock" value="${auth.employeeId}">
           </n>
-          <n class="emphours">Current Pay-Period
+          <n class="empcurrenthours">Current Pay-Period
+          <input type="hidden" class="getcurrenthours" value="${auth.employeeId}">
+          </n>
+          <n class="emppasthours" value="${auth.employeeId}">Past Pay-Period
           <input type="hidden" class="gethours" value="${auth.employeeId}">
           </n>
-          <n value="${auth.employeeId}">Past Pay-Period</n>
           <n class="logout">Log Out
           <input type="hidden" class="logout_submit"></n>
           `
@@ -460,7 +462,7 @@ function userEditCancel(){
 //Hours Functions
 function getUserHoursIndex() {
     document.getElementById('mainnav').addEventListener('click', function() {
-      if (event.target.classList.contains('emphours')){
+      if (event.target.classList.contains('emppasthours')){
       const employeeId = event.target.querySelector('.gethours').value;
 
       console.log(employeeId);   
@@ -624,4 +626,21 @@ function logOut() {
     })
   })
 
+//Show Current Pay Period (Sun-Sat)
+
+  document.getElementById('mainnav').addEventListener('click', function() {
+    if (event.target.classList.contains('empcurrenthours')){
+    const employeeId = event.target.querySelector('.getcurrenthours').value;
+
+    console.log(employeeId);   
+    ApiAction.getRequest('https://localhost:44390/api/hours/current/'+employeeId, 
+      hours=> {
+        console.log("just before call to sortUserHours")
+        sortUserHours(hours);
+       console.log("hours=")
+       console.log(hours)
+      app.innerHTML = UserHoursIndex(hours.reverse());
+     
+    })
+}})  
 
