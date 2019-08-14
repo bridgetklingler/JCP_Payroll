@@ -1,13 +1,18 @@
 import ApiActions from "../../api/api-actions"
 
-export default function AdminCurrentHoursIndex(hourslist){
-    console.log("Admin Current Hours Index")
+export default function AdminPastHoursIndex(hourslist){
+    console.log("Admin Past Hours Index")
     
     return `
-    <h2>Current Pay Period</h2>
+    <h2>Previous Pay-Period</h2>
     <p>Lookup by Last Name</p>
     <input type='text' class='searchln'>
     <button class="searchbutton rangebutton">Search</button>
+
+    <p>Select Range</p>
+        <input type="date" class="range_date1" style="width: 15vw;">
+        <input type="date" class="range_date2" style="width: 15vw;">
+        <button class="getdaterange rangebutton">Range</button>
 
     <table style="width:100%" class="indextable">
         <tr>
@@ -53,7 +58,7 @@ export default function AdminCurrentHoursIndex(hourslist){
             <button class="delete_hours_submit multibutton">Delete 
             <input class="delete_hours_id" type="hidden" value="${hours.hoursId}"> 
             </button>
-                        <button class="approve_hours_submit multibutton">Approve
+            <button class="approve_hours_submit multibutton">Approve
                 <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
                 <input class="singleemployee_hours_id" type="hidden" value="${hours.employeeId}"> 
                 <input class="time_in" type="hidden" value="${hours.timeIn}">

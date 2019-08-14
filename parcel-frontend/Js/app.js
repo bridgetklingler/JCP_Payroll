@@ -3,12 +3,13 @@ import ApiAction from "./api/api-actions"
 import AdminEmployeeIndex from "./components/admin/AdminEmployeeIndexView"
 import AdminAddEmployee from "./components/admin/AdminAddEmployee"
 import AdminEditEmployee from "./components/admin/AdminEditEmployee"
-import AdminCurrentHoursIndex from "./components/admin/AdminCurrentHoursIndexView"
-import AdminPastHoursIndex from "./components/admin/AdminPastHoursIndexView"
+import AdminCurrentHoursIndex from "./components/admin/AdminHoursCurrentIndexView"
+import AdminPastHoursIndex from "./components/admin/AdminHoursPastIndexView"
 import AdminAddHours from "./components/admin/AdminAddHours"
 import AdminSingleEmployee from "./components/admin/AdminSingleEmployee"
 
-import UserHoursIndex from "./components/user/UserHoursIndexView"
+import UserCurrentHoursIndex from "./components/user/UserHoursCurrentIndexView"
+import UserPastHoursIndex from "./components/user/UserHoursPastIndexView"
 import UserSingleEmployee from "./components/user/UserSingleEmployee"
 import UserEditProfile from "./components/user/UserEditProfile"
 
@@ -476,7 +477,7 @@ function getUserHoursIndex() {
           sortUserHours(hours);
          console.log("hours=")
          console.log(hours)
-        app.innerHTML = UserHoursIndex(hours.reverse());
+        app.innerHTML = UserPastHoursIndex(hours.reverse());
        
       })
 }})  
@@ -680,7 +681,7 @@ function userCurrentHours(){
         sortUserHours(hours);
        console.log("hours=")
        console.log(hours)
-      app.innerHTML = UserHoursIndex(hours.reverse());
+      app.innerHTML = UserCurrentHoursIndex(hours.reverse());
     })
 }
 })  
