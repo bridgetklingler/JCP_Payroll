@@ -5,6 +5,14 @@
   max-width: 100%;
 }
 
+#searchbar {
+  border-radius: 25px;
+  border: 1px solid black;
+  padding: 20px; 
+  width: 28vw;
+  height: 0px;    
+}
+
 body {
   background-color: rgb(251, 255, 255);
 }
