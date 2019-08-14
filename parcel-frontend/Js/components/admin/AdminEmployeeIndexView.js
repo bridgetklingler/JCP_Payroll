@@ -19,7 +19,7 @@ export default function AdminEmployeeIndex(employeelist){
             ApiActions.getRequest('https://localhost:44390/api/role/'+ employee.roleId,
         
         roletoname=> {
-        document.getElementById('rolename').innerHTML = roletoname.roleName;
+        document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
         
         }) 
         return `
@@ -28,7 +28,7 @@ export default function AdminEmployeeIndex(employeelist){
                 <td>${employee.address}</td>
                 <td>${employee.phoneNumber}</td>
                 <td>${employee.email}</td>
-                <td><roletoname id="rolename"></roletoname></td>
+                <td><roletoname id="${employee.employeeId}">${employee.employeeId}</roletoname></td>
                 <td width="4%">
                     <button class="single_employee_submit multibutton">Select
                     <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 

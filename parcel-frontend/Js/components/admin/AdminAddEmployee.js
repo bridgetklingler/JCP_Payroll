@@ -42,6 +42,10 @@ export default function AdminAddEmployee()
                     <th>Role: </th>
                     <td><select id="role_select" class="add_employee_roleId"></select></td>
                 </tr>
+                <tr>
+                    <th>Admin: </th>
+                    <td><select id="admin_select" class="add_employee_admin"><option value='false'>No</option><option value='true'>Yes</option></select></td>
+                </tr>
             </table>
             
             <button class="add_employee_submit multibutton medbutton submit">Submit</button>
@@ -56,13 +60,14 @@ export default function AdminAddEmployee()
          apiActions.getRequest('https://localhost:44390/api/role', setRoles)
 
     }
+
     function setRoles(roles){
         let roleHtml = '';
         for(const role of roles){
             roleHtml += `<option value='${role.roleId}'>${role.roleName}</option>`
-
         }
         document.querySelector("#role_select").innerHTML = roleHtml;
     }
+
 }
 

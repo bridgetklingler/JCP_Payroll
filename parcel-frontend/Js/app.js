@@ -137,6 +137,7 @@ function adminAddEmployee(){
       const birthdate = document.querySelector('.add_employee_birthdate').value;
       const email = document.querySelector('.add_employee_email').value;
       const roleId = document.querySelector('#role_select').value;
+      const admin = document.querySelector('#admin_select').value;
       const data = {
         employeeId: employeeId,
         phoneNumber: phoneNumber,
@@ -147,6 +148,7 @@ function adminAddEmployee(){
         ssn: ssn,
         birthdate: birthdate,
         email: email,
+        admin: admin,
       };
     
       ApiAction.postRequest('https://localhost:44390/api/employee', data,
