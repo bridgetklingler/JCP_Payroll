@@ -50,9 +50,6 @@ export default function AdminHoursIndex(hourslist){
             <td>
             <button class="edit_hours_submit multibutton">Edit 
             <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
-            <input class="edit_time_in" type="hidden" value="${hours.timeIn}">
-            <input class="edit_time_out" type="hidden" value="${hours.timeOut}">
-            <input class="edit_total_hours" type="hidden" value="${hours.totalHours}">
             </button> 
             <button class="delete_hours_submit multibutton">Delete 
             <input class="delete_hours_id" type="hidden" value="${hours.hoursId}"> 
