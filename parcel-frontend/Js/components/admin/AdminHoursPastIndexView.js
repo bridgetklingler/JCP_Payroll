@@ -6,7 +6,7 @@ export default function AdminPastHoursIndex(hourslist){
     return `
     <h2>Previous Pay-Period</h2>
     <p>Lookup by Last Name</p>
-    <input type='text' class='searchln'>
+    <input type='text' class='searchln' id="searchbar">
     <button class="searchbutton rangebutton">Search</button>
 
     <p>Select Range</p>

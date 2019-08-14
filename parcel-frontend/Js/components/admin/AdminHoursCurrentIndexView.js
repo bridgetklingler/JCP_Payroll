@@ -5,7 +5,7 @@ export default function AdminCurrentHoursIndex(hourslist){
     return `
     <h2>Current Pay-Period</h2>
     <p>Lookup by Last Name</p>
-    <input type='text' class='searchIn'>
+    <input type='text' class='searchIn' id="searchbar">
     <button class="searchbutton rangebutton">Search</button>
 
     <table style="width:100%" class="indextable">
