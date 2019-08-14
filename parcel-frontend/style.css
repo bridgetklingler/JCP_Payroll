@@ -424,3 +424,9 @@ input, select{
 #pending{
   color: rgb(79, 83, 85);
 }
+
+.indexhover:hover {
+  cursor: pointer;
+  background-color: rgb(211, 226, 235) !important;
+  transition: 400ms;
+}

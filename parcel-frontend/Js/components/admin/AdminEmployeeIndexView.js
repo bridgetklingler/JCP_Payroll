@@ -23,16 +23,25 @@ export default function AdminEmployeeIndex(employeelist){
         
         }) 
         return `
-            <tr> 
-                <td>${employee.lastName}, ${employee.firstName}</td>
-                <td>${employee.address}</td>
-                <td>${employee.phoneNumber}</td>
-                <td>${employee.email}</td>
-                <td><roletoname id="${employee.employeeId}">${employee.employeeId}</roletoname></td>
-                <td width="4%">
-                    <button class="single_employee_submit multibutton">Select
-                    <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
-                    </button>
+            <tr class="single_employee_submit indexhover"> 
+            <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
+                <td class="single_employee_submit">${employee.lastName}, ${employee.firstName}
+                <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
+                </td>
+                <td class="single_employee_submit">${employee.address}
+                <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
+                </td>
+                <td class="single_employee_submit">${employee.phoneNumber}
+                <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
+                </td>
+                <td class="single_employee_submit">${employee.email}
+                <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
+                </td>
+                <td class="single_employee_submit"><roletoname id="${employee.employeeId}">${employee.employeeId}
+                <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
+                </roletoname></td>
+                <td class="single_employee_submit" width="4%">
+                <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
                 </td>
             </tr>
         `
