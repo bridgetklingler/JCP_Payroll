@@ -55,6 +55,11 @@ namespace JumboCaramelPayroll.Controllers
             DayOfWeek dow = DateTime.Now.DayOfWeek;
             return db.Hours.Where(a => a.TimeIn.DayOfWeek <= dow && a.TimeIn.DayOfYear > (DateTime.Now.DayOfYear -7) && a.TimeIn.Year == DateTime.Now.Year);
         }
+        [HttpGet("collect/{id}")]
+        public ActionResult<Hours> CollectPreviousHours(int id)
+        {
+            return db.Hours.Last(c => c.EmployeeId == id);
+        }
 
         // POST api/Hours
         [HttpPost]

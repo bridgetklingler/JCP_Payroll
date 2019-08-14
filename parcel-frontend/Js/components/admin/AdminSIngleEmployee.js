@@ -3,7 +3,8 @@ import ApiActions from "../../api/api-actions"
 export default function AdminSingleEmployee(employee){
     ApiActions.getRequest('https://localhost:44390/api/role/'+employee.roleId,
 roletoname=> {
-document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
+document.getElementById('rolename').innerHTML = roletoname.roleName;
+document.getElementById('rolerate').innerHTML = roletoname.payRate + "    /    " + roletoname.hourRate;
 })
     return `   
     <div> 
@@ -13,36 +14,39 @@ document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
     <table style="width: 95%">
 
     <tr>
-        <sfname><th>First Name: </th>
-        <td>${employee.firstName}</td></sfname>
+        <th>First Name: </th>
+        <td><strong>${employee.firstName}</strong></td>
     </tr>
     <tr>
-        <slname><th>Last Name: </th>
-        <td>${employee.lastName}</td></slname>
+        <th>Last Name: </th>
+        <td><strong>${employee.lastName}</strong></td>
     </tr>
     <tr>
-        <semail><th>Email: </th>
-        <td>${employee.email}</td></semail>
+        <th>Email: </th>
+        <td>${employee.email}</td>
     </tr>
     <tr>
-        <spn><th>Phone: </th>
-        <td>${employee.phoneNumber}</td></spn>
+        <th>Phone: </th>
+        <td>${employee.phoneNumber}</td>
     </tr>
     <tr>
-        <sroleId><th>Role: </th>
-        <td>${employee.roleId}</td></sroleId>
+        <th>Address: </th>
+        <td>${employee.address}</td>
     </tr>
     <tr>
-        <saddress><th>Adress: </th>
-        <td>${employee.address}</td></saddress>
+        <th>Role: </th>
+        <td><sroleId id="rolename"></sroleId></td>
     </tr>
     <tr>
-        <sssn><th>SSN: </th>
-        <td>${employee.ssn}</td></sssn>
+        <th>Rate: </th>
+        <td><srolerate id="rolerate"></srolerate></td>
+    <tr>
+        <th>SSN: </th>
+        <td>${employee.ssn}</td>
     </tr>
     <tr>
-        <sbd><th>Birth Date: </th>
-        <td>${employee.birthdate.substring(0,10)}</td></sbd>
+        <th>Birth Date: </th>
+        <td>${employee.birthdate.substring(0,10)}</td>
     </tr>
     </table>
 
