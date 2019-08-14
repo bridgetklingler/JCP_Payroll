@@ -7,7 +7,7 @@ export default function AdminHoursIndex(hourslist){
     
     return `
     <p>Lookup by Last Name</p>
-    <input type='text' class='searchln'>
+    <input type='text' class='searchIn'>
     <button class="searchbutton">Search</button>
     <p>Select Range</p>
     <input type="date" class="range_date1">
@@ -25,11 +25,12 @@ export default function AdminHoursIndex(hourslist){
 
         </tr>
         ${hourslist.map(hours => {
+
             ApiActions.getRequest('https://localhost:44390/api/employee/' + hours.employeeId, 
             hourtoname=> {
             document.getElementById(hours.hoursId).innerHTML = hourtoname.firstName + " " + hourtoname.lastName;
             })
-
+            
             var utcTimeIn = hours.timeIn + "Z";
             var utcdate = new Date(utcTimeIn).toLocaleString()
             console.log(utcdate)
@@ -39,7 +40,7 @@ export default function AdminHoursIndex(hourslist){
             var utcTimeOut = hours.timeOut + "Z";
             var outTime = new Date(utcTimeOut).toLocaleTimeString();
 
-            return            ` 
+            return` 
 
         <tr>
             <td>${date}</td>
@@ -70,4 +71,5 @@ export default function AdminHoursIndex(hourslist){
     </table>
 
        `
+
 }
