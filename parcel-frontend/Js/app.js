@@ -309,12 +309,13 @@ function adminAddHours(){
 
       const hoursId = 0;
       const employeeId = document.querySelector('#employee_select').value
-      const timeIn = new Date(document.querySelector('.add_hours_time_in').value).toISOString()
-      console.log(timeIn)
-      const timeOut = new Date(document.querySelector('.add_hours_time_out').value).toISOString()
-      console.log(timeOut)
-      const totalHours = converthours(timeOut, timeIn);
-      
+      const timeInUtc = new Date(document.querySelector('.add_hours_time_in').value).toISOString()
+      console.log(timeInUtc)
+      const timeOutUtc = new Date(document.querySelector('.add_hours_time_out').value).toISOString()
+      console.log(timeOutUtc)
+      const totalHours = converthours(timeOutUtc, timeInUtc);
+      const timeIn = new Date(timeInUtc)
+      const timeOut = new Date(timeOutUtc)
       console.log(totalHours);
       const approved = document.querySelector(".add_hours_approved").value;
       console.log(approved)
@@ -331,8 +332,9 @@ function adminAddHours(){
     
       ApiAction.postRequest('https://localhost:44390/api/hours', data,
       hourslist=> {
-        console.log("admin version")
-        app.innerHTML = AdminHoursIndex(hourslist);
+        ApiAction.getRequest("https://localhost:44390/api/hours", listhours=> {
+          app.innerHTML = AdminHoursIndex(listhours)
+        })
       })
     }
   })
@@ -591,52 +593,24 @@ function viewByDateRange(){
 //search Hours by employee last name
 
 function searchByLastName(){
-  // document.getElementById('main').addEventListener('click', function() {
-  //   if (event.target.classList.contains('searchbutton')) {
-  //     const search = document.querySelector('.searchln').value;
-  //     ApiAction.getRequest('https://localhost:44390/api/hours/search/'+search,
-  //     results=> {
-  //       app.innerHTML = AdminHoursIndex(results);}
-  //     )
-  //   }
-  // })
-
 document.getElementById('main').addEventListener('click', function() {
-  console.log("event.target.classList.contains=");
-  console.log(event.target.classList.contains('searchbutton'));
   if (event.target.classList.contains('searchbutton')) {
 
-    console.log(document.querySelector('.searchIn'));
     const search = document.querySelector('.searchIn').value;
     //search on the value using the includes function on the lastname string.
     //if the search of last name is true then display that record
     ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
-      console.log("HOURS LIST FETCHED");
-      console.log(hourslist);
       let matchinghourslist = [];
       app.innerHTML = AdminHoursIndex(matchinghourslist) 
       hourslist.map(hours => { 
         ApiAction.getRequest('https://localhost:44390/api/employee/'+ hours.employeeId,
           hourtoname=> {
-            console.log("WHAT");
-            console.log(hourtoname);
-            //document.getElementById(hours.hoursId).innerHTML = hourtoname.firstName + " " + hourtoname.lastName;
-            console.log("hourtoname.lastName=");
-            console.log(hourtoname.lastName);
-            console.log("search=");
-            console.log(search);
-            console.log(searchLastName(hourtoname.lastName, search));
-
             if (searchLastName(hourtoname.lastName,search)){
-              console.log("ADDING");
-              console.log(hours);
               matchinghourslist.push(hours);
               app.innerHTML = AdminHoursIndex(matchinghourslist) 
             }
         });
       });
-      console.log("DONE");
-      console.log(matchinghourslist);
     });
 
   }
