@@ -254,6 +254,8 @@ function getAdminHoursIndex(){
       console.log("hourslist.reverse")
       console.log(hourslist.reverse());
       sortAdminViewUserHours(hourslist);
+      console.log("!!!!!!!!!getAdminHoursIndex!!!!!!!!!");
+      console.log(hourslist);
       app.innerHTML = AdminHoursIndex(hourslist);
     })
   })
@@ -478,15 +480,53 @@ document.getElementById('main').addEventListener('click', function() {
 
 //search Hours by employee last name
 document.getElementById('main').addEventListener('click', function() {
+  console.log("event.target.classList.contains=");
+  console.log(event.target.classList.contains('searchbutton'));
   if (event.target.classList.contains('searchbutton')) {
-    const search = document.querySelector('.searchln').value;
-    ApiAction.getRequest('https://localhost:44390/api/hours/search/'+search,
-    results=> {
-      app.innerHTML = AdminHoursIndex(results);}
-    )
+    console.log(document.querySelector('.searchIn'));
+    const search = document.querySelector('.searchIn').value;
+    //search on the value using the includes function on the lastname string.
+    //if the search of last name is true then display that record
+    ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
+      hourslist.map(hours => { 
+        ApiAction.getRequest('https://localhost:44390/api/employee/'+ hours.employeeId,
+          hourtoname=> {
+            console.log("WHAT");
+            console.log(hourtoname);
+            document.getElementById(hours.hoursId).innerHTML = hourtoname.firstName + " " + hourtoname.lastName;
+            console.log("hourtoname.lastName=");
+            console.log(hourtoname.lastName);
+            console.log("search=");
+            console.log(search);
+            if (searchLastName(hourtoname.lastName,search)){
+              app.innerHTML = AdminHoursIndex(hourslist) 
+            }
+        });
+      });
+    });
   }
 })
 
+      
+      
+      
+    
+        
+        
+     
+    
+     
+    
+    
+      
+ 
+function searchLastName(lastName,value){
+  var str=lastName;
+  console.log(str);
+  var n=str.includes(value);
+  return n;
+
+}
 function logOut() {
   document.getElementById('mainnav').addEventListener('click', function() {
     if (event.target.classList.contains('logout')){
