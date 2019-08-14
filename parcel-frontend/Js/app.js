@@ -305,9 +305,9 @@ function adminAddHours(){
 
       const hoursId = 0;
       const employeeId = document.querySelector('#employee_select').value
-      const timeIn = document.querySelector('.add_hours_time_in').value
+      const timeIn = new Date(document.querySelector('.add_hours_time_in').value).toISOString()
       console.log(timeIn)
-      const timeOut = document.querySelector('.add_hours_time_out').value
+      const timeOut = new Date(document.querySelector('.add_hours_time_out').value).toISOString()
       console.log(timeOut)
       const totalHours = converthours(timeOut, timeIn);
       
@@ -348,7 +348,7 @@ function converthours(timeOut,timeIn){
   var timeDiff = (toDate - fromDate)/3600;
   console.log(timeDiff);
   
-  const timeRound = Math.abs(Math.round((timeDiff+.049)*10)/10);
+  const timeRound = Math.abs(Math.round((timeDiff+.0499)*10)/10);
   console.log(timeRound)
   return timeRound;
 }
