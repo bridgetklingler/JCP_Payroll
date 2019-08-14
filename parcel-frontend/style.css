@@ -1,6 +1,7 @@
 * {
   padding: 0;
   margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 body {
@@ -20,7 +21,7 @@ nav {
 mainnav {
   display: flex;
   justify-content: space-around;
-  width: 33%;
+  width: 50%;
   align-items: center;
   display: none;
 }
@@ -33,6 +34,28 @@ n {
 
 n:hover {
   background-color: rgb(28, 67, 85);
+}
+
+@media only screen and (max-width: 1200px){
+  mainnav{
+    width: 75%;
+  }
+}
+
+@media only screen and (max-width: 800px){
+  mainnav{
+    width: 90%;
+  }
+
+  n{
+    padding: 1vh 5px 1.5vh 5px;
+  }
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-width: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
 }
 
 loginbox {
@@ -59,6 +82,7 @@ loginbox {
 #hidenav {
   display: none;
 }
+
 /* The side navigation menu */
 .sidenav {
   height: 100%; /* 100% Full-height */
@@ -97,13 +121,6 @@ loginbox {
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
-}
-
-
-/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
 }
 
 
@@ -165,68 +182,69 @@ h1 {
 
 .heading{
   text-align: center;
-}
-
-.indextable, .indextable th, .indextable td {
-  margin-left: 0;
-  border-collapse: collapse;
-  border-bottom: solid 1px  rgb(1, 21, 31);
-}
-
-.indextable{
-  border: solid 1px  rgb(1, 21, 31);
-}
-
-.tableheader{
-  font-weight: 800; 
-  background-color: rgb(120, 161, 182);
-}
-
-tr{
-  font-size: 14px;
-  padding: .5vh .5vw;
-  border: none;
-}
-
-.indextable tr:nth-child(even) {
-  background-color: rgb(250, 225, 201);
-}
-
-.indextable tr:nth-child(odd) {
-  background-color: rgb(247, 242, 230);
-}
-
-.indextable{
-  min-width: 700px;
-}
-
-
-select{
-  background-color: rgb(252, 244, 222);
-}
-
-role_select-value:hover{
-  background-color: rgb(154, 195, 212);
-}
+}  
 
 table{
-  margin: 1.5em;
+  margin: 1em;
   margin-left: 0em;
 }
 
 tr{
+  font-size: 14px;
+  padding: 1em;
+  border: none;
   text-align: left;
   padding: 1em;
   font-size: 20px;
 }
 
 td{
-  padding: .3em;
+  padding: .4em;
+}
+
+td button{
+  padding: 0em;
 }
 
 th{
   width: 20vw;
 }
+
+.indextable, .indextable th, .indextable td {
+  margin-left: 0;
+  border-collapse: collapse;
+  border-bottom: solid 1px  rgb(1, 21, 31);
+}  
+
+.indextable{
+  border: solid 1px  rgb(1, 21, 31);
+}  
+
+.tableheader{
+  font-weight: 800; 
+  background-color: rgb(120, 161, 182);
+}  
+
+.indextable tr:nth-child(even) {
+  background-color: rgb(250, 225, 201);
+}  
+
+.indextable tr:nth-child(odd) {
+  background-color: rgb(247, 242, 230);
+}  
+
+.indextable{
+  min-width: 700px;
+}  
+
+
+select{
+  background-color: rgb(252, 244, 222);
+}  
+
+role_select-value:hover{
+  background-color: rgb(154, 195, 212);
+}  
 
 hoursbuttons , employeebuttons {
     min-width:15vw;
@@ -303,11 +321,6 @@ sf{
   color: green;
 }
 
-/*
-body {
-  background-color: magenta;
-}
-*/
 .phone_only {
   display: none;
 }
@@ -315,22 +328,13 @@ body {
   display: inline-block;
 }
 
-
-
 @media (max-width: 700px) {
-  /*
-  body {
-    background-color: red;
-  }
-  */
-
   .phone_only {
     display: inline-block;
   }
   .cpu_only {
     display: none;
   }
-
 
   .clock {
     padding: 0px;
@@ -363,44 +367,13 @@ body {
     width: 36vw;
   }
 
-
-
-  hours {
-    text-align: center;
-  }
-  dates {
-    justify-content: unset;
-    width: 52vw;
-  }
-  dateworked {
-    width: 20vw;
-    margin: 0px;
-  }
-  timein, timeout {
-    width: 16vw;
-  }
-
-  totalhours {
-    width: 10vw;
-    min-width: 10vw;
-  }
-
-  approved {
-    width: 12vw;
-  }
-
   hoursbuttons {
     width: 23vw;
   }
 
-  hour, employee, .green, .blue {
-    justify-content: unset;
-    padding: 0px;
-  }
+}
 
-  hour *, employee * {
-    border: 1px solid rgba(0, 100, 0, 0.2) !important;
-  }
-
-  
+input, select{
+  padding: .5em;
+  font-size: 15px;
 }

@@ -2,7 +2,8 @@ import ApiActions from "../../api/api-actions"
 
 export default function UserSingleEmployee(employee){
     ApiActions.getRequest('https://localhost:44390/api/role/'+employee.roleId,
-    setRoles => { document.getElementById('rolenames').innerHTML = setRoles.roleName})
+    setRoles => { document.getElementById('rolenames').innerHTML = setRoles.roleName
+                    document.getElementById('rolerate').innerHTML = setRoles.payRate + '    /    ' + setRoles.hourRate})
         
         return `   
     <div> 
@@ -28,12 +29,16 @@ export default function UserSingleEmployee(employee){
         <td>${employee.phoneNumber}</td>
     </tr>
     <tr>
+        <th>Adress: </th>
+        <td>${employee.address}</td>
+    </tr>
+    <tr>
         <th>Role: </th>
         <td id="roletoname"><sroleId id="rolenames"></sroleId></td>
     </tr>
     <tr>
-        <th>Adress: </th>
-        <td>${employee.address}</td>
+        <th>Rate: </th>
+        <td><sroleId id="rolerate"><s/roleId></td>
     </tr>
     <tr>
         <th>SSN: </th>
@@ -53,22 +58,3 @@ export default function UserSingleEmployee(employee){
     </employeebuttons>
     `
 }
-
-// function loadRoles(){
-//     ApiActions.getRequest('https://localhost:44390/api/role/' + employee.roleId,
-//     setRoles
-//     // => {
-//     // document.getElementById("#roletoname").innerHTML = roletoname.roleName;
-//     // apiActions.getRequest('https://localhost:44390/api/role', setRoles)
-// // }
-// )}
-
-// function setRoles(role){
-//     console.log(role.roleName)
-//     roleHtml += `<role id="role_select-value" value='${role.roleId}'>${role.roleName}</role>`;
-
-    
-//     document.querySelector("#rolenames").innerHTML = roleHtml;
-// }
-
-
