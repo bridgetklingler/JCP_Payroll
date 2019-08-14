@@ -5,6 +5,7 @@ import AdminAddEmployee from "./components/admin/AdminAddEmployee"
 import AdminEditEmployee from "./components/admin/AdminEditEmployee"
 import AdminHoursIndex from "./components/admin/AdminHoursIndexView"
 import AdminAddHours from "./components/admin/AdminAddHours"
+import AdminEditHours from "./components/admin/AdminEditHours"
 import AdminSingleEmployee from "./components/admin/AdminSingleEmployee"
 
 import UserHoursIndex from "./components/user/UserHoursIndexView"
@@ -27,12 +28,14 @@ function pageBuild(){
   getAdminHoursIndex();
 
   getAdminAddHours();
+  getAdminEditHours();
   getAdminSingleEmployee();
   
   adminAddEmployee();
   adminEditEmployee();
   adminDeleteEmployee();
   adminAddHours();
+  adminEditHours();
   adminApproveHours();
  
   getUserSingleEmployee();
@@ -376,6 +379,50 @@ function adminApproveHours(){
 }
 })
 }
+
+//Admin Edit Hours
+function getAdminEditHours(){
+  document.getElementById('Nav_edit_hours').addEventListener('click', function(){
+    console.log("admin version")
+    AdminEditHours();
+  })
+}
+
+function adminEditHours(){
+  document.getElementById('main').addEventListener('click', function() {
+    if (event.target.classList.contains('edit_hours_submit')){
+
+      const hoursId = 0;
+      const employeeId = document.querySelector('#employee_select').value
+      const timeIn = document.querySelector('.edit_hours_time_in').value
+      console.log(timeIn)
+      const timeOut = document.querySelector('.edit_hours_time_out').value
+      console.log(timeOut)
+      const totalHours = converthours(timeOut, timeIn);
+      
+      console.log(totalHours);
+      const approved = document.querySelector(".edit_hours_approved").value;
+      console.log(approved)
+
+      const data = {
+        HoursId: hoursId,
+        EmployeeId: employeeId,
+        
+        TimeIn: timeIn,
+        TimeOut: timeOut,
+        TotalHours: totalHours,
+        Approved: approved
+      };
+    
+      ApiAction.postRequest('https://localhost:44390/api/hours', data,
+      hourslist=> {
+        console.log("admin version")
+        app.innerHTML = AdminHoursIndex(hourslist);
+      })
+    }
+  })
+}
+
 
 //User Functions Below
 //Employee Based Function
