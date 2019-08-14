@@ -89,10 +89,12 @@ const app = document.getElementById('main');
           <n class="emptimeclock">Time Clock
           <input type="hidden" class="gettimeclock" value="${auth.employeeId}">
           </n>
-          <n class="emphours">Current Pay-Period
+          <n class="empcurrenthours">Current Pay-Period
+          <input type="hidden" class="getcurrenthours" value="${auth.employeeId}">
+          </n>
+          <n class="emppasthours" value="${auth.employeeId}">Past Pay-Period
           <input type="hidden" class="gethours" value="${auth.employeeId}">
           </n>
-          <n value="${auth.employeeId}">Past Pay-Period</n>
           <n class="logout">Log Out
           <input type="hidden" class="logout_submit"></n>
           `
@@ -275,6 +277,8 @@ function getAdminHoursIndex(){
       console.log("hourslist.reverse")
       console.log(hourslist.reverse());
       sortAdminViewUserHours(hourslist);
+      console.log("!!!!!!!!!getAdminHoursIndex!!!!!!!!!");
+      console.log(hourslist);
       app.innerHTML = AdminHoursIndex(hourslist);
     })
   })
@@ -305,9 +309,9 @@ function adminAddHours(){
 
       const hoursId = 0;
       const employeeId = document.querySelector('#employee_select').value
-      const timeIn = document.querySelector('.add_hours_time_in').value
+      const timeIn = new Date(document.querySelector('.add_hours_time_in').value).toISOString()
       console.log(timeIn)
-      const timeOut = document.querySelector('.add_hours_time_out').value
+      const timeOut = new Date(document.querySelector('.add_hours_time_out').value).toISOString()
       console.log(timeOut)
       const totalHours = converthours(timeOut, timeIn);
       
@@ -348,7 +352,7 @@ function converthours(timeOut,timeIn){
   var timeDiff = (toDate - fromDate)/3600;
   console.log(timeDiff);
   
-  const timeRound = Math.abs(Math.round((timeDiff+.049)*10)/10);
+  const timeRound = Math.abs(Math.round((timeDiff+.0499)*10)/10);
   console.log(timeRound)
   return timeRound;
 }
@@ -390,7 +394,9 @@ function getUserSingleEmployee(){
       console.log(employeeId);   
       ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
         employee=> {
-        app.innerHTML= UserSingleEmployee(employee);
+
+        app.innerHTML = UserSingleEmployee(employee);
+
         }
       )
     }
@@ -460,7 +466,7 @@ function userEditCancel(){
 //Hours Functions
 function getUserHoursIndex() {
     document.getElementById('mainnav').addEventListener('click', function() {
-      if (event.target.classList.contains('emphours')){
+      if (event.target.classList.contains('emppasthours')){
       const employeeId = event.target.querySelector('.gethours').value;
 
       console.log(employeeId);   
@@ -583,27 +589,63 @@ function viewByDateRange(){
 //search Hours by employee last name
 
 function searchByLastName(){
-  document.getElementById('main').addEventListener('click', function() {
-    if (event.target.classList.contains('searchbutton')) {
-      const search = document.querySelector('.searchln').value;
-      ApiAction.getRequest('https://localhost:44390/api/hours/search/'+search,
-      results=> {
-        app.innerHTML = AdminHoursIndex(results);}
-      )
-    }
-  })
+  // document.getElementById('main').addEventListener('click', function() {
+  //   if (event.target.classList.contains('searchbutton')) {
+  //     const search = document.querySelector('.searchln').value;
+  //     ApiAction.getRequest('https://localhost:44390/api/hours/search/'+search,
+  //     results=> {
+  //       app.innerHTML = AdminHoursIndex(results);}
+  //     )
+  //   }
+  // })
 
 document.getElementById('main').addEventListener('click', function() {
+  console.log("event.target.classList.contains=");
+  console.log(event.target.classList.contains('searchbutton'));
   if (event.target.classList.contains('searchbutton')) {
-    const search = document.querySelector('.searchln').value;
-    //search employee lastname field for string in the value field
 
-    ApiAction.getRequest('https://localhost:44390/api/hours/search/'+search,
-    results=> {
-      app.innerHTML = AdminHoursIndex(results);}
-    )
+    console.log(document.querySelector('.searchIn'));
+    const search = document.querySelector('.searchIn').value;
+    //search on the value using the includes function on the lastname string.
+    //if the search of last name is true then display that record
+    ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
+      console.log("HOURS LIST FETCHED");
+      console.log(hourslist);
+      let matchinghourslist = [];
+      app.innerHTML = AdminHoursIndex(matchinghourslist) 
+      hourslist.map(hours => { 
+        ApiAction.getRequest('https://localhost:44390/api/employee/'+ hours.employeeId,
+          hourtoname=> {
+            console.log("WHAT");
+            console.log(hourtoname);
+            //document.getElementById(hours.hoursId).innerHTML = hourtoname.firstName + " " + hourtoname.lastName;
+            console.log("hourtoname.lastName=");
+            console.log(hourtoname.lastName);
+            console.log("search=");
+            console.log(search);
+            console.log(searchLastName(hourtoname.lastName, search));
+
+            if (searchLastName(hourtoname.lastName,search)){
+              console.log("ADDING");
+              console.log(hours);
+              matchinghourslist.push(hours);
+              app.innerHTML = AdminHoursIndex(matchinghourslist) 
+            }
+        });
+      });
+      console.log("DONE");
+      console.log(matchinghourslist);
+    });
+
   }
 })
+}
+
+      
+ 
+function searchLastName(lastName, value){
+  console.log(lastName);
+  return lastName.toLowerCase().includes(value.toLowerCase());
 }
 
 function logOut() {
@@ -612,4 +654,33 @@ function logOut() {
     app.innerHTML = document.location.reload(true);
     }
 })};
+
+//Show Current Pay Period (Sun-Sat)
+  const hoursindexcurrent = document.getElementById('CurrentPay');
+  hoursindexcurrent.addEventListener('click', function(){
+    ApiAction.getRequest('https://localhost:44390/api/hours/current', hourslist => {
+      console.log("hourslist.reverse")
+      console.log(hourslist.reverse());
+      sortAdminViewUserHours(hourslist);
+      app.innerHTML = AdminHoursIndex(hourslist);
+    })
+  })
+
+//Show Current Pay Period (Sun-Sat)
+
+  document.getElementById('mainnav').addEventListener('click', function() {
+    if (event.target.classList.contains('empcurrenthours')){
+    const employeeId = event.target.querySelector('.getcurrenthours').value;
+
+    console.log(employeeId);   
+    ApiAction.getRequest('https://localhost:44390/api/hours/current/'+employeeId, 
+      hours=> {
+        console.log("just before call to sortUserHours")
+        sortUserHours(hours);
+       console.log("hours=")
+       console.log(hours)
+      app.innerHTML = UserHoursIndex(hours.reverse());
+     
+    })
+}})  
 

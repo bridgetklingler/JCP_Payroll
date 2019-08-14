@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -46,8 +47,22 @@ namespace JumboCaramelPayroll.Controllers
             List<Hours> searchHours = new List<Hours>();
             searchHours = db.Hours.Where(h => h.EmployeeId == foundEmployee.EmployeeId).ToList();
             return searchHours;;
-            
         }
+
+        [HttpGet("current")]
+        public IEnumerable<Hours> GetCurrentPay()
+        {
+            DayOfWeek dow = DateTime.Now.DayOfWeek;
+            return db.Hours.Where(a => a.TimeIn.DayOfWeek <= dow && a.TimeIn.DayOfYear > (DateTime.Now.DayOfYear -7) && a.TimeIn.Year == DateTime.Now.Year);
+        }
+
+        [HttpGet("current/{id}")]
+        public IEnumerable<Hours> GetCurrentPayById(int id)
+        {
+            DayOfWeek dow = DateTime.Now.DayOfWeek;
+            return db.Hours.Where(a => a.TimeIn.DayOfWeek <= dow && a.TimeIn.DayOfYear > (DateTime.Now.DayOfYear - 7) && a.TimeIn.Year == DateTime.Now.Year && a.EmployeeId == id);
+        }
+
         [HttpGet("collect/{id}")]
         public ActionResult<Hours> CollectPreviousHours(int id)
         {
