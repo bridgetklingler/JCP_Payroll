@@ -75,11 +75,11 @@ const app = document.getElementById('main');
       ApiAction.getRequest("https://localhost:44390/api/employee/login/"+username+"/"+password, auth => {
         console.log(auth);
         if (auth.ssn === password){
+          document.getElementById('nav').style = 'display: flex; justify-content: flex-end;'
           if (auth.admin === true){
           document.getElementById('hidenav').style.display = 'block'
-          document.getElementById('nav').style.backgroundColor = 'rgb(78, 12, 28)'
+          document.getElementById('nav').style = 'display: flex; background-color: rgb(78, 12, 28)'
           }
-          document.getElementById('nav').style.display = 'flex'
           document.getElementById('mainnav').style.display = 'flex'
           document.getElementById('main').innerHTML = Home(auth);
           document.getElementById('mainnav').innerHTML = `
@@ -139,6 +139,7 @@ function adminAddEmployee(){
       const birthdate = document.querySelector('.add_employee_birthdate').value;
       const email = document.querySelector('.add_employee_email').value;
       const roleId = document.querySelector('#role_select').value;
+      const admin = document.querySelector('#admin_select').value;
       const data = {
         employeeId: employeeId,
         phoneNumber: phoneNumber,
@@ -149,6 +150,7 @@ function adminAddEmployee(){
         ssn: ssn,
         birthdate: birthdate,
         email: email,
+        admin: admin,
       };
     
       ApiAction.postRequest('https://localhost:44390/api/employee', data,
@@ -186,7 +188,7 @@ function adminEditEmployee(){
     const ssn = document.querySelector('.edit_employee_ssn').value;
     const birthdate = document.querySelector('.edit_employee_birthdate').value;
     const email = document.querySelector('.edit_employee_email').value;
-    const admin = document.querySelector('.edit_employee_admin').value;
+    const admin = document.querySelector('#admin_select').value;
     
     const data = {
       employeeId: employeeId,

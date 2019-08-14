@@ -7,20 +7,22 @@ export default function AdminHoursIndex(hourslist){
     
     return `
     <p>Lookup by Last Name</p>
-    <input type='text' class='searchIn'>
-    <button class="searchbutton">Search</button>
+    <input type='text' class='searchln'>
+    <button class="searchbutton rangebutton">Search</button>
+
     <p>Select Range</p>
-    <input type="date" class="range_date1">
-    <input type="date" class="range_date2">
-    <button class="getdaterange">Range</button>
+    <input type="date" class="range_date1" style="width: 15vw;">
+    <input type="date" class="range_date2" style="width: 15vw;">
+    <button class="getdaterange rangebutton">Range</button>
     <h1>Hours Index</h1>
     <table style="width:100%" class="indextable">
         <tr>
+            <th class="tableheader">Employee</th>
             <th class="tableheader">Date Worked</th>
             <th class="tableheader">Time In</th>
             <th class="tableheader">Time Out</th>
-            <th class="tableheader">Total Hours</th>
-            <th class="tableheader">Approved</th>
+            <th class="tableheader" style="text-align: center">Hours</th>
+            <th class="tableheader" style="text-align: center">Approved</th>
             <th class="tableheader"></th>
 
         </tr>
@@ -28,7 +30,7 @@ export default function AdminHoursIndex(hourslist){
 
             ApiActions.getRequest('https://localhost:44390/api/employee/' + hours.employeeId, 
             hourtoname=> {
-            document.getElementById(hours.hoursId).innerHTML = hourtoname.firstName + " " + hourtoname.lastName;
+            document.getElementById(hours.hoursId).innerHTML = hourtoname.lastName + ", " + hourtoname.firstName;
             })
             console.log('start collection')
             var utcTimeIn = hours.timeIn + "Z";
@@ -41,16 +43,17 @@ export default function AdminHoursIndex(hourslist){
             var utcTimeOut = hours.timeOut + "Z";
             console.log("timeout brought in" + hours.timeOut)
             var outTime = new Date(utcTimeOut).toLocaleTimeString();
-            console.log('end collection')
-            return` 
+
+            return ` 
 
         <tr>
-            <td>${date}</td>
-            <td>${inTime}</td>
-            <td>${outTime}</td>
-            <td>${hours.totalHours}</td>
-            <td width="10%">${hours.approved}</td>
-            <td width="14%">
+            <td><hourstoname id="${hours.hoursId}"></hourstoname></td>
+            <td width="22%">${date}</td>
+            <td width="14%">${inTime}</td>
+            <td width="14%">${outTime}</td>
+            <td width="9%" style="text-align: center">${hours.totalHours}</td>
+            <td width="10%" style="text-align: center">${hours.approved}</td>
+            <td style="text-align: right; padding: 0;">
             <button class="edit_hours multibutton">Edit 
             <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
             </button> 
