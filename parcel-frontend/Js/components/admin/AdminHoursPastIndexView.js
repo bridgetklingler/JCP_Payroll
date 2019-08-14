@@ -45,10 +45,10 @@ export default function AdminPastHoursIndex(hourslist){
             var outTime = new Date(utcTimeOut).toLocaleTimeString();
 
             if(hours.approved == true){
-                var approval = "approved"
+                var approval = `<approve id="approve">Approved</approve>`
             }
             else{
-                var approval = "pending"
+                var approval = `<pend id="pending"><em>pending</em></pend>`
             }
 
             return ` 
