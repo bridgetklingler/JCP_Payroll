@@ -530,6 +530,7 @@ function clockIn(){
       clock => {   
 
       })
+      alert("You have Clocked In.")
     }
   })
 }
@@ -566,6 +567,7 @@ function clockOut(){
         clock=> {
           
         })
+        alert("You have Clocked Out.")
       })
     }
   })
