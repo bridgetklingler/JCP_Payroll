@@ -29,16 +29,16 @@ export default function UserSingleEmployee(employee){
         <td>${employee.phoneNumber}</td>
     </tr>
     <tr>
+        <th>Adress: </th>
+        <td>${employee.address}</td>
+    </tr>
+    <tr>
         <th>Role: </th>
         <td id="roletoname"><sroleId id="rolenames"></sroleId></td>
     </tr>
     <tr>
         <th>Rate: </th>
         <td><sroleId id="rolerate"><s/roleId></td>
-    </tr>
-    <tr>
-        <th>Adress: </th>
-        <td>${employee.address}</td>
     </tr>
     <tr>
         <th>SSN: </th>

@@ -30,7 +30,6 @@ export default function UserEditProfile(employee){
                         <th>Birth Date: </th>
                         <td><input type="date" class="edit_employee_birthdate" value="${employee.birthdate.substring(0,10)}"></td>
                 </tr>
-
             </table>
 
             <div>

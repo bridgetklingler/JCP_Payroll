@@ -30,16 +30,16 @@ document.getElementById('rolerate').innerHTML = roletoname.payRate + "    /    "
         <td>${employee.phoneNumber}</td>
     </tr>
     <tr>
+        <th>Address: </th>
+        <td>${employee.address}</td>
+    </tr>
+    <tr>
         <th>Role: </th>
         <td><sroleId id="rolename"></sroleId></td>
     </tr>
     <tr>
         <th>Rate: </th>
         <td><srolerate id="rolerate"></srolerate></td>
-    <tr>
-        <th>Address: </th>
-        <td>${employee.address}</td>
-    </tr>
     <tr>
         <th>SSN: </th>
         <td>${employee.ssn}</td>
