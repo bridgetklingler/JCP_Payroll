@@ -32,7 +32,7 @@ export default function UserSingleEmployee(employee){
         <td>${employee.phoneNumber}</td>
     </tr>
     <tr>
-        <th>Adress: </th>
+        <th>Address: </th>
         <td>${employee.address}</td>
     </tr>
     <tr>
