@@ -58,22 +58,3 @@ export default function UserSingleEmployee(employee){
     </employeebuttons>
     `
 }
-
-// function loadRoles(){
-//     ApiActions.getRequest('https://localhost:44390/api/role/' + employee.roleId,
-//     setRoles
-//     // => {
-//     // document.getElementById("#roletoname").innerHTML = roletoname.roleName;
-//     // apiActions.getRequest('https://localhost:44390/api/role', setRoles)
-// // }
-// )}
-
-// function setRoles(role){
-//     console.log(role.roleName)
-//     roleHtml += `<role id="role_select-value" value='${role.roleId}'>${role.roleName}</role>`;
-
-    
-//     document.querySelector("#rolenames").innerHTML = roleHtml;
-// }
-
-

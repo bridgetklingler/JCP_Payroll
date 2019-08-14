@@ -29,7 +29,7 @@ export default function AdminEmployeeIndex(employeelist){
                 <td>${employee.phoneNumber}</td>
                 <td>${employee.email}</td>
                 <td><roletoname id="rolename"></roletoname></td>
-                <td>
+                <td width="4%">
                     <button class="single_employee_submit multibutton">Select
                     <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
                     </button>

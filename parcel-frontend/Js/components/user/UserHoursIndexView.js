@@ -22,11 +22,8 @@ export default function UserHoursIndex(hourslist){
         var inTime = new Date(utcTimeIn).toLocaleTimeString()
         var utcTimeOut = hours.timeOut + "Z";
         var outTime = new Date(utcTimeOut).toLocaleTimeString();
-        
-
 
         return `  
-
         <tr>
             <td>${date}</td>
             <td>${inTime}</td>
@@ -34,7 +31,6 @@ export default function UserHoursIndex(hourslist){
             <td>${hours.totalHours}</td>
             <td>${hours.approved}</td>
         </tr>
-            
         `      
         })     
         .join("")}
