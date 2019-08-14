@@ -587,15 +587,15 @@ function viewByDateRange(){
 //search Hours by employee last name
 
 function searchByLastName(){
-  document.getElementById('main').addEventListener('click', function() {
-    if (event.target.classList.contains('searchbutton')) {
-      const search = document.querySelector('.searchln').value;
-      ApiAction.getRequest('https://localhost:44390/api/hours/search/'+search,
-      results=> {
-        app.innerHTML = AdminHoursIndex(results);}
-      )
-    }
-  })
+  // document.getElementById('main').addEventListener('click', function() {
+  //   if (event.target.classList.contains('searchbutton')) {
+  //     const search = document.querySelector('.searchln').value;
+  //     ApiAction.getRequest('https://localhost:44390/api/hours/search/'+search,
+  //     results=> {
+  //       app.innerHTML = AdminHoursIndex(results);}
+  //     )
+  //   }
+  // })
 
 document.getElementById('main').addEventListener('click', function() {
   console.log("event.target.classList.contains=");
