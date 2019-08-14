@@ -334,7 +334,7 @@ function adminAddHours(){
       ApiAction.postRequest('https://localhost:44390/api/hours', data,
       hourslist=> {
         ApiAction.getRequest("https://localhost:44390/api/hours", listhours=> {
-          app.innerHTML = AdminHoursIndex(listhours)
+          app.innerHTML = AdminCurrentHoursIndex(listhours)
         })
       })
     }
