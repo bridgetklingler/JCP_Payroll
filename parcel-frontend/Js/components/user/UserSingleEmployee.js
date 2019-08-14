@@ -1,56 +1,65 @@
 import ApiActions from "../../api/api-actions"
 
 export default function UserSingleEmployee(employee){
-        ApiActions.getRequest('https://localhost:44390/api/role/'+employee.roleId,
-roletoname=> {
-document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
-})
-    return `   
+    ApiActions.getRequest('https://localhost:44390/api/role/'+employee.roleId,
+
+    setRoles => { document.getElementById('rolenames').innerHTML = setRoles.roleName
+                    document.getElementById('rolerate').innerHTML = setRoles.payRate + '    /    ' + setRoles.hourRate})
+        
+        return `   
+
     <div> 
     <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
     <h2><em>Employee ID: ${employee.employeeId} </em></h2>
     </div class="heading">
-    <table style="width: 95%">
 
+    <table style="width: 95%">
+    
     <tr>
-        <sfname><th>First Name: </th>
-        <td>${employee.firstName}</td></sfname>
+        <th>First Name: </th>
+        <td><strong>${employee.firstName}</strong></td>
     </tr>
     <tr>
-        <slname><th>Last Name: </th>
-        <td>${employee.lastName}</td></slname>
+        <th>Last Name: </th>
+        <td><strong>${employee.lastName}</strong></td>
     </tr>
     <tr>
-        <semail><th>Email: </th>
-        <td>${employee.email}</td></semail>
+        <th>Email: </th>
+        <td>${employee.email}</td>
     </tr>
     <tr>
-        <spn><th>Phone: </th>
-        <td>${employee.phoneNumber}</td></spn>
+        <th>Phone: </th>
+        <td>${employee.phoneNumber}</td>
     </tr>
     <tr>
-        <sroleId><th>Role: </th>
-        <td>${employee.roleId}</td></sroleId>
+        <th>Adress: </th>
+        <td>${employee.address}</td>
     </tr>
     <tr>
-        <saddress><th>Adress: </th>
-        <td>${employee.address}</td></saddress>
+        <th>Role: </th>
+        <td id="roletoname"><sroleId id="rolenames"></sroleId></td>
     </tr>
     <tr>
-        <sssn><th>SSN: </th>
-        <td>${employee.ssn}</td></sssn>
+        <th>Rate: </th>
+        <td><sroleId id="rolerate"><s/roleId></td>
     </tr>
     <tr>
-        <sbd><th>Birth Date: </th>
-        <td>${employee.birthdate.substring(0,10)}</td></sbd>
+        <th>SSN: </th>
+        <td>${employee.ssn}</td>
+    </tr>
+    <tr>
+        <th>Birth Date: </th>
+        <td>${employee.birthdate.substring(0,10)}</td>
     </tr>
     </table>
 
     <br/>
     <employeebuttons>
-    <button class="single_edit edit_employee multibutton">Edit 
-    <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
-    </button> 
+      <button class="user_single_edit edit_employee multibutton medbutton">Edit 
+      <input class="employee_id" type="hidden" value="${employee.employeeId}"> 
+      </button> 
     </employeebuttons>
     `
+
 }
+
