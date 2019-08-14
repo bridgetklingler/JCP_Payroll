@@ -31,6 +31,13 @@ export default function AdminCurrentHoursIndex(hourslist){
             var utcTimeOut = hours.timeOut + "Z";
             var outTime = new Date(utcTimeOut).toLocaleTimeString();
 
+            if(hours.approved == true){
+                var approval = "approved"
+            }
+            else{
+                var approval = "pending"
+            }
+
             return ` 
 
         <tr>
@@ -39,7 +46,7 @@ export default function AdminCurrentHoursIndex(hourslist){
             <td width="14%">${inTime}</td>
             <td width="14%">${outTime}</td>
             <td width="9%" style="text-align: center">${hours.totalHours}</td>
-            <td width="10%" style="text-align: center">${hours.approved}</td>
+            <td width="10%" style="text-align: center">${approval}</td>
             <td style="text-align: right; padding: 0;">
             <button class="edit_hours multibutton">Edit 
             <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
