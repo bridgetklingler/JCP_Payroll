@@ -367,3 +367,8 @@ sf{
   }
 
 }
+
+input, select{
+  padding: .5em;
+  font-size: 15px;
+}

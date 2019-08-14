@@ -11,31 +11,32 @@ export default function AdminAddEmployee()
             <table style="width: 95%">
                 <tr>
                     <th>First Name: </th>
-                    <td><input type="text" class="add_employee_first_name"></td>
+                    <td><input type="text" class="add_employee_first_name" placeholder="First Name...."></td>
                 </tr>
                 <tr>
                     <th>Last Name: </th>
-                    <td><input type="text" class="add_employee_last_name"></td>
+                    <td><input type="text" class="add_employee_last_name" placeholder="Last Name...."></td>
                 </tr>
                 <tr>
                     <th>Email: </th>
-                    <td><input type="text" class="add_employee_email"></td>
+                    <td><input type="text" class="add_employee_email" placeholder="Email...."></td>
                 </tr>
                 <tr>
                     <th>Address: </th>
-                    <td><input type="text" class="add_employee_address"></td>
+                    <td><input type="text" class="add_employee_address"
+                    placeholder="Address...."></td>
                 </tr>
                 <tr>
                     <th>Phone Number: </th>
-                    <td><input type="text" class="add_employee_phone_number"></td>
+                    <td><input type="text" class="add_employee_phone_number" placeholder="Phone Number...."></td>
                 </tr>
                 <tr>
                     <th>SSN: </th>
-                    <td><input type="text" class="add_employee_ssn"></td>
+                    <td><input type="text" class="add_employee_ssn" placeholder="SSN...."></td>
                 </tr>
                 <tr>
                     <th>Birth Date: </th>
-                    <td><input type="date" class="add_employee_birthdate"></td>
+                    <td><input type="date" class="add_employee_birthdate" placeholder="Birth Date...."></td>
                 </tr>
                 <tr>
                     <th>Role: </th>

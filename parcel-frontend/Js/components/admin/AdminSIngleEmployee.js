@@ -37,16 +37,16 @@ document.getElementById('rolerate').innerHTML = roletoname.payRate + "    /    "
         <th>Rate: </th>
         <td><srolerate id="rolerate"></srolerate></td>
     <tr>
-        <saddress><th>Address: </th>
-        <td>${employee.address}</td></saddress>
+        <th>Address: </th>
+        <td>${employee.address}</td>
     </tr>
     <tr>
-        <sssn><th>SSN: </th>
-        <td>${employee.ssn}</td></sssn>
+        <th>SSN: </th>
+        <td>${employee.ssn}</td>
     </tr>
     <tr>
-        <sbd><th>Birth Date: </th>
-        <td>${employee.birthdate.substring(0,10)}</td></sbd>
+        <th>Birth Date: </th>
+        <td>${employee.birthdate.substring(0,10)}</td>
     </tr>
     </table>
 
