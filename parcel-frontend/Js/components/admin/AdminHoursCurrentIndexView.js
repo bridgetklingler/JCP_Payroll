@@ -5,7 +5,7 @@ export default function AdminCurrentHoursIndex(hourslist){
     return `
     <h2>Current Pay-Period</h2>
     <p>Lookup by Last Name</p>
-    <input type='text' class='searchln'>
+    <input type='text' class='searchIn'>
     <button class="searchbutton rangebutton">Search</button>
 
     <table style="width:100%" class="indextable">
@@ -24,16 +24,11 @@ export default function AdminCurrentHoursIndex(hourslist){
             hourtoname=> {
             document.getElementById(hours.hoursId).innerHTML = hourtoname.lastName + ", " + hourtoname.firstName;
             })
-            console.log('start collection')
             var utcTimeIn = hours.timeIn + "Z";
-            console.log("timein brought in " + hours.timeIn)
             var utcdate = new Date(utcTimeIn).toLocaleString()
-            console.log(utcdate)
             var date = new Date(utcdate).toDateString()
-            console.log(date)
             var inTime = new Date(utcTimeIn).toLocaleTimeString()
             var utcTimeOut = hours.timeOut + "Z";
-            console.log("timeout brought in" + hours.timeOut)
             var outTime = new Date(utcTimeOut).toLocaleTimeString();
 
             return ` 
