@@ -3,7 +3,8 @@ import ApiActions from "../../api/api-actions"
 export default function AdminSingleEmployee(employee){
     ApiActions.getRequest('https://localhost:44390/api/role/'+employee.roleId,
 roletoname=> {
-document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
+document.getElementById('rolename').innerHTML = roletoname.roleName;
+document.getElementById('rolerate').innerHTML = roletoname.payRate + "    /    " + roletoname.hourRate;
 })
     return `   
     <div> 
@@ -13,25 +14,28 @@ document.getElementById(employee.employeeId).innerHTML = roletoname.roleName;
     <table style="width: 95%">
 
     <tr>
-        <sfname><th>First Name: </th>
-        <td>${employee.firstName}</td></sfname>
+        <th>First Name: </th>
+        <td>${employee.firstName}</td>
     </tr>
     <tr>
-        <slname><th>Last Name: </th>
-        <td>${employee.lastName}</td></slname>
+        <th>Last Name: </th>
+        <td>${employee.lastName}</td>
     </tr>
     <tr>
-        <semail><th>Email: </th>
-        <td>${employee.email}</td></semail>
+        <th>Email: </th>
+        <td>${employee.email}</td>
     </tr>
     <tr>
-        <spn><th>Phone: </th>
-        <td>${employee.phoneNumber}</td></spn>
+        <th>Phone: </th>
+        <td>${employee.phoneNumber}</td>
     </tr>
     <tr>
-        <sroleId><th>Role: </th>
-        <td>${employee.roleId}</td></sroleId>
+        <th>Role: </th>
+        <td><sroleId id="rolename"></sroleId></td>
     </tr>
+    <tr>
+        <th>Rate: </th>
+        <td><srolerate id="rolerate"></srolerate></td>
     <tr>
         <saddress><th>Address: </th>
         <td>${employee.address}</td></saddress>

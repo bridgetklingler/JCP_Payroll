@@ -2,7 +2,8 @@ import ApiActions from "../../api/api-actions"
 
 export default function UserSingleEmployee(employee){
     ApiActions.getRequest('https://localhost:44390/api/role/'+employee.roleId,
-    setRoles => { document.getElementById('rolenames').innerHTML = setRoles.roleName})
+    setRoles => { document.getElementById('rolenames').innerHTML = setRoles.roleName
+                    document.getElementById('rolerate').innerHTML = setRoles.payRate + '    /    ' + setRoles.hourRate})
         
         return `   
     <div> 
@@ -30,6 +31,10 @@ export default function UserSingleEmployee(employee){
     <tr>
         <th>Role: </th>
         <td id="roletoname"><sroleId id="rolenames"></sroleId></td>
+    </tr>
+    <tr>
+        <th>Rate: </th>
+        <td><sroleId id="rolerate"><s/roleId></td>
     </tr>
     <tr>
         <th>Adress: </th>
