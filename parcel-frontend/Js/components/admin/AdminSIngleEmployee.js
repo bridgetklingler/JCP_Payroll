@@ -4,8 +4,9 @@ export default function AdminSingleEmployee(employee){
     ApiActions.getRequest('https://localhost:44390/api/role/'+employee.roleId,
 roletoname=> {
 document.getElementById('rolename').innerHTML = roletoname.roleName;
-document.getElementById('rolerate').innerHTML = roletoname.payRate + "    /    " + roletoname.hourRate;
-})
+document.getElementById('rolerate').innerHTML = '$' + roletoname.payRate + '    /    ' + roletoname.hourRate + ' hours'})
+
+var birthdate = new Date(employee.birthdate).toDateString()
     return `   
     <div> 
     <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
@@ -46,7 +47,7 @@ document.getElementById('rolerate').innerHTML = roletoname.payRate + "    /    "
     </tr>
     <tr>
         <th>Birth Date: </th>
-        <td>${employee.birthdate.substring(0,10)}</td>
+        <td>${birthdate}</td>
     </tr>
     </table>
 

@@ -4,8 +4,8 @@ export default function UserSingleEmployee(employee){
     ApiActions.getRequest('https://localhost:44390/api/role/'+employee.roleId,
 
     setRoles => { document.getElementById('rolenames').innerHTML = setRoles.roleName
-                    document.getElementById('rolerate').innerHTML = setRoles.payRate + '    /    ' + setRoles.hourRate})
-        
+                    document.getElementById('rolerate').innerHTML = '$' + setRoles.payRate + '    /    ' + setRoles.hourRate + ' hours'})
+                    var birthdate = new Date(employee.birthdate).toDateString()
         return `   
 
     <div> 
@@ -49,7 +49,7 @@ export default function UserSingleEmployee(employee){
     </tr>
     <tr>
         <th>Birth Date: </th>
-        <td>${employee.birthdate.substring(0,10)}</td>
+        <td>${birthdate}</td>
     </tr>
     </table>
 
