@@ -744,3 +744,9 @@ function ExportToExcel(){
         }})
       }
     
+function totalhours(){
+  var total = document.querySelector('total_hours')
+  var minhours = document.querySelector('')
+
+  var newTotal = if(total)
+}
