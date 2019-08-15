@@ -443,7 +443,6 @@ function adminDeleteHoursPast(){
         ApiAction.deleteRequest('https://localhost:44390/api/hours', data, hourslist=> {
             sortAdminViewUserHours(hourslist);
           app.innerHTML = AdminPastHoursIndex(hourslist);
-        
         })
       }
     }
