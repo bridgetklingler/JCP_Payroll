@@ -99,7 +99,7 @@ const app = document.getElementById('main');
           <n class="empcurrenthours">Current Pay-Period
           <input type="hidden" class="getcurrenthours" value="${auth.employeeId}">
           </n>
-          <n class="emppasthours" value="${auth.employeeId}">Past Pay-Period
+          <n class="emppasthours" value="${auth.employeeId}">Previous Pay
           <input type="hidden" class="gethours" value="${auth.employeeId}">
           </n>
           <n class="logout">Log Out
