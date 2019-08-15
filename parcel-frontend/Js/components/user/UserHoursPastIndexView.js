@@ -35,7 +35,7 @@ export default function UserPastHoursIndex(hourslist){
             <td>${date}</td>
             <td>${inTime}</td>
             <td>${outTime}</td>
-            <td>${hours.totalHours}</td>
+            <td style="text-align: center">${hours.totalHours}</td>
             <td width="10%" style="text-align: center">${approval}</td>
         </tr>
         `      

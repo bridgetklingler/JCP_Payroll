@@ -57,15 +57,17 @@ n:hover {
   font-size: 75px;
   color: rgb(55, 116, 145);
   font-weight: 800;
+  /* text-shadow:3px 2px .5px rgba(11, 33, 43, 0.425); */
+  -webkit-text-stroke: 2px rgba(11, 33, 43, 0.726);
 }
 
-@media only screen and (max-width: 1200px){
+@media only screen and (max-width: 1245px){
   mainnav{
     width: 75%;
   }
 }
 
-@media only screen and (max-width: 900px){
+@media only screen and (max-width: 920px){
   mainnav{
     width: 90%;
   }
@@ -280,9 +282,6 @@ select{
   background-color: rgb(252, 244, 222);
 }  
 
-role_select-value:hover{
-  background-color: rgb(154, 195, 212);
-}  
 
 hoursbuttons , employeebuttons {
     min-width:15vw;
