@@ -33,7 +33,7 @@ export default function AdminEditEmployee(employee){
                 <td><input type="text" class="edit_employee_address" value="${employee.address}"></td>
             </tr>
             <tr>
-                <th>RoleId:</th>
+                <th>Role:</th>
                 <td><select id="role_select" class="add_employee_roleId"></select></td>
             </tr>
             <tr>

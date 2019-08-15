@@ -6,7 +6,7 @@ export default function AdminCurrentHoursIndex(hourslist){
     <h2 style="padding-bottom: 2vh;">Current Pay-Period</h2>
 
     <input placeholder="Search Last Name" type='text' class='searchIn' id="searchbar">
-    <button class="searchbutton rangebutton">Search</button>
+    <button class="searchbutton_current rangebutton">Search</button>
 
     <table style="width:100%" class="indextable">
         <tr>
@@ -45,13 +45,13 @@ export default function AdminCurrentHoursIndex(hourslist){
             <td width="19%">${date}</td>
             <td width="14%">${inTime}</td>
             <td width="14%">${outTime}</td>
-            <td width="9%" style="text-align: center">${hours.totalHours}</td>
-            <td width="10%" style="text-align: center">${approval}</td>
+            <td width="11%" style="text-align: center">${hours.totalHours}</td>
+            <td width="11%" style="text-align: center">${approval}</td>
             <td style="text-align: right; padding: 0;"> 
-            <button class="delete_hours_submit multibutton">Delete 
+            <button class="delete_hours_submit_current multibutton">Delete 
             <input class="delete_hours_id" type="hidden" value="${hours.hoursId}"> 
             </button>
-                        <button class="approve_hours_current_submit multibutton">Approve
+            <button class="approve_hours_current_submit multibutton">Approve
                 <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
                 <input class="singleemployee_hours_id" type="hidden" value="${hours.employeeId}"> 
                 <input class="time_in" type="hidden" value="${hours.timeIn}">
