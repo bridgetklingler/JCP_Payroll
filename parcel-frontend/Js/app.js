@@ -21,6 +21,8 @@ import Home from "./components/home";
 pageBuild();
 
 function pageBuild(){
+  login();
+
   getAdminEmployeeIndex();
   getAdminAddEmployee();
   getAdminEditEmployee();
@@ -41,6 +43,7 @@ function pageBuild(){
   adminApprovePastHours();
 
  
+
   getUserSingleEmployee();
   getUserEditProfile();
   getUserHoursIndex();
@@ -66,6 +69,7 @@ function pageBuild(){
 
 const app = document.getElementById('main');
 
+
 //function LogIn(){
   var logged_id = null; //id of person currently logged in (or null if nobody)
   document.getElementById('main').addEventListener('click', function(){
@@ -89,6 +93,7 @@ const app = document.getElementById('main');
           }
           document.getElementById('mainnav').style.display = 'flex'
           document.getElementById('main').innerHTML = Home(auth);
+
           document.getElementById('mainnav').innerHTML = `
           <n class="empprofile">Profile
           <input type="hidden" class="getprofile" value="${auth.employeeId}">
@@ -104,6 +109,7 @@ const app = document.getElementById('main');
           </n>
           <n class="logout">Log Out
           <input type="hidden" class="logout_submit"></n>
+
           `
 
           logged_id = auth.employeeId; //after a successful login, save ID of logged in employee
@@ -111,7 +117,7 @@ const app = document.getElementById('main');
       })
     }
   })
-//}
+
 
 //List Employees
 function getAdminEmployeeIndex(){
@@ -125,7 +131,6 @@ function getAdminEmployeeIndex(){
 
 //Add Employee Functions
 function getAdminAddEmployee() {
-
   document.getElementById('Nav_add_employee').addEventListener('click', function(){
     AdminAddEmployee();  // capital-a AdminAddEmployee
   })
@@ -134,6 +139,7 @@ function getAdminAddEmployee() {
 function adminAddEmployee(){
   document.getElementById('main').addEventListener('click', function() {
     if (event.target.classList.contains('add_employee_submit')){
+
       const employeeId = 0;
       const firstName = document.querySelector('.add_employee_first_name').value;
       const lastName = document.querySelector('.add_employee_last_name').value;
@@ -144,6 +150,7 @@ function adminAddEmployee(){
       const email = document.querySelector('.add_employee_email').value;
       const roleId = document.querySelector('#role_select').value;
       const admin = document.querySelector('#admin_select').value;
+
       const data = {
         employeeId: employeeId,
         phoneNumber: phoneNumber,
@@ -159,6 +166,7 @@ function adminAddEmployee(){
     
       ApiAction.postRequest('https://localhost:44390/api/employee', data,
       employeelist=> {
+
         app.innerHTML = AdminEmployeeIndex(employeelist);
       })
     }
@@ -172,6 +180,7 @@ function getAdminEditEmployee() {
       const employeeId = event.target.querySelector(".edit_employee_id").value
       ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId, employee=> {
       AdminEditEmployee(employee)})
+
     }
   })
 }
@@ -204,6 +213,7 @@ function adminEditEmployee(){
       admin: admin
     };
    
+
       ApiAction.putRequest('https://localhost:44390/api/employee', data,
       employeelist=> {
         app.innerHTML = AdminEmployeeIndex(employeelist);
@@ -214,6 +224,7 @@ function adminEditEmployee(){
 
 //Edit Cancel Button
 function editCancel(){
+
   document.getElementById('main').addEventListener('click', function(){
     if(event.target.classList.contains('cancel_edit_submit'))
       ApiAction.getRequest("https://localhost:44390/api/employee", employeelist => {
@@ -221,6 +232,7 @@ function editCancel(){
     })
   })
 }
+
 
 //Delete Employee Functions
 function adminDeleteEmployee(){
@@ -256,6 +268,7 @@ function getAdminSingleEmployee(){
 
 //Return to Index Button in Single Employee Page
 function returnIndex(){
+
   document.getElementById('main').addEventListener('click', function(){
     if(event.target.classList.contains('return_employee_submit'))
 
@@ -291,7 +304,6 @@ function getAdminHoursIndexPast(){
 //sort user hours function
 function sortAdminViewUserHours(hourslist){
   const sortedHours = hourslist.sort((a, b) => new Date(b.timeIn) - new Date(a.timeIn));
-  console.log(sortedHours);
   return sortedHours;
 }
 
@@ -315,6 +327,7 @@ function adminAddHours(){
       const timeOut = new Date(timeOutUtc)
       const approved = document.querySelector(".add_hours_approved").value;
 
+
       const data = {
         HoursId: hoursId,
         EmployeeId: employeeId,
@@ -333,6 +346,7 @@ function adminAddHours(){
           app.innerHTML = AdminCurrentHoursIndex(listhours
             )
         })
+
       })
     }
   })
@@ -521,6 +535,7 @@ function userEditCancel(){
   })
 }
 
+
 //Hours Functions
 function getUserHoursIndex() {
     document.getElementById('mainnav').addEventListener('click', function() {
@@ -538,7 +553,7 @@ function getUserHoursIndex() {
 //sort user hours function
 function sortUserHours(hours){
   const sortedHours = hours.sort((a, b) => new Date(a.timeIn) - new Date(b.timeIn));
-  console.log(sortedHours);
+  return sortedHours;
 }
 
 function getEmployeeTimeClock(){
@@ -643,7 +658,6 @@ document.getElementById('main').addEventListener('click', function() {
             if (searchLastName(hourtoname.lastName,search)){
               matchinghourslist.push(hours);
               sortAdminViewUserHours(matchinghourslist);
-              console.log("current pay period")
               app.innerHTML = AdminCurrentHoursIndex(matchinghourslist) 
             }
         });
@@ -669,7 +683,6 @@ function searchByLastNamePast(){
               if (searchLastName(hourtoname.lastName,search)){
                 matchinghourslist.push(hours);
                 sortAdminViewUserHours(matchinghourslist);
-                console.log("past pay period")
 
                 app.innerHTML = AdminPastHoursIndex(matchinghourslist) 
               }

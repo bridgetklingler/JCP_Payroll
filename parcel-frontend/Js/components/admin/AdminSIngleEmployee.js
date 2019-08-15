@@ -50,6 +50,7 @@ document.getElementById('rolerate').innerHTML = roletoname.payRate + "    /    "
     </tr>
     </table>
 
+
     <br/>
     <employeebuttons>
         <button class="admin_edit_employee multibutton medbutton">Edit 

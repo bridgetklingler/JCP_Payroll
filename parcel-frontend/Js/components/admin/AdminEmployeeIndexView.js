@@ -49,21 +49,4 @@ export default function AdminEmployeeIndex(employeelist){
     </table>
     `      
 }
-    // <names>
-    //             <lname>${employee.lastName} ,</lname>
-    //             <fname>${employee.firstName}</fname>
-    //         </names>
-    //         <address>${employee.address}</address>
-    //         <pn>${employee.phoneNumber}</pn>
-    //         <email>${employee.email}</email>
-    //         <roleId id='${employee.employeeId}'>${employee.employeeId}
-    //         <input id='roleidtoname' type="hidden" value="${employee.roleId}">
-    //         </roleId>
-    //             <employeebuttons>
-    //                 <button class="single_employee_submit multibutton">Select
-    //                 <input class="single_employee_id" type="hidden" value="${employee.employeeId}"> 
-    //                 </button>
-    //             </employeebuttons>
-    //         </employee>
-        /* </employees>
-        `*/
+   

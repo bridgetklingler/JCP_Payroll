@@ -50,6 +50,7 @@ export default function AdminEditEmployee(employee){
              </tr>
             </table>
 
+
             <div class="edit_buttons">
                 <button class="edit_employee_submit multibutton submit medbutton">Submit</button>
                 <button class='cancel_edit_submit multibutton cancel medbutton'>Cancel
@@ -62,6 +63,7 @@ export default function AdminEditEmployee(employee){
     function loadRoles(){
         apiActions.getRequest('https://localhost:44390/api/role', setRoles)
     }
+
 
     function setRoles(roles){
         let roleHtml = '';
