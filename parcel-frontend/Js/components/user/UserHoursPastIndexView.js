@@ -24,18 +24,18 @@ export default function UserPastHoursIndex(hourslist){
         var outTime = new Date(utcTimeOut).toLocaleTimeString();
 
         if(hours.approved == true){
-            var approval = `<approve id="approve">Approved</approve>`
+            var approval = `<approve id="approve"></approve>`
         }
         else{
-            var approval = `<pend id="pending"><em>pending</em></pend>`
-        }
+            var approval = `<pend id="pending"></pend>`
+    }
 
         return `  
         <tr>
             <td>${date}</td>
             <td>${inTime}</td>
             <td>${outTime}</td>
-            <td>${hours.totalHours}</td>
+            <td style="text-align: center">${hours.totalHours}</td>
             <td width="10%" style="text-align: center">${approval}</td>
         </tr>
         `      

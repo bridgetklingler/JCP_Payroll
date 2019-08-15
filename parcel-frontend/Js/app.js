@@ -24,7 +24,8 @@ function pageBuild(){
   getAdminEmployeeIndex();
   getAdminAddEmployee();
   getAdminEditEmployee();
-  getAdminHoursIndex();
+  getAdminHoursIndexPast();
+  getAdminHoursIndexCurrent();
 
   getAdminAddHours();
   getAdminSingleEmployee();
@@ -272,10 +273,24 @@ function returnIndex(){
 
 //hours based
 //Gets all Hours
-function getAdminHoursIndex(){
+function getAdminHoursIndexCurrent(){
   const hoursindex = document.getElementById('PastPay');
   hoursindex.addEventListener('click', function(){
     ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
+      console.log("hourslist.reverse")
+      console.log(hourslist.reverse());
+      sortAdminViewUserHours(hourslist);
+      console.log("!!!!!!!!!getAdminHoursIndex!!!!!!!!!");
+      console.log(hourslist);
+      app.innerHTML = AdminPastHoursIndex(hourslist);
+    })
+  })
+}
+
+function getAdminHoursIndexPast(){
+  const hoursindex = document.getElementById('PastPay');
+  hoursindex.addEventListener('click', function(){
+    ApiAction.getRequest('https://localhost:44390/api/hours/current', hourslist => {
       console.log("hourslist.reverse")
       console.log(hourslist.reverse());
       sortAdminViewUserHours(hourslist);
@@ -322,6 +337,7 @@ function adminAddHours(){
       const approved = document.querySelector(".add_hours_approved").value;
       console.log(approved)
 
+
       const data = {
         HoursId: hoursId,
         EmployeeId: employeeId,
@@ -334,8 +350,13 @@ function adminAddHours(){
     
       ApiAction.postRequest('https://localhost:44390/api/hours', data,
       hourslist=> {
-        ApiAction.getRequest("https://localhost:44390/api/hours", listhours=> {
-          app.innerHTML = AdminHoursCurrentIndex(listhours)
+        // sortUserHours(hourslist);
+
+        ApiAction.getRequest("https://localhost:44390/api/hours/current", listhours=> {
+          sortAdminViewUserHours(listhours);
+          app.innerHTML = AdminCurrentHoursIndex(listhours
+            //.reverse()
+            )
         })
       })
     }
@@ -363,7 +384,7 @@ function converthours(timeOut,timeIn){
 
 function adminApproveCurrentHours(){
   document.getElementById('main').addEventListener('click', function() {
-  if (event.target.classList.contains('approve_hours_submit')){
+  if (event.target.classList.contains('approve_hours_current_submit')){
 
   const hoursId = event.target.querySelector('.single_hours_id').value
   const employeeId = event.target.querySelector('.singleemployee_hours_id').value
@@ -380,17 +401,19 @@ function adminApproveCurrentHours(){
     approved: true
   };
 
-  ApiAction.putRequest('https://localhost:44390/api/hours', data,
+
+  ApiAction.putRequest('https://localhost:44390/api/hours/', data,
   hourslist=> {
-    app.innerHTML = AdminCurrentHoursIndex(hourslist);
+    ApiAction.getRequest("https://localhost:44390/api/hours/current", listhours=> {
+      sortAdminViewUserHours(listhours);
+      app.innerHTML = AdminCurrentHoursIndex(listhours)
   })
-}
 })
-}
+}})}
 
 function adminApprovePastHours(){
   document.getElementById('main').addEventListener('click', function() {
-  if (event.target.classList.contains('approve_hours_submit')){
+  if (event.target.classList.contains('approve_hours_past_submit')){
 
   const hoursId = event.target.querySelector('.single_hours_id').value
   const employeeId = event.target.querySelector('.singleemployee_hours_id').value
@@ -409,6 +432,7 @@ function adminApprovePastHours(){
 
   ApiAction.putRequest('https://localhost:44390/api/hours', data,
   hourslist=> {
+    sortAdminViewUserHours(hourslist);
     app.innerHTML = AdminPastHoursIndex(hourslist);
   })
 }

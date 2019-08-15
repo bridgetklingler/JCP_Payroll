@@ -24,7 +24,7 @@ console.log("admin add hours")
             </tr>
             <tr>
                 <th>Approved:</th>
-                <td><input type="text" class="add_hours_approved" value="false"></select></td>
+                <td><select id="approve_select" class="add_hours_approved"><option value='false'>Not Approved</option><option value='true'>Approved</option></select></td>
             </tr>
 
             
