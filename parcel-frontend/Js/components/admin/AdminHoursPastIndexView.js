@@ -5,15 +5,17 @@ export default function AdminPastHoursIndex(hourslist){
     
     return `
     <h2>Previous Pay-Period</h2>
-    <p>Lookup by Last Name</p>
-    <input type='text' class='searchln'>
+    <div style="display: flex; justify-content: space-between; padding-top:2vh;">
+    <div>
+    <input placeholder="Search Last Name" type='text' class='searchIn' id="searchbar">
     <button class="searchbutton rangebutton">Search</button>
-
-    <p>Select Range</p>
+    </div>
+    <div>
         <input type="date" class="range_date1" style="width: 15vw;">
         <input type="date" class="range_date2" style="width: 15vw;">
         <button class="getdaterange rangebutton">Range</button>
-
+</div>
+</div>
     <table style="width:100%" class="indextable">
         <tr>
             <th class="tableheader">Employee</th>
@@ -43,10 +45,10 @@ export default function AdminPastHoursIndex(hourslist){
             var outTime = new Date(utcTimeOut).toLocaleTimeString();
 
             if(hours.approved == true){
-                var approval = "approved"
+                var approval = `<approve id="approve"></approve>`
             }
             else{
-                var approval = "pending"
+                var approval = `<pend id="pending"></pend>`
             }
 
             return ` 
@@ -65,7 +67,7 @@ export default function AdminPastHoursIndex(hourslist){
             <button class="delete_hours_submit multibutton">Delete 
             <input class="delete_hours_id" type="hidden" value="${hours.hoursId}"> 
             </button>
-            <button class="approve_hours_submit multibutton">Approve
+            <button class="approve_hours_past_submit multibutton">Approve
                 <input class="single_hours_id" type="hidden" value="${hours.hoursId}"> 
                 <input class="singleemployee_hours_id" type="hidden" value="${hours.employeeId}"> 
                 <input class="time_in" type="hidden" value="${hours.timeIn}">

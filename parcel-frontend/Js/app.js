@@ -24,7 +24,8 @@ function pageBuild(){
   getAdminEmployeeIndex();
   getAdminAddEmployee();
   getAdminEditEmployee();
-  getAdminHoursIndex();
+  getAdminHoursIndexPast();
+  getAdminHoursIndexCurrent();
 
   getAdminAddHours();
   getAdminSingleEmployee();
@@ -33,8 +34,11 @@ function pageBuild(){
   adminEditEmployee();
   adminDeleteEmployee();
   adminAddHours();
+
   adminDeleteHours()
-  adminApproveHours();
+  adminApproveCurrentHours();
+  adminApprovePastHours();
+
  
   getUserSingleEmployee();
   getUserEditProfile();
@@ -50,7 +54,8 @@ function pageBuild(){
   clockIn();
   clockOut();
   viewByDateRange();
-  searchByLastName();
+  searchByLastNameCurrent();
+  searchByLastNamePast();
   adminCurrentHours();
   userCurrentHours();
   
@@ -249,7 +254,6 @@ function getAdminSingleEmployee(){
   document.getElementById('main').addEventListener('click', function() {
     if (event.target.classList.contains('single_employee_submit')){
     const employeeId = event.target.querySelector('.single_employee_id').value;
-     
       ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
         employee=> {
           console.log("admin version")
@@ -272,10 +276,24 @@ function returnIndex(){
 
 //hours based
 //Gets all Hours
-function getAdminHoursIndex(){
+function getAdminHoursIndexCurrent(){
   const hoursindex = document.getElementById('PastPay');
   hoursindex.addEventListener('click', function(){
     ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
+      console.log("hourslist.reverse")
+      console.log(hourslist.reverse());
+      sortAdminViewUserHours(hourslist);
+      console.log("!!!!!!!!!getAdminHoursIndex!!!!!!!!!");
+      console.log(hourslist);
+      app.innerHTML = AdminPastHoursIndex(hourslist);
+    })
+  })
+}
+
+function getAdminHoursIndexPast(){
+  const hoursindex = document.getElementById('PastPay');
+  hoursindex.addEventListener('click', function(){
+    ApiAction.getRequest('https://localhost:44390/api/hours/current', hourslist => {
       console.log("hourslist.reverse")
       console.log(hourslist.reverse());
       sortAdminViewUserHours(hourslist);
@@ -322,6 +340,7 @@ function adminAddHours(){
       const approved = document.querySelector(".add_hours_approved").value;
       console.log(approved)
 
+
       const data = {
         HoursId: hoursId,
         EmployeeId: employeeId,
@@ -334,8 +353,13 @@ function adminAddHours(){
     
       ApiAction.postRequest('https://localhost:44390/api/hours', data,
       hourslist=> {
-        ApiAction.getRequest("https://localhost:44390/api/hours", listhours=> {
-          app.innerHTML = AdminCurrentHoursIndex(listhours)
+        // sortUserHours(hourslist);
+
+        ApiAction.getRequest("https://localhost:44390/api/hours/current", listhours=> {
+          sortAdminViewUserHours(listhours);
+          app.innerHTML = AdminCurrentHoursIndex(listhours
+            //.reverse()
+            )
         })
       })
     }
@@ -361,9 +385,38 @@ function converthours(timeOut,timeIn){
   return timeRound;
 }
 
-function adminApproveHours(){
+function adminApproveCurrentHours(){
   document.getElementById('main').addEventListener('click', function() {
-  if (event.target.classList.contains('approve_hours_submit')){
+  if (event.target.classList.contains('approve_hours_current_submit')){
+
+  const hoursId = event.target.querySelector('.single_hours_id').value
+  const employeeId = event.target.querySelector('.singleemployee_hours_id').value
+  const timeIn = event.target.querySelector('.time_in').value
+  const timeOut = event.target.querySelector('.time_out').value
+  const totalHours = event.target.querySelector('.total_hours').value;
+  const data = {
+
+    hoursId: hoursId,
+    employeeId: employeeId,
+    timeIn: timeIn,
+    timeOut: timeOut,
+    totalHours: totalHours,
+    approved: true
+  };
+
+
+  ApiAction.putRequest('https://localhost:44390/api/hours/', data,
+  hourslist=> {
+    ApiAction.getRequest("https://localhost:44390/api/hours/current", listhours=> {
+      sortAdminViewUserHours(listhours);
+      app.innerHTML = AdminCurrentHoursIndex(listhours)
+  })
+})
+}})}
+
+function adminApprovePastHours(){
+  document.getElementById('main').addEventListener('click', function() {
+  if (event.target.classList.contains('approve_hours_past_submit')){
 
   const hoursId = event.target.querySelector('.single_hours_id').value
   const employeeId = event.target.querySelector('.singleemployee_hours_id').value
@@ -382,7 +435,8 @@ function adminApproveHours(){
 
   ApiAction.putRequest('https://localhost:44390/api/hours', data,
   hourslist=> {
-    app.innerHTML = AdminHoursIndex(hourslist);
+    sortAdminViewUserHours(hourslist);
+    app.innerHTML = AdminPastHoursIndex(hourslist);
   })
 }
 })
@@ -604,7 +658,7 @@ function viewByDateRange(){
       const date2 = document.querySelector('.range_date2').value;
       ApiAction.getRequest('https://localhost:44390/api/hours/range/'+date1+"/"+date2, 
       daterange=> {
-      app.innerHTML = AdminHoursIndex(daterange);}
+      app.innerHTML = AdminPastHoursIndex(daterange);}
       )
     }
   })
@@ -612,7 +666,7 @@ function viewByDateRange(){
 
 //search Hours by employee last name
 
-function searchByLastName(){
+function searchByLastNameCurrent(){
 document.getElementById('main').addEventListener('click', function() {
   if (event.target.classList.contains('searchbutton')) {
 
@@ -621,23 +675,45 @@ document.getElementById('main').addEventListener('click', function() {
     //if the search of last name is true then display that record
     ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
       let matchinghourslist = [];
-      app.innerHTML = AdminHoursIndex(matchinghourslist) 
+      app.innerHTML = AdminCurrentHoursIndex(matchinghourslist) 
       hourslist.map(hours => { 
         ApiAction.getRequest('https://localhost:44390/api/employee/'+ hours.employeeId,
           hourtoname=> {
             if (searchLastName(hourtoname.lastName,search)){
               matchinghourslist.push(hours);
-              app.innerHTML = AdminHoursIndex(matchinghourslist) 
+              app.innerHTML = AdminCurrentHoursIndex(matchinghourslist) 
             }
         });
       });
     });
-
   }
 })
 }
 
-      
+function searchByLastNamePast(){
+  document.getElementById('main').addEventListener('click', function() {
+    if (event.target.classList.contains('searchbutton')) {
+  
+      const search = document.querySelector('.searchIn').value;
+      //search on the value using the includes function on the lastname string.
+      //if the search of last name is true then display that record
+      ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
+        let matchinghourslist = [];
+        app.innerHTML = AdminPastHoursIndex(matchinghourslist) 
+        hourslist.map(hours => { 
+          ApiAction.getRequest('https://localhost:44390/api/employee/'+ hours.employeeId,
+            hourtoname=> {
+              if (searchLastName(hourtoname.lastName,search)){
+                matchinghourslist.push(hours);
+                app.innerHTML = AdminPastHoursIndex(matchinghourslist) 
+              }
+          });
+        });
+      });
+    }
+  })
+  }
+     
  
 function searchLastName(lastName, value){
   console.log(lastName);

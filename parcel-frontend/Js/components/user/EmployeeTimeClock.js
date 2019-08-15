@@ -8,12 +8,14 @@ export default function  EmployeeTimeClock(employee){
     
 
     return `
-    <h1>Welcome Back,</br><strong>${employee.firstName} ${employee.lastName}</strong></h1>
-    <span id="current_date">${date}<span><br>
-    <span id="clock">&nbsp;</span>
+    <profile id="profile">
+        <div><h1><span id="current_date">${date}</span></h1></br>
+        <h1><span id="clock">&nbsp;</span></h1></div>
     <clockbutton>
-    <button class="clockin_submit clock multibutton">Clock In
-    <button class="clockout_submit clock multibutton">Clock Out 
+        <button class="clockin_submit clock multibutton">Clock In</button></br>
+        <button class="clockout_submit clock multibutton">Clock Out</button>
     </clockbutton>
+    </profile>
+
     `
 }

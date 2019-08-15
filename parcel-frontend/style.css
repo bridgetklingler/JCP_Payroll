@@ -5,6 +5,14 @@
   max-width: 100%;
 }
 
+#searchbar {
+  border-radius: 25px;
+  border: 1px solid black;
+  padding: 20px; 
+  width: 28vw;
+  height: 0px;    
+}
+
 body {
   background-color: rgb(251, 255, 255);
 }
@@ -38,13 +46,28 @@ n:hover {
   background-color: rgb(28, 67, 85);
 }
 
-@media only screen and (max-width: 1200px){
+#welcome, #profile{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 2.5em;
+}
+
+#namecard{
+  font-size: 75px;
+  color: rgb(55, 116, 145);
+  font-weight: 800;
+  /* text-shadow:3px 2px .5px rgba(11, 33, 43, 0.425); */
+  -webkit-text-stroke: 2px rgba(11, 33, 43, 0.726);
+}
+
+@media only screen and (max-width: 1245px){
   mainnav{
     width: 75%;
   }
 }
 
-@media only screen and (max-width: 900px){
+@media only screen and (max-width: 920px){
   mainnav{
     width: 90%;
   }
@@ -127,7 +150,7 @@ loginbox {
 
 
 .multibutton {
-  background: linear-gradient(to bottom, rgb(198, 225, 236), rgb(122, 160, 177));
+  background: linear-gradient(to bottom, rgb(187, 232, 250), rgb(88, 142, 167));
   background-color: rgb(154, 195, 212);
   border-color: rgb(1, 21, 31);
   color:  rgb(1, 21, 31);
@@ -168,25 +191,28 @@ loginbox {
 }
 
 .clock{
-  padding: 2em;
+  padding: 2em 1em; 
   width: 20vw;
   text-emphasis: bold;
   font-size: 20px;
   margin: .5em;
   height: -1vw;
+  font-size: 27px;
+  font-weight: 650;
+  color: rgb(1, 21, 31);
 }
 
 clockbutton{
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   width: 100%;
   height: 100%;
-  align-content: flex-end;
+  padding-top: 2.5em;  
 }
 
 #main {
   padding: 0 5vw 5vh 5vw;
-  margin: 2em 0 0 2em;
+  margin: 2em;
   transition: 0.5s;
 }
 
@@ -256,9 +282,6 @@ select{
   background-color: rgb(252, 244, 222);
 }  
 
-role_select-value:hover{
-  background-color: rgb(154, 195, 212);
-}  
 
 hoursbuttons , employeebuttons {
     min-width:15vw;
@@ -365,11 +388,11 @@ sf{
     padding: 10px;
   }
 
-  #main {
+  /* #main {
     padding: 0px;
     margin: 0px;
     margin-top: 30px;
-  }
+  } */
 
   h1 {
     font-size: 150%;
@@ -390,4 +413,27 @@ sf{
 input, select{
   padding: .5em;
   font-size: 15px;
+}
+
+#approve{
+  display: inline-block;
+  height: 15px;
+  width: 50px;
+  background: linear-gradient( to bottom, rgb(47, 230, 30),rgb(34, 138, 25) );
+  border: solid 1.5px rgb(13, 75, 9);  
+}
+
+#pending{
+  display: inline-block;
+  height: 15px;
+  width: 50px;
+  background: linear-gradient( to bottom, rgb(245, 15, 15),rgb(202, 30, 30) );
+  border: solid 1.5px rgb(99, 3, 3);  
+  color: rgb(79, 83, 85);
+}
+
+.indexhover:hover {
+  cursor: pointer;
+  background-color: rgb(211, 226, 235) !important;
+  transition: 400ms;
 }
