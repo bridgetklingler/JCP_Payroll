@@ -1,14 +1,50 @@
+import apiActions from '../../api/api-actions'
+
 export default function AdminAddHours(){
-    return `    
-            <h1> Add Hours</h1>
-            <addhours>
-            <addinput> <label>Employee Id:<label/> <input type="text" class="add_employee_id_hours"> </addinput>
+console.log("admin add hours")
+    setPage();
+    loadEmployees();
+
+    function setPage(){
+        let page = `    
+        <h1> Add Hours</h1>
+
+        <table> 
+            <tr>
+                <th>Employee Id:</th>
+                <td><select id="employee_select" class="add_employee_id_hours"></select></td>
+            </tr>
+            <tr>
+                <th>Time In:</th>
+                <td><input type="datetime-local" class="add_hours_time_in"></select></td>
+            </tr>
+            <tr>
+                <th>Time Out:</th>
+                <td><input type="datetime-local" class="add_hours_time_out"> </select></td>
+            </tr>
+            <tr>
+                <th>Approved:</th>
+                <td><select id="approve_select" class="add_hours_approved"><option value='false'>Not Approved</option><option value='true'>Approved</option></select></td>
+            </tr>
+
             
-            <addinput> <label>Time In: <label/> <input type="datetime-local" class="add_hours_time_in"> </addinput>
-            <addinput> <label> Time Out: <label/> <input type="datetime-local" class="add_hours_time_out"> </addinput>
-            
-            <addinput> <label> Approved: <label/> <input type="text" class="add_hours_approved" value="false"> </addinput>
-            <button class="add_employee_hours_submit multibutton submit">Submit</button>
-            </addhours>
-    `
+        </table>
+        <button class="add_employee_hours_submit multibutton submit">Submit</button>
+        `
+        document.querySelector('#main').innerHTML = page;
+    }
+
+    function loadEmployees(){
+        apiActions.getRequest('https://localhost:44390/api/employee', setEmployees)
+    }
+
+    function setEmployees(employees){
+        let employeeHtml = '';
+        for(const employee of employees){
+            employeeHtml += `<option
+            value='${employee.employeeId}'>${employee.employeeId} - ${employee.lastName}, ${employee.firstName}</option>`
+        }
+        document.querySelector("#employee_select").innerHTML = employeeHtml;
+    }
 }
+

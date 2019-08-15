@@ -1,45 +1,67 @@
+import ApiActions from "../../api/api-actions"
+
 export default function AdminSingleEmployee(employee){
-    return `    
-            <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
-            <employees>
-    <employee  style="font-weight: 800; background-color: rgb(120, 161, 182)">    
-    <names>
-            <fname></fname>
-            <lname>Name</lname>
-            </names>
-            <address>Address</address>
-            <pn>Phone Number</pn>
-            <ssn>SSN</ssn>
-            <bd>BirthDate</bd>
-            <email>Email</email>
-            <roleId>roleId</roleId>
-            <employeebuttons></employeebuttons>
-            </employee>
-       
-            <employee>
-            <names>
-            <fname>${employee.firstName}</fname>
-            <lname>${employee.lastName}</lname>
-            </names>
-            <address>${employee.address}</address>
-            <pn>${employee.phoneNumber}</pn>
-            <ssn>${employee.ssn}</ssn>
-            <bd>${employee.birthdate.substring(0,10)}</bd>
-            <email>${employee.email}</email>
-            <roleId>${employee.roleId}</roleId>
-            <employeebuttons>
-                <button class="edit_employee multibutton">Edit 
-                <input class="edit_employee_id" type="hidden" value="${employee.employeeId}"> 
-                </button>
+    ApiActions.getRequest('https://localhost:44390/api/role/'+employee.roleId,
+roletoname=> {
+document.getElementById('rolename').innerHTML = roletoname.roleName;
+document.getElementById('rolerate').innerHTML = roletoname.payRate + "    /    " + roletoname.hourRate;
+})
+    return `   
+    <div> 
+    <h1>Employee: ${employee.lastName} , ${employee.firstName} </h1>
+    <h2><em>Employee ID: ${employee.employeeId} </em></h2>
+    </div class="heading">
+    <table style="width: 95%">
 
-                <button class="delete_employee_submit multibutton">Delete 
-                <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
-                </button>
+    <tr>
+        <th>First Name: </th>
+        <td><strong>${employee.firstName}</strong></td>
+    </tr>
+    <tr>
+        <th>Last Name: </th>
+        <td><strong>${employee.lastName}</strong></td>
+    </tr>
+    <tr>
+        <th>Email: </th>
+        <td>${employee.email}</td>
+    </tr>
+    <tr>
+        <th>Phone: </th>
+        <td>${employee.phoneNumber}</td>
+    </tr>
+    <tr>
+        <th>Address: </th>
+        <td>${employee.address}</td>
+    </tr>
+    <tr>
+        <th>Role: </th>
+        <td><sroleId id="rolename"></sroleId></td>
+    </tr>
+    <tr>
+        <th>Rate: </th>
+        <td><srolerate id="rolerate"></srolerate></td>
+    <tr>
+        <th>SSN: </th>
+        <td>${employee.ssn}</td>
+    </tr>
+    <tr>
+        <th>Birth Date: </th>
+        <td>${employee.birthdate.substring(0,10)}</td>
+    </tr>
+    </table>
 
-                <button class='return_employee_submit multibutton'>Return to Index</button>
-            </employeebuttons>
-            </employee>
-            </employees>
-            `
 
+    <br/>
+    <employeebuttons>
+        <button class="admin_edit_employee multibutton medbutton">Edit 
+            <input class="edit_employee_id" type="hidden" value="${employee.employeeId}"> 
+        </button> 
+        <button class="admin_delete_employee_submit multibutton medbutton">Delete 
+            <input class="delete_employee_id" type="hidden" value="${employee.employeeId}"> 
+        </button> 
+        <button class="return_employee_submit multibutton medbutton">Return to Index
+            <input class='single_return_employee_id' type='hidden' value ='${employee.employeeId}'>
+        </button>
+    </employeebuttons>
+    `
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -31,6 +32,42 @@ namespace JumboCaramelPayroll.Controllers
             return db.Hours.Where(a => a.EmployeeId == id);
         }
 
+        //Get payment history by date range
+        [HttpGet("range/{date1}/{date2}")]
+        public IEnumerable<Hours> GetPayRange(DateTime date1, DateTime date2)
+        { 
+            return db.Hours.Where(a => a.TimeIn > date1 && a.TimeIn < date2);
+        }
+
+        //Search for hours log by Last Name
+        [HttpGet("search/{lName}")]
+        public IEnumerable<Hours> SearchByEmployeeName(string lName)
+        {
+            Employee foundEmployee = db.Employees.First(a => a.LastName == lName);
+            List<Hours> searchHours = new List<Hours>();
+            searchHours = db.Hours.Where(h => h.EmployeeId == foundEmployee.EmployeeId).ToList();
+            return searchHours;;
+        }
+
+        [HttpGet("current")]
+        public IEnumerable<Hours> GetCurrentPay()
+        {
+            DayOfWeek dow = DateTime.Now.DayOfWeek;
+            return db.Hours.Where(a => a.TimeIn.DayOfWeek <= dow && a.TimeIn.DayOfYear > (DateTime.Now.DayOfYear -7) && a.TimeIn.Year == DateTime.Now.Year);
+        }
+
+        [HttpGet("current/{id}")]
+        public IEnumerable<Hours> GetCurrentPayById(int id)
+        {
+            DayOfWeek dow = DateTime.Now.DayOfWeek;
+            return db.Hours.Where(a => a.TimeIn.DayOfWeek <= dow && a.TimeIn.DayOfYear > (DateTime.Now.DayOfYear - 7) && a.TimeIn.Year == DateTime.Now.Year && a.EmployeeId == id);
+        }
+
+        [HttpGet("collect/{id}")]
+        public ActionResult<Hours> CollectPreviousHours(int id)
+        {
+            return db.Hours.Last(c => c.EmployeeId == id);
+        }
 
         // POST api/Hours
         [HttpPost]
@@ -73,14 +110,10 @@ namespace JumboCaramelPayroll.Controllers
 
         [HttpDelete]
         public ActionResult<IEnumerable<Hours>> Delete(Hours hours)
-        {
-           
+        {           
             db.Hours.Remove(hours);
             db.SaveChanges();
             return db.Hours.ToList();
         }
-
-
-
     }
 }

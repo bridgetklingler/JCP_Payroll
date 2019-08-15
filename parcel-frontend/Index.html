@@ -3,30 +3,63 @@
     <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="style.css">
+        <script type="text/javascript">
+                
+          function updateClock ( )
+          {
+            var currentTime = new Date ( );
+      
+            var currentHours = currentTime.getHours ( );
+            var currentMinutes = currentTime.getMinutes ( );
+            var currentSeconds = currentTime.getSeconds ( );
+      
+            // Pad the minutes and seconds with leading zeros, if required
+            currentMinutes = ( currentMinutes < 10 ? "0" : "" ) + currentMinutes;
+            currentSeconds = ( currentSeconds < 10 ? "0" : "" ) + currentSeconds;
+      
+            // Choose either "AM" or "PM" as appropriate
+            var timeOfDay = ( currentHours < 12 ) ? "AM" : "PM";
+      
+            // Convert the hours component to 12-hour format if needed
+            currentHours = ( currentHours > 12 ) ? currentHours - 12 : currentHours;
+      
+            // Convert an hours component of "0" to "12"
+            currentHours = ( currentHours == 0 ) ? 12 : currentHours;
+      
+            // Compose the string for display
+            var currentTimeString = currentHours + ":" + currentMinutes + ":" + currentSeconds + " " + timeOfDay;
+      
+            // Update the time display
+            document.getElementById("clock").firstChild.nodeValue = currentTimeString;
+          }
+      
+          
+          </script>
+      
     </head>
-      <body>
+      <body onload="updateClock(); setInterval('updateClock()', 1000 )">
     <nav id='nav'>
       <div id="mySidenav" class="sidenav">
        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-       <a id="Nav_employee_index" href="#">Employees</a>
+       <a id="Nav_employee_index" href="#">View Employees</a>
        <a id="Nav_add_hours">Add Hours</a>
-       <a href="#">Edit Hours</a>
-       <a href="#">Edit Roles</a>
+       
        <a id="Nav_add_employee" href="#">Add Employee</a>
-       <a id="Nav_hours_index">Current Pay Period</a>
-       <a href="#">Previous Pay Period</a>
+       <a id="CurrentPay">Current Pay-Period</a>
+       <a id="PastPay">Previous Pay</a>
     </div>
     <span id='hidenav' style="font-size:30px;cursor:pointer;color:rgb(154, 195, 212);margin-left:1vw;" onclick="openNav()">&#9776;</span>
       <mainnav id='mainnav'>
         <n>Profile</n>
         <n id="User_hours_index">Add Hours</n>
         <n id="User_view_hours_index">Current Pay-Period</n>
-        <n>Past Pay-Period</n>
+        <n id="User_view_hours_past">Previous Pay</n>
+        <n>Log Out</n>
       </mainnav>
     </nav>      
         <div id="main">
           <loginbox id='loginbox'>
-            <strong>Username:</strong>
+            <strong>Employee Id:</strong>
             <input class='logininput' id='username' type="text">
           </br>
             <strong>Password:</strong>
@@ -37,6 +70,7 @@
           <p id='invalid' style='color: red;;'></p>
         </loginbox>
         </div>
+        <span style="display: none;" id="clock">&nbsp;</span>
         <footer>  <foot><img src="/img/cooltext332461593789505.png" alt="" width="20%">Jumbo Caramel Productions &copy; 2019<subfoot><sf>50 Public Square #200, Cleveland, OH 44113</sf><sf>(440)-123-1234</sf></subfoot></foot></footer>
     </body>
 <script>
@@ -54,16 +88,7 @@
       document.getElementById('mySidenav').style.width = "0";
       document.getElementById('main').style.paddingLeft = "5vw";
     })
-    // document.getElementById('main').addEventListener('click', function(){
-    //   if(event.target.classList.contains("adminlogin")){
-    //     if(document.getElementById('username').value == 'admin'){
-    //       if(document.getElementById('password').value == 'password') {
-    //   document.getElementById('hidenav').style.display = 'block'
-    //   document.getElementById('nav').style.display = 'flex'
-    //   document.getElementById('mainnav').style.display = 'flex'
-    //   document.getElementById('main').innerHTML = "<h1>Welcome,</br> Admin</h1>"
-    //   }}}})
-
   </script>
+  
 <script src="./Js/app.js"></script>
 </html>
