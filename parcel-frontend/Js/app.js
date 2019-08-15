@@ -716,31 +716,31 @@ function userCurrentHours(){
 function ExportToExcel(){
   document.getElementById('main').addEventListener('click', function() {
     if(event.target.classList.contains('export_table')){
-            var htmltable= document.getElementById('Table_User_Current_Pay');
-            var html = htmltable.outerHTML;
+            // var htmltable= document.getElementById('Table_User_Current_Pay');
+            // var html = htmltable.outerHTML;
 
-            window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
-        // var downloadLink;
-        // var dataType = 'application/vnd.ms-excel';
-        // var tableSelect = document.getElementById('Table_User_Current_Pay');
-        // var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+            // window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+        var downloadLink;
+        var dataType = 'application/vnd.ms-excel';
+        var tableSelect = document.getElementById('Table_User_Current_Pay');
+        var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
 
-        // const filename = 'User_Current_Pay.xls';
-        // downloadLink = document.createElement("a");
+        const filename = 'User_Current_Pay.xls';
+        downloadLink = document.createElement("a");
 
-        // document.body.appendChild(downloadLink);
+        document.body.appendChild(downloadLink);
 
-        // if(navigator.msSaveOrOpenBlob){
-        //   var blob = new Blob(['ufeff', tableHTML],{
-        //     type: dataType
-        //   });
+        if(navigator.msSaveOrOpenBlob){
+          var blob = new Blob(['ufeff', tableHTML],{
+            type: dataType
+          });
         
-        // navigator.msSaveOrOpenBlob(blob, filename);
-        // }else{
-        //   downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
-        //   downloadLink.download = filename;
-        //   downloadLink.click();
-        // }
+        navigator.msSaveOrOpenBlob(blob, filename);
+        }else{
+          downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+          downloadLink.download = filename;
+          downloadLink.click();
+        }
         }})
       }
     
