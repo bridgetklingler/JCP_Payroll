@@ -1,7 +1,6 @@
 import apiActions from '../../api/api-actions'
 
 export default function AdminAddHours(){
-console.log("admin add hours")
     setPage();
     loadEmployees();
 

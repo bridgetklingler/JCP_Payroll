@@ -317,7 +317,7 @@ input {
 
 footer{
   background-color: rgb(211, 226, 235);
-  position: bottom;
+  position: fixed;
   bottom: 0px;
   left: 0px;
   text-align: center;
