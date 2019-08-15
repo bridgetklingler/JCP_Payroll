@@ -3,7 +3,7 @@ export default function UserCurrentHoursIndex(hourslist){
     return `
     <h1>Current Pay-Period</h1>
 
-    <table style="width: 100%" class="indextable">
+    <table style="width: 100%" class="indextable" id="Table_User_Current_Pay">
         <tr>
             <th class="tableheader">Date Worked</th>
             <th class="tableheader">Time In</th>
@@ -42,5 +42,6 @@ export default function UserCurrentHoursIndex(hourslist){
         })     
         .join("")}
         </table>
-    `
+        <button class="export_table">Export Hours</button>
+        `
 }

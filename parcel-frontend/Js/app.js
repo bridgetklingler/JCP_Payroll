@@ -58,6 +58,8 @@ function pageBuild(){
   searchByLastNamePast();
   adminCurrentHours();
   userCurrentHours();
+
+  ExportToExcel();
   
 }
 
@@ -68,7 +70,6 @@ const app = document.getElementById('main');
   document.getElementById('main').addEventListener('click', function(){
     // when person clicks clock_in or clock_out, send information to API
     if(event.target.id == 'clock_in') {
-      console.log("https://localhost:44390/api/employee/clock_in/"+logged_id);
       ApiAction.getRequest("https://localhost:44390/api/employee/clock_in/"+logged_id);
     }
     else if(event.target.id == 'clock_out') {
@@ -77,10 +78,8 @@ const app = document.getElementById('main');
     else if(event.target.classList.contains("adminlogin")){
       const username = document.getElementById('username').value;
       const password = document.getElementById('password').value;
-      console.log('test');
       document.getElementById('invalid').innerHTML = "Invalid Username or Password"
       ApiAction.getRequest("https://localhost:44390/api/employee/login/"+username+"/"+password, auth => {
-        console.log(auth);
         if (auth.ssn === password){
           document.getElementById('nav').style = 'display: flex; justify-content: flex-end;'
           if (auth.admin === true){
@@ -118,7 +117,6 @@ function getAdminEmployeeIndex(){
   const employeeindex = document.getElementById('Nav_employee_index');
   employeeindex.addEventListener('click', function(){
     ApiAction.getRequest("https://localhost:44390/api/employee", employeelist => {
-    console.log("admin version")
       app.innerHTML = AdminEmployeeIndex(employeelist);
     })
   })
@@ -128,7 +126,6 @@ function getAdminEmployeeIndex(){
 function getAdminAddEmployee() {
 
   document.getElementById('Nav_add_employee').addEventListener('click', function(){
-    console.log("admin version")
     AdminAddEmployee();  // capital-a AdminAddEmployee
   })
 }
@@ -136,7 +133,6 @@ function getAdminAddEmployee() {
 function adminAddEmployee(){
   document.getElementById('main').addEventListener('click', function() {
     if (event.target.classList.contains('add_employee_submit')){
-      console.log("i");
       const employeeId = 0;
       const firstName = document.querySelector('.add_employee_first_name').value;
       const lastName = document.querySelector('.add_employee_last_name').value;
@@ -162,7 +158,6 @@ function adminAddEmployee(){
     
       ApiAction.postRequest('https://localhost:44390/api/employee', data,
       employeelist=> {
-        console.log("admin add function version")
         app.innerHTML = AdminEmployeeIndex(employeelist);
       })
     }
@@ -174,9 +169,7 @@ function getAdminEditEmployee() {
   document.getElementById('main').addEventListener('click', function(){
     if(event.target.classList.contains("admin_edit_employee")){
       const employeeId = event.target.querySelector(".edit_employee_id").value
-      console.log(employeeId)
       ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId, employee=> {
-        console.log("admin version")
       AdminEditEmployee(employee)})
     }
   })
@@ -185,7 +178,7 @@ function getAdminEditEmployee() {
 function adminEditEmployee(){
   document.getElementById('main').addEventListener('click', function() {
     if (event.target.classList.contains('edit_employee_submit')){
-    console.log("i");
+
     const employeeId = document.querySelector('.edit_employee_id').value;
     const roleId = document.querySelector('#role_select').value;
     const firstName = document.querySelector('.edit_employee_first_name').value;
@@ -212,7 +205,6 @@ function adminEditEmployee(){
    
       ApiAction.putRequest('https://localhost:44390/api/employee', data,
       employeelist=> {
-        console.log("admin version")
         app.innerHTML = AdminEmployeeIndex(employeelist);
       })
     }
@@ -241,7 +233,6 @@ function adminDeleteEmployee(){
       var result = confirm("Are you sure you want to delete this employee?");
       if (result) {
         ApiAction.deleteRequest('https://localhost:44390/api/employee', data, employeelist=> {
-          console.log("admin version")
           app.innerHTML = AdminEmployeeIndex(employeelist);
         })
       }
@@ -256,7 +247,6 @@ function getAdminSingleEmployee(){
     const employeeId = event.target.querySelector('.single_employee_id').value;
       ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
         employee=> {
-          console.log("admin version")
         app.innerHTML = AdminSingleEmployee(employee);
       })
     }
@@ -280,11 +270,7 @@ function getAdminHoursIndexCurrent(){
   const hoursindex = document.getElementById('PastPay');
   hoursindex.addEventListener('click', function(){
     ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
-      console.log("hourslist.reverse")
-      console.log(hourslist.reverse());
       sortAdminViewUserHours(hourslist);
-      console.log("!!!!!!!!!getAdminHoursIndex!!!!!!!!!");
-      console.log(hourslist);
       app.innerHTML = AdminPastHoursIndex(hourslist);
     })
   })
@@ -294,11 +280,7 @@ function getAdminHoursIndexPast(){
   const hoursindex = document.getElementById('PastPay');
   hoursindex.addEventListener('click', function(){
     ApiAction.getRequest('https://localhost:44390/api/hours/current', hourslist => {
-      console.log("hourslist.reverse")
-      console.log(hourslist.reverse());
       sortAdminViewUserHours(hourslist);
-      console.log("!!!!!!!!!getAdminHoursIndex!!!!!!!!!");
-      console.log(hourslist);
       app.innerHTML = AdminPastHoursIndex(hourslist);
     })
   })
@@ -307,10 +289,8 @@ function getAdminHoursIndexPast(){
 //sortadminviewuserhours
 //sort user hours function
 function sortAdminViewUserHours(hourslist){
-  console.log("just before admin sort function fires");
   const sortedHours = hourslist.sort((a, b) => new Date(b.timeIn) - new Date(a.timeIn));
   //const sortedHours = hours.sort((a, b) => b.timeIn - a.timeOut);
-  console.log("sorted admin view hours=");
   console.log(sortedHours);
 
 }
@@ -318,7 +298,6 @@ function sortAdminViewUserHours(hourslist){
 //Admin Add Hours
 function getAdminAddHours(){
   document.getElementById('Nav_add_hours').addEventListener('click', function(){
-    console.log("admin version")
     AdminAddHours();
   })
 }
@@ -330,16 +309,11 @@ function adminAddHours(){
       const hoursId = 0;
       const employeeId = document.querySelector('#employee_select').value
       const timeInUtc = new Date(document.querySelector('.add_hours_time_in').value).toISOString()
-      console.log(timeInUtc)
       const timeOutUtc = new Date(document.querySelector('.add_hours_time_out').value).toISOString()
-      console.log(timeOutUtc)
       const totalHours = converthours(timeOutUtc, timeInUtc);
       const timeIn = new Date(timeInUtc)
       const timeOut = new Date(timeOutUtc)
-      console.log(totalHours);
       const approved = document.querySelector(".add_hours_approved").value;
-      console.log(approved)
-
 
       const data = {
         HoursId: hoursId,
@@ -353,12 +327,10 @@ function adminAddHours(){
     
       ApiAction.postRequest('https://localhost:44390/api/hours', data,
       hourslist=> {
-        // sortUserHours(hourslist);
 
         ApiAction.getRequest("https://localhost:44390/api/hours/current", listhours=> {
           sortAdminViewUserHours(listhours);
           app.innerHTML = AdminCurrentHoursIndex(listhours
-            //.reverse()
             )
         })
       })
@@ -368,20 +340,14 @@ function adminAddHours(){
 
 //Converts Time in and Time out to display correctly
 function converthours(timeOut,timeIn){
-  console.log("timeOut"); console.log(timeOut);
-  console.log("time in"); console.log(timeIn);
 
   var toDate = parseInt(new Date(timeOut).getTime()/1000)
-  console.log(toDate);
   
   var fromDate = parseInt(new Date(timeIn).getTime()/1000)
-  console.log(fromDate);
   
   var timeDiff = (toDate - fromDate)/3600;
-  console.log(timeDiff);
   
   const timeRound = Math.abs(Math.round((timeDiff+.0499)*10)/10);
-  console.log(timeRound)
   return timeRound;
 }
 
@@ -467,14 +433,11 @@ function getUserSingleEmployee(){
   document.getElementById('mainnav').addEventListener('click', function() {
     if (event.target.classList.contains('empprofile')){
       const employeeId = event.target.querySelector('.getprofile').value;  
-      console.log(employeeId);   
       ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
         employee=> {
-
         app.innerHTML = UserSingleEmployee(employee);
 
-        }
-      )
+        })
     }
   })
 }
@@ -483,9 +446,7 @@ function getUserEditProfile() {
   document.getElementById('main').addEventListener('click', function(){
     if(event.target.classList.contains("user_single_edit")){
       const employeeId = event.target.querySelector(".employee_id").value
-      console.log(employeeId)
       ApiAction.getRequest("https://localhost:44390/api/employee/" + employeeId, employee=> {
-        console.log("user version")
         app.innerHTML = UserEditProfile(employee)})
     }
   })
@@ -494,7 +455,6 @@ function getUserEditProfile() {
 function userEditProfile(){
   document.getElementById('main').addEventListener('click', function() {
     if (event.target.classList.contains('user_edit_submit')){
-      console.log("i");
       const employeeId = document.querySelector('.edit_employee_id').value;
       const roleId = document.querySelector('.user_roleId').value;
       const firstName = document.querySelector('.edit_employee_first_name').value;
@@ -518,7 +478,6 @@ function userEditProfile(){
         email: email,
         admin: admin
       };
-      console.log(data)
     
       ApiAction.putRequest('https://localhost:44390/api/employee', data,
       employee=> {
@@ -545,24 +504,17 @@ function getUserHoursIndex() {
       if (event.target.classList.contains('emppasthours')){
       const employeeId = event.target.querySelector('.gethours').value;
 
-      console.log(employeeId);   
       ApiAction.getRequest('https://localhost:44390/api/hours/'+employeeId, 
         hours=> {
-          console.log("just before call to sortUserHours")
           sortUserHours(hours);
-         console.log("hours=")
-         console.log(hours)
         app.innerHTML = UserPastHoursIndex(hours.reverse());
-       
       })
 }})  
 }
+
 //sort user hours function
 function sortUserHours(hours){
-  console.log("just before sort function fires");
   const sortedHours = hours.sort((a, b) => new Date(a.timeIn) - new Date(b.timeIn));
-  //const sortedHours = hours.sort((a, b) => b.timeIn - a.timeOut);
-  console.log("sorted hours=");
   console.log(sortedHours);
 }
 
@@ -570,7 +522,6 @@ function getEmployeeTimeClock(){
   document.getElementById('mainnav').addEventListener('click', function() {
     if (event.target.classList.contains('emptimeclock')){
       const employeeId = event.target.querySelector('.gettimeclock').value;  
-      console.log(employeeId);   
       ApiAction.getRequest('https://localhost:44390/api/employee/' + employeeId, 
         employee=> {
         app.innerHTML = EmployeeTimeClock(employee);
@@ -584,11 +535,9 @@ function getEmployeeTimeClock(){
 //Clock in 
 function clockIn(){
   document.getElementById('main').addEventListener('click', function() {
-    console.log(event.target.classList);
     //cory don't change the button request from clockin_submit and the button will work.
 
     if (event.target.classList.contains('clockin_submit')){
-      console.log('clockin')
       var d = new Date()
       
       //d.toLocaleTimeString();
@@ -600,7 +549,6 @@ function clockIn(){
         TotalHours: 0,
         Approved: false
       }
-      console.log(data);
       ApiAction.postRequest('https://localhost:44390/api/hours', data,
       // what does this do?
       clock => {   
@@ -614,21 +562,13 @@ function clockIn(){
 function clockOut(){
   document.getElementById('main').addEventListener('click', function() {
     if (event.target.classList.contains('clockout_submit')){
-      console.log('clockout start')
       ApiAction.getRequest('https://localhost:44390/api/hours/collect/'+ logged_id, 
       targetHours=>{
-        console.log(targetHours)
-        console.log("get hours")
         var hoursId = targetHours.hoursId
-        console.log(hoursId)
         var timeIn = targetHours.timeIn + "Z"
-        console.log(timeIn)
-        console.log("get hours complete")
                     
         var d = new Date().toISOString()
-        console.log(d)
         
-        console.log("start data conversion")
         const data = {
           HoursId: hoursId,
           EmployeeId: logged_id,
@@ -637,11 +577,8 @@ function clockOut(){
           TotalHours: converthours(d, timeIn),
           Approved: false
         }
-        console.log("end data conversion")
-        console.log(data)
         ApiAction.putRequest('https://localhost:44390/api/hours', data,
         clock=> {
-          
         })
         alert("You have Clocked Out.")
       })
@@ -716,7 +653,6 @@ function searchByLastNamePast(){
      
  
 function searchLastName(lastName, value){
-  console.log(lastName);
   return lastName.toLowerCase().includes(value.toLowerCase());
 }
 
@@ -732,8 +668,6 @@ function adminCurrentHours(){
   const hoursindexcurrent = document.getElementById('CurrentPay');
   hoursindexcurrent.addEventListener('click', function(){
     ApiAction.getRequest('https://localhost:44390/api/hours/current', hourslist => {
-      console.log("hourslist.reverse")
-      console.log(hourslist.reverse());
       sortAdminViewUserHours(hourslist);
       app.innerHTML = AdminCurrentHoursIndex(hourslist);
     })
@@ -745,16 +679,44 @@ function userCurrentHours(){
   document.getElementById('mainnav').addEventListener('click', function() {
     if (event.target.classList.contains('empcurrenthours')){
     const employeeId = event.target.querySelector('.getcurrenthours').value;
-    console.log(employeeId);   
     ApiAction.getRequest('https://localhost:44390/api/hours/current/'+employeeId, 
       hours=> {
-        console.log("just before call to sortUserHours")
         sortUserHours(hours);
-       console.log("hours=")
-       console.log(hours)
       app.innerHTML = UserCurrentHoursIndex(hours.reverse());
     })
 }
 })  
 }
 
+
+function ExportToExcel(){
+  document.getElementById('main').addEventListener('click', function() {
+    if(event.target.classList.contains('export_table')){
+            var htmltable= document.getElementById('Table_User_Current_Pay');
+            var html = htmltable.outerHTML;
+
+            window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+        // var downloadLink;
+        // var dataType = 'application/vnd.ms-excel';
+        // var tableSelect = document.getElementById('Table_User_Current_Pay');
+        // var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+        // const filename = 'User_Current_Pay.xls';
+        // downloadLink = document.createElement("a");
+
+        // document.body.appendChild(downloadLink);
+
+        // if(navigator.msSaveOrOpenBlob){
+        //   var blob = new Blob(['ufeff', tableHTML],{
+        //     type: dataType
+        //   });
+        
+        // navigator.msSaveOrOpenBlob(blob, filename);
+        // }else{
+        //   downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+        //   downloadLink.download = filename;
+        //   downloadLink.click();
+        // }
+        }})
+      }
+    
