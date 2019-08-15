@@ -33,6 +33,7 @@ function pageBuild(){
   adminEditEmployee();
   adminDeleteEmployee();
   adminAddHours();
+  adminDeleteHours()
   adminApproveHours();
  
   getUserSingleEmployee();
@@ -385,6 +386,24 @@ function adminApproveHours(){
   })
 }
 })
+}
+
+function adminDeleteHours(){
+  document.getElementById('main').addEventListener('click', function() {
+    if (event.target.classList.contains('delete_hours_submit')){
+      const hoursId = event.target.querySelector('.delete_hours_id').value;
+      const data = {
+        HoursId: hoursId
+      }
+
+      var result = confirm("Are you sure you want to delete this Time Punch?");
+      if (result) {
+        ApiAction.deleteRequest('https://localhost:44390/api/hours', data, hourslist=> {
+          app.innerHTML = AdminCurrentHoursIndex(hourslist);
+        })
+      }
+    }
+  })
 }
 
 //User Functions Below
