@@ -1,10 +1,7 @@
 export default function  EmployeeTimeClock(employee){
     var d = new Date()
-    console.log(d)
     var date = d.toDateString();
-    console.log(date) 
     var time = d.getHours() + ':' + d.getMinutes() + ':' + d.getSeconds()
-    console.log(time)
     
 
     return `

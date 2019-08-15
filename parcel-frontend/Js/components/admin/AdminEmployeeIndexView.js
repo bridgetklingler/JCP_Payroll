@@ -1,7 +1,6 @@
 import ApiActions from "../../api/api-actions"
 
 export default function AdminEmployeeIndex(employeelist){
-    console.log("Employee Index")
     return `
     
     <h1>Employee Index</h1>

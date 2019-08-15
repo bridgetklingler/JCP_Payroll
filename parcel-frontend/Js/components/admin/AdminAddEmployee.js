@@ -1,7 +1,6 @@
 import apiActions from '../../api/api-actions'
 export default function AdminAddEmployee()
 {
-    console.log("addemployeepage")
     setPage();
     loadRoles();
 

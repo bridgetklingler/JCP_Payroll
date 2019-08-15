@@ -21,7 +21,6 @@ import Home from "./components/home";
 pageBuild();
 
 function pageBuild(){
-  login();
 
   getAdminEmployeeIndex();
   getAdminAddEmployee();
