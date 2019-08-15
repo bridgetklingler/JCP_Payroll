@@ -27,9 +27,13 @@ export default function UserEditProfile(employee){
                         <td><input type="text" class="edit_employee_address" value="${employee.address}"></td>
                 </tr>
                 <tr>
-                        <th>Birth Date: </th>
-                        <td><input type="date" class="edit_employee_birthdate" value="${employee.birthdate.substring(0,10)}"></td>
-                </tr>
+                <th>SSN:</th>
+                <td><input type="text" class="edit_employee_ssn readonly" value="${employee.ssn}" readonly></td>
+            </tr>
+            <tr>
+                <th>BirthDate:</th>
+                <td><input type="date" class="edit_employee_birthdate readonly" value="${employee.birthdate.substring(0,10)}" readonly></td>
+            </tr>
             </table>
 
             <div>
