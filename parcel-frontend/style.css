@@ -429,4 +429,11 @@ input, select{
   width: 50px;
   background: linear-gradient( to bottom, rgb(245, 15, 15),rgb(202, 30, 30) );
   border: solid 1.5px rgb(99, 3, 3);  
+  color: rgb(79, 83, 85);
+}
+
+.indexhover:hover {
+  cursor: pointer;
+  background-color: rgb(211, 226, 235) !important;
+  transition: 400ms;
 }
