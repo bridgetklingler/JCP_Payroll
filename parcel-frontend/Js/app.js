@@ -268,11 +268,11 @@ function returnIndex(){
 //hours based
 //Gets all Hours
 function getAdminHoursIndexCurrent(){
-  const hoursindex = document.getElementById('PastPay');
+  const hoursindex = document.getElementById('CurrentPay');
   hoursindex.addEventListener('click', function(){
-    ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
+    ApiAction.getRequest('https://localhost:44390/api/hours/current', hourslist => {
       sortAdminViewUserHours(hourslist);
-      app.innerHTML = AdminPastHoursIndex(hourslist);
+      app.innerHTML = AdminCurrentHoursIndex(hourslist);
     })
   })
 }
@@ -280,7 +280,7 @@ function getAdminHoursIndexCurrent(){
 function getAdminHoursIndexPast(){
   const hoursindex = document.getElementById('PastPay');
   hoursindex.addEventListener('click', function(){
-    ApiAction.getRequest('https://localhost:44390/api/hours/current', hourslist => {
+    ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
       sortAdminViewUserHours(hourslist);
       app.innerHTML = AdminPastHoursIndex(hourslist);
     })
@@ -291,9 +291,8 @@ function getAdminHoursIndexPast(){
 //sort user hours function
 function sortAdminViewUserHours(hourslist){
   const sortedHours = hourslist.sort((a, b) => new Date(b.timeIn) - new Date(a.timeIn));
-  //const sortedHours = hours.sort((a, b) => b.timeIn - a.timeOut);
   console.log(sortedHours);
-
+  return sortedHours;
 }
 
 //Admin Add Hours
@@ -619,6 +618,7 @@ function viewByDateRange(){
       const date2 = document.querySelector('.range_date2').value;
       ApiAction.getRequest('https://localhost:44390/api/hours/range/'+date1+"/"+date2, 
       daterange=> {
+          sortAdminViewUserHours(daterange);
       app.innerHTML = AdminPastHoursIndex(daterange);}
       )
     }
@@ -642,6 +642,7 @@ document.getElementById('main').addEventListener('click', function() {
           hourtoname=> {
             if (searchLastName(hourtoname.lastName,search)){
               matchinghourslist.push(hours);
+              // sortAdminViewUserHours(matchinghourslist);
               app.innerHTML = AdminCurrentHoursIndex(matchinghourslist) 
             }
         });

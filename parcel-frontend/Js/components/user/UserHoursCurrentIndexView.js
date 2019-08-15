@@ -16,9 +16,7 @@ export default function UserCurrentHoursIndex(hourslist){
        
         var utcTimeIn = hours.timeIn + "Z";
         var utcdate = new Date(utcTimeIn).toLocaleString()
-        console.log(utcdate)
         var date = new Date(utcdate).toDateString()
-        console.log(date)
         var inTime = new Date(utcTimeIn).toLocaleTimeString()
         var utcTimeOut = hours.timeOut + "Z";
         var outTime = new Date(utcTimeOut).toLocaleTimeString();

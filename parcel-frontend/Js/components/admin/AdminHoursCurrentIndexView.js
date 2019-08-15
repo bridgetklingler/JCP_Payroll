@@ -45,8 +45,8 @@ export default function AdminCurrentHoursIndex(hourslist){
             <td width="19%">${date}</td>
             <td width="14%">${inTime}</td>
             <td width="14%">${outTime}</td>
-            <td width="9%" style="text-align: center">${hours.totalHours}</td>
-            <td width="10%" style="text-align: center">${approval}</td>
+            <td width="11%" style="text-align: center">${hours.totalHours}</td>
+            <td width="11%" style="text-align: center">${approval}</td>
             <td style="text-align: right; padding: 0;"> 
             <button class="delete_hours_submit_current multibutton">Delete 
             <input class="delete_hours_id" type="hidden" value="${hours.hoursId}"> 
