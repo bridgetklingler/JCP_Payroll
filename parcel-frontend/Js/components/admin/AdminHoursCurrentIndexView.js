@@ -6,7 +6,7 @@ export default function AdminCurrentHoursIndex(hourslist){
     <h2 style="padding-bottom: 2vh;">Current Pay-Period</h2>
 
     <input placeholder="Search Last Name" type='text' class='searchIn' id="searchbar">
-    <button class="searchbutton rangebutton">Search</button>
+    <button class="searchbutton_current rangebutton">Search</button>
 
     <table style="width:100%" class="indextable">
         <tr>

@@ -629,20 +629,21 @@ function viewByDateRange(){
 
 function searchByLastNameCurrent(){
 document.getElementById('main').addEventListener('click', function() {
-  if (event.target.classList.contains('searchbutton')) {
+  if (event.target.classList.contains('searchbutton_current')) {
 
     const search = document.querySelector('.searchIn').value;
     //search on the value using the includes function on the lastname string.
     //if the search of last name is true then display that record
-    ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
+    ApiAction.getRequest('https://localhost:44390/api/hours/current', hourslist => {
       let matchinghourslist = [];
-      app.innerHTML = AdminCurrentHoursIndex(matchinghourslist) 
+      // app.innerHTML = AdminCurrentHoursIndex(matchinghourslist) 
       hourslist.map(hours => { 
         ApiAction.getRequest('https://localhost:44390/api/employee/'+ hours.employeeId,
           hourtoname=> {
             if (searchLastName(hourtoname.lastName,search)){
               matchinghourslist.push(hours);
-              // sortAdminViewUserHours(matchinghourslist);
+              sortAdminViewUserHours(matchinghourslist);
+              console.log("current pay period")
               app.innerHTML = AdminCurrentHoursIndex(matchinghourslist) 
             }
         });
@@ -654,19 +655,22 @@ document.getElementById('main').addEventListener('click', function() {
 
 function searchByLastNamePast(){
   document.getElementById('main').addEventListener('click', function() {
-    if (event.target.classList.contains('searchbutton')) {
+    if (event.target.classList.contains('searchbutton_past')) {
   
       const search = document.querySelector('.searchIn').value;
       //search on the value using the includes function on the lastname string.
       //if the search of last name is true then display that record
       ApiAction.getRequest('https://localhost:44390/api/hours', hourslist => {
         let matchinghourslist = [];
-        app.innerHTML = AdminPastHoursIndex(matchinghourslist) 
+        // app.innerHTML = AdminPastHoursIndex(matchinghourslist) 
         hourslist.map(hours => { 
           ApiAction.getRequest('https://localhost:44390/api/employee/'+ hours.employeeId,
             hourtoname=> {
               if (searchLastName(hourtoname.lastName,search)){
                 matchinghourslist.push(hours);
+                sortAdminViewUserHours(matchinghourslist);
+                console.log("past pay period")
+
                 app.innerHTML = AdminPastHoursIndex(matchinghourslist) 
               }
           });

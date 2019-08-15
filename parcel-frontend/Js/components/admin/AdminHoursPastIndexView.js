@@ -7,7 +7,7 @@ export default function AdminPastHoursIndex(hourslist){
     <div style="display: flex; justify-content: space-between; padding-top:2vh;">
     <div>
     <input placeholder="Search Last Name" type='text' class='searchIn' id="searchbar">
-    <button class="searchbutton rangebutton">Search</button>
+    <button class="searchbutton_past rangebutton">Search</button>
     </div>
     <div>
         <input type="date" class="range_date1" style="width: 15vw;">
