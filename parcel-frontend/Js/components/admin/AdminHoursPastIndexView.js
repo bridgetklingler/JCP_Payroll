@@ -64,7 +64,7 @@ export default function AdminPastHoursIndex(hourslist){
             <button class="edit_hours multibutton">Edit 
             <input class="hours_id" type="hidden" value="${hours.hoursId}"> 
             </button> 
-            <button class="delete_hours_submit multibutton">Delete 
+            <button class="delete_hours_submit_past multibutton">Delete 
             <input class="delete_hours_id" type="hidden" value="${hours.hoursId}"> 
             </button>
             <button class="approve_hours_past_submit multibutton">Approve

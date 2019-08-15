@@ -35,7 +35,8 @@ function pageBuild(){
   adminDeleteEmployee();
   adminAddHours();
 
-  adminDeleteHours()
+  adminDeleteHoursPast();
+  adminDeleteHoursCurrent();
   adminApproveCurrentHours();
   adminApprovePastHours();
 
@@ -408,9 +409,9 @@ function adminApprovePastHours(){
 })
 }
 
-function adminDeleteHours(){
+function adminDeleteHoursCurrent(){
   document.getElementById('main').addEventListener('click', function() {
-    if (event.target.classList.contains('delete_hours_submit')){
+    if (event.target.classList.contains('delete_hours_submit_current')){
       const hoursId = event.target.querySelector('.delete_hours_id').value;
       const data = {
         HoursId: hoursId
@@ -419,12 +420,36 @@ function adminDeleteHours(){
       var result = confirm("Are you sure you want to delete this Time Punch?");
       if (result) {
         ApiAction.deleteRequest('https://localhost:44390/api/hours', data, hourslist=> {
-          app.innerHTML = AdminCurrentHoursIndex(hourslist);
+          ApiAction.getRequest("https://localhost:44390/api/hours/current", listhours=> {
+            sortAdminViewUserHours(listhours);
+          app.innerHTML = AdminCurrentHoursIndex(listhours);
+        })
         })
       }
     }
   })
 }
+
+function adminDeleteHoursPast(){
+  document.getElementById('main').addEventListener('click', function() {
+    if (event.target.classList.contains('delete_hours_submit_past')){
+      const hoursId = event.target.querySelector('.delete_hours_id').value;
+      const data = {
+        HoursId: hoursId
+      }
+
+      var result = confirm("Are you sure you want to delete this Time Punch?");
+      if (result) {
+        ApiAction.deleteRequest('https://localhost:44390/api/hours', data, hourslist=> {
+            sortAdminViewUserHours(hourslist);
+          app.innerHTML = AdminPastHoursIndex(hourslist);
+        
+        })
+      }
+    }
+  })
+}
+
 
 //User Functions Below
 //Employee Based Function
