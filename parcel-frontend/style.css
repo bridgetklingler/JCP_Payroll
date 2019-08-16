@@ -211,7 +211,7 @@ clockbutton{
 }
 
 #main {
-  padding: 0 5vw 5vh 5vw;
+  padding: 0 5vw 10vh 5vw;
   margin: 2em;
   transition: 0.5s;
   min-height: 25em; 

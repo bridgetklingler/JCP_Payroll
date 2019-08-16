@@ -40,6 +40,6 @@ export default function UserCurrentHoursIndex(hourslist){
         })     
         .join("")}
         </table>
-        <button class="export_table">Export Hours</button>
+        <button class="export_table rangebutton">Export Hours</button>
         `
 }

@@ -8,7 +8,7 @@ export default function AdminCurrentHoursIndex(hourslist){
     <input placeholder="Search Last Name" type='text' class='searchIn' id="searchbar">
     <button class="searchbutton_current rangebutton">Search</button>
 
-    <table style="width:100%" class="indextable">
+    <table style="width:100%" class="indextable" id="Table_Admin_Current_Pay">
         <tr>
             <th class="tableheader">Employee</th>
             <th class="tableheader">Date Worked</th>
@@ -64,5 +64,7 @@ export default function AdminCurrentHoursIndex(hourslist){
     }).join("")}
     
     </table>
+    <button class="export_admin_table rangebutton">Export Hours</button>
+
        `
 }

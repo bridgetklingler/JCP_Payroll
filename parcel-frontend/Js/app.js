@@ -62,7 +62,8 @@ function pageBuild(){
   adminCurrentHours();
   userCurrentHours();
 
-  ExportToExcel();
+  ExportToExcelUser();
+  ExportToExcelAdmin();
   
 }
 
@@ -730,9 +731,9 @@ function userCurrentHours(){
 }
 
 
-function ExportToExcel(){
+function ExportToExcelUser(){
   document.getElementById('main').addEventListener('click', function() {
-    if(event.target.classList.contains('export_table')){
+    if(event.target.classList.contains('export_user_table')){
             // var htmltable= document.getElementById('Table_User_Current_Pay');
             // var html = htmltable.outerHTML;
 
@@ -760,4 +761,36 @@ function ExportToExcel(){
         }
         }})
       }
-    
+
+function ExportToExcelAdmin(){
+document.getElementById('main').addEventListener('click', function() {
+if(event.target.classList.contains('export_admin_table')){
+      // var htmltable= document.getElementById('Table_User_Current_Pay');
+      // var html = htmltable.outerHTML;
+
+      // window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+  var downloadLink;
+  var dataType = 'application/vnd.ms-excel';
+  var tableSelect = document.getElementById('Table_Admin_Current_Pay');
+  var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+
+  const filename = 'Admin_Current_Pay.xls';
+  downloadLink = document.createElement("a");
+
+  document.body.appendChild(downloadLink);
+
+  if(navigator.msSaveOrOpenBlob){
+    var blob = new Blob(['ufeff', tableHTML],{
+      type: dataType
+    });
+  
+  navigator.msSaveOrOpenBlob(blob, filename);
+  }else{
+    downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+    downloadLink.download = filename;
+    downloadLink.click();
+  }
+  }})
+}
+
+
